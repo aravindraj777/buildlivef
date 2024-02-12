@@ -10,6 +10,8 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 
@@ -23,7 +25,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptor
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync()

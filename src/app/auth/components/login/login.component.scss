@@ -6,13 +6,14 @@
     font-family: sans-serif;
 }
 
-body{
-
+.container{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #adb2d0;
+    // background: #adb2d0;
     height: 100vh;
+    background-image:url(/buildlivef/src/assets/signinpage-im.jpg);
 }
 
 .box{

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,10 +14,13 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit{
 
   registerForm!:FormGroup
+  showOtpField: boolean = false;
 
   constructor(private _formBuilder:FormBuilder,
               private _authService: AuthService,
-              private _http: HttpClient){
+              private _http: HttpClient,
+              private _toastr:ToastrService,
+              private _route:Router){
 
   }
 
@@ -47,11 +52,17 @@ export class SignupComponent implements OnInit{
         this._http.post<any>('http://localhost:8080/api/v1/auth/register',registerValues).subscribe(
           response => {
             console.log("registerd",response);
+            this._toastr.success('Registration successful!', 'Success');
+            this._route.navigate([""]);
+          },
+          error =>{
+            this._toastr.error('Failed','Error');
           }
         )
       }
       else{
         console.log("errror");
+        this._toastr.error('Failed','Error');
         
       }
       
