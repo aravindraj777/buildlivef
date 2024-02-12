@@ -16,6 +16,12 @@
                     <p>Enter your information to register</p>
                     </marquee>
                 </div>
+                <div class="text-center mb-10">
+                    <h1 class="font-bold text-3xl text-gray-900">Register</h1>
+                    <p *ngIf="!showOt"></p>
+
+                </div>
+
                 <div>
                     <form [formGroup]="registerForm" (ngSubmit)="proceedToRegister()" action="">
                     <div class="flex -mx-3">
