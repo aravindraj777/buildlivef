@@ -31,12 +31,15 @@ export class SignupComponent implements OnInit{
       phone: this._formBuilder.control('', Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])),
       email: this._formBuilder.control('',Validators.compose([Validators.required,Validators.email])),
       password: this._formBuilder.control('',Validators.compose([Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])),
-      confirmPassword: this._formBuilder.control('',Validators.compose([Validators.required]))
+      confirmPassword: this._formBuilder.control('',Validators.compose([Validators.required])),
+      otp: ['']
       
     })
   }
 
-  proceedToRegister(){
+  
+   userId!:String;
+   proceedToRegister(){
 
 
       /*
@@ -46,26 +49,75 @@ export class SignupComponent implements OnInit{
       const {confirmPassword,...registerValues} = this.registerForm.value;
       console.log(registerValues);
 
+    if(!this.showOtpField){
       if(this.registerForm.valid){
         console.log("valid")
         
-        this._http.post<any>('http://localhost:8080/api/v1/auth/register',registerValues).subscribe(
+        this._http.post<any>('auth/register',registerValues).subscribe(
           response => {
             console.log("registerd",response);
             this._toastr.success('Registration successful!', 'Success');
-            this._route.navigate([""]);
+            this.userId = response.id;
+            console.log(this.userId)
+            this.showOtpField = true;
+         
+           
+            // this._route.navigate([""]);
           },
           error =>{
             this._toastr.error('Failed','Error');
           }
         )
       }
-      else{
-        console.log("errror");
-        this._toastr.error('Failed','Error');
-        
-      }
+      
+    }
+    else{
+      this.verifyOtp(this.userId);
+      console.log("errror");
+      // this._toastr.error('Failed','Error');
+      this._route.navigate([""])
+      
+    }
       
   }
 
+
+  verifyOtp(userId:String){
+
+    const otpValue = this.registerForm.get('otp')?.value;
+    console.log(otpValue);
+    console.log(this.userId);
+    
+
+    if (otpValue) {
+      const otpVerificationData = {
+        userId: userId,
+        otpValue: otpValue
+      };
+  
+      this._http.post<any>('auth/verify-otp', otpVerificationData).subscribe(
+        response => {
+          console.log("OTP verified", response);
+          // Handle successful OTP verification here
+          this._toastr.success("verified")
+          this._route.navigate([""])
+        }) 
+    } else {
+      console.error("OTP value is not available");
+      this._toastr.error("failed last")
+    }
+  }
+
+
+
+
+  
+  
+
 }
+
+
+
+
+
+

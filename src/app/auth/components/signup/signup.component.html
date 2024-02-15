@@ -18,58 +18,91 @@
                 </div>
                 <div class="text-center mb-10">
                     <h1 class="font-bold text-3xl text-gray-900">Register</h1>
-                    <p *ngIf="!showOt"></p>
-
+                    <p *ngIf="showOtpField">Enter Otp</p>
                 </div>
 
                 <div>
                     <form [formGroup]="registerForm" (ngSubmit)="proceedToRegister()" action="">
                     <div class="flex -mx-3">
                      
-                        <div class="w-1/2 px-3 mb-5">
+                        <div class="w-1/2 px-3 mb-5" *ngIf="!showOtpField" [ngClass]="{'error': registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)}">
                             <label for="" class="text-xs font-semibold px-1">Name</label>
+                           
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
                                 <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="@77User" formControlName="name">
                             </div>
+                            <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)" class="validation-message">
+                                Username is required.
+                            </div>
                         </div>
-                        <div class="w-1/2 px-3 mb-5">
+                        <div class="w-1/2 px-3 mb-5" *ngIf="!showOtpField">
                             <label for="" class="text-xs font-semibold px-1">Phone</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
                                 <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Phone" formControlName="phone">
                             </div>
+                            <div *ngIf="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].dirty || registerForm.controls['phone'].touched)" class="validation-message">
+                                phone is required.
+                            </div>
                         </div>
                     </div>
-                    <div class="flex -mx-3">
+                    <div class="flex -mx-3" *ngIf="!showOtpField">
                         <div class="w-full px-3 mb-5">
                             <label for="" class="text-xs font-semibold px-1">Email</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="johnsmith@example.com" formControlName="email">
+                                <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="aravind@example.com" formControlName="email">
+                            </div>
+                            <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="validation-message">
+                                email  required.
                             </div>
                         </div>
                     </div>
-                    <div class="flex -mx-3">
+                    <div class="flex -mx-3" *ngIf="!showOtpField">
                         <div class="w-full px-3 mb-12">
                             <label for="" class="text-xs font-semibold px-1">Password</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
                                 <input type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="************" formControlName="password">
                             </div>
+                            <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="validation-message">
+                                password required.
+                            </div>
                         </div>
-                        <div class="w-full px-3 mb-12">
+                        <div class="w-full px-3 mb-12" *ngIf="!showOtpField">
                             <label for="" class="text-xs font-semibold px-1">Confirm Password</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
                                 <input type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="************" formControlName="confirmPassword">
                             </div>
-                        
+                            <div *ngIf="registerForm.controls['confirmPassword'].invalid && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched)" class="validation-message">
+                                confirmPassword.
+                            </div>
                         </div>
                     </div>
+                    <div class="flex -mx-3" *ngIf="showOtpField">
+                        <div class="w-full px-3 mb-5">
+                            <label for="" class="text-xs font-semibold px-1">OTP</label>
+                            <div class="flex">
+                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                    <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                                </div>
+                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Enter OTP" formControlName="otp">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex -mx-3">
                         <div class="w-full px-3 mb-5">
-                            <button type="submit" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
+                            <button type="submit" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" [disabled]="registerForm.invalid">
+                                <ng-container *ngIf="!showOtpField; else otpLabel">
+                                    Register
+                                </ng-container>
+                                <ng-template #otpLabel>
+                                    Verify OTP
+                                </ng-template>
+                            </button>
                         </div>
                     </div>
                 </form>
