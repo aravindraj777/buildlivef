@@ -12,6 +12,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './store/auth/auth.reducer';
+import { AuthEffects } from './store/auth/auth.effects';
+import { AuthInterceptorService } from './interceptor/auth-interceptor.service';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 
@@ -19,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -27,11 +34,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    StoreModule.forRoot({auth:authReducer}),
+    EffectsModule.forRoot([AuthEffects]),
+    
   ],
   providers: [
-    provideAnimationsAsync()
-    //  {provide: HTTP_INTERCEPTORS, useValue: [authInterceptor], multi: true }
+    provideAnimationsAsync(),
+     {provide:  HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
