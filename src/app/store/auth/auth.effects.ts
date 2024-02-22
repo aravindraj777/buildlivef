@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserAuthService } from "../../services/user-auth.service";
 import { loginFailure, loginRequest, loginSuccess } from "./auth.action";
-import { catchError, map, of, switchMap } from "rxjs";
+import { catchError, delay, map, of, switchMap, tap } from "rxjs";
+import { NgxUiLoaderService } from "ngx-ui-loader";
 
 
 @Injectable()
@@ -11,13 +12,16 @@ export class AuthEffects{
 
     constructor(private _actions$ :Actions ,
                 private _http:HttpClient,
-                private _userAuthService: UserAuthService){}
+                private _userAuthService: UserAuthService,
+                private _ngxLoader:NgxUiLoaderService){}
 
 
 
    login$ = createEffect (()=> 
             this._actions$.pipe(
                 ofType(loginRequest),
+                delay(3000),
+                tap(() => this._ngxLoader.start()),
                 switchMap((action)=> {
                     const loginData = action.login;
                     console.log("Rewuseting",loginData);
@@ -38,7 +42,8 @@ export class AuthEffects{
                             return of(loginFailure({error}));
                         })
                     )
-                })
+                }),
+                tap(() => this._ngxLoader.stop())
             )
    )             
 
