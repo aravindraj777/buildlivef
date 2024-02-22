@@ -18,8 +18,16 @@ import { authReducer } from './store/auth/auth.reducer';
 import { AuthEffects } from './store/auth/auth.effects';
 import { AuthInterceptorService } from './interceptor/auth-interceptor.service';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 // import { authInterceptor } from './interceptors/auth.interceptor';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  // Set the loader's appearance
+  fgsType: SPINNER.rectangleBounce,
+  // Delay in milliseconds before showing the loader
+  delay: 2000 // 2 seconds delay
+};
 
 @NgModule({
   declarations: [
@@ -37,6 +45,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     ToastrModule.forRoot(),
     StoreModule.forRoot({auth:authReducer}),
     EffectsModule.forRoot([AuthEffects]),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
     
   ],
   providers: [
