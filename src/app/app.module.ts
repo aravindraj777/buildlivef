@@ -19,6 +19,8 @@ import { AuthEffects } from './store/auth/auth.effects';
 import { AuthInterceptorService } from './interceptor/auth-interceptor.service';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
+
+import { HomeModule } from './pages/home/home/home.module';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 
@@ -34,7 +36,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppComponent,
     LoginComponent,
     SignupComponent,
-    SidebarComponent
+    SidebarComponent,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ToastrModule.forRoot(),
     StoreModule.forRoot({auth:authReducer}),
     EffectsModule.forRoot([AuthEffects]),
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    HomeModule
     
   ],
   providers: [
