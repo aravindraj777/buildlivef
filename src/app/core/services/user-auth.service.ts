@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Router } from '@angular/router';
-import { LoginModel, LoginResponse } from '../store/auth/auth.model';
+import { LoginModel, LoginResponse } from '../../store/auth/auth.model';
 import { Observable, tap } from 'rxjs';
-import { RootState } from '../store/global/root.state';
+import { RootState } from '../../store/global/root.state';
 
 @Injectable({
   providedIn: 'root'

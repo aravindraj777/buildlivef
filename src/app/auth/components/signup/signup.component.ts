@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -17,7 +16,6 @@ export class SignupComponent implements OnInit{
   showOtpField: boolean = false;
 
   constructor(private _formBuilder:FormBuilder,
-              private _authService: AuthService,
               private _http: HttpClient,
               private _toastr:ToastrService,
               private _route:Router){

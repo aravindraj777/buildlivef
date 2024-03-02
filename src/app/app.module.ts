@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
 import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -17,10 +14,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './store/auth/auth.reducer';
 import { AuthEffects } from './store/auth/auth.effects';
 import { AuthInterceptorService } from './interceptor/auth-interceptor.service';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
 
 import { HomeModule } from './pages/home/home/home.module';
+import { UserComponent } from './layout/user/user.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { UsernavComponent } from './layout/usernav/usernav.component';
+
 // import { authInterceptor } from './interceptors/auth.interceptor';
 // import { authInterceptor } from './interceptors/auth.interceptor';
 
@@ -37,7 +39,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LoginComponent,
     SignupComponent,
     SidebarComponent,
-    
+    UserComponent,
+    AdminComponent,
+    NavbarComponent,
+    UsernavComponent
+  
 
   ],
   imports: [
@@ -52,6 +58,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     HomeModule
     
+  ],
+  exports:[
+    SidebarComponent
   ],
   providers: [
     provideAnimationsAsync(),
