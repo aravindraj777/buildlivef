@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { UserAuthService } from "../../services/user-auth.service";
+import { UserAuthService } from "../../core/services/user-auth.service";
 import { loginFailure, loginRequest, loginSuccess } from "./auth.action";
 import { catchError, delay, map, of, switchMap, tap } from "rxjs";
 import { NgxUiLoaderService } from "ngx-ui-loader";

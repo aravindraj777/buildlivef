@@ -1,7 +1,7 @@
 import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { UserAuthService } from '../services/user-auth.service';
+import { UserAuthService } from '../core/services/user-auth.service';
 
 @Injectable({
   providedIn: 'root'
