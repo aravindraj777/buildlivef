@@ -17,34 +17,33 @@ export class AuthEffects{
 
 
 
-   login$ = createEffect (()=> 
-            this._actions$.pipe(
-                ofType(loginRequest),
-                delay(3000),
-                tap(() => this._ngxLoader.start()),
-                switchMap((action)=> {
-                    const loginData = action.login;
-                    console.log("Rewuseting",loginData);
-                    return this._userAuthService.login(loginData).pipe(
-                        map((response:any) => {
-                            console.log(response,"response");
-                            if(response && response.user){
-                                // const {user} = response.user;
-                            console.log("userData",response.user);
-                            return loginSuccess({user:response.user});
-                            }
-                            else{
-                                return loginFailure({error : new Error ('Invalid response')})
-                            }
-                        }),
-                        catchError((error) => {
-                            console.error("error",error);
-                            return of(loginFailure({error}));
-                        })
-                    )
-                }),
-                tap(() => this._ngxLoader.stop())
-            )
-   )             
+
+
+login$ = createEffect(() => 
+this._actions$.pipe(
+  ofType(loginRequest),
+  tap(() => this._ngxLoader.start()),
+  switchMap((action) => {
+    const loginData = action.login;
+    return this._userAuthService.login(loginData).pipe(
+      map((response: any) => {
+        if (response && response.user) {
+          return loginSuccess({ user: response.user });
+        } else {
+          return loginFailure({ error: new Error('Invalid response') });
+        }
+      }),
+      catchError((error) => of(loginFailure({ error })))
+    );
+  }),
+  tap((action) => {
+    if (action.type === "[Auth] loginSuccess") {
+      sessionStorage.setItem('user', JSON.stringify(action.user));
+    }
+  }),
+  tap(() => this._ngxLoader.stop())
+)
+);
+   
 
 }
