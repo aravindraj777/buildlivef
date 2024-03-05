@@ -7,10 +7,46 @@
     height: 60px;
 }
 
-// nav {
-//     position: fixed;
-//     top: 0;
-//     z-index: 1000; /* Adjust the z-index as needed */
-//     background-color: white; /* Change the background color as needed */
-//   }
+nav{
+    width: 1200px;
+    height: 80px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
   
+nav ul li {
+    margin-right: 40px;
+    font-family: arial;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.btn {
+    width: 150px;
+    height: 50px;
+    background-color: #44ce6f;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-family: arial;
+    font-weight: bold;
+    transition: 0.5s;
+    color: #fff;
+}
+
+.btn :hover{
+    background-color: #fff;
+    color: #44ce6f;
+}

@@ -20,11 +20,11 @@ import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
 import { HomeModule } from './pages/home/home/home.module';
 import { UserComponent } from './layout/user/user.component';
 import { AdminComponent } from './layout/admin/admin.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { UsernavComponent } from './layout/usernav/usernav.component';
 
-// import { authInterceptor } from './interceptors/auth.interceptor';
-// import { authInterceptor } from './interceptors/auth.interceptor';
+import { UsernavComponent } from './layout/usernav/usernav.component';
+import { MaterialModule } from './material/material.module';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   // Set the loader's appearance
@@ -41,7 +41,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SidebarComponent,
     UserComponent,
     AdminComponent,
-    NavbarComponent,
     UsernavComponent
   
 
@@ -56,7 +55,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     StoreModule.forRoot({auth:authReducer}),
     EffectsModule.forRoot([AuthEffects]),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    HomeModule
+    HomeModule,
+    MaterialModule
     
   ],
   exports:[

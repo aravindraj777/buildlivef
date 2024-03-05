@@ -98,7 +98,7 @@ export class SignupComponent implements OnInit{
           console.log("OTP verified", response);
           // Handle successful OTP verification here
           this._toastr.success("verified")
-          this._route.navigate([""])
+          this._route.navigate(["login"])
         }) 
     } else {
       console.error("OTP value is not available");
