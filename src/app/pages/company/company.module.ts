@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyComponent } from './company.component';
+import { ShowCompanyComponent } from './show-company/show-company.component';
 
 
 @NgModule({
   declarations: [
-    CompanyComponent
+    CompanyComponent,
+    ShowCompanyComponent
   ],
   imports: [
     CommonModule,
