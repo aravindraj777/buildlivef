@@ -9,7 +9,7 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
 @NgModule({
   declarations: [
     HomeComponent,
-    // NavbarComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule,
