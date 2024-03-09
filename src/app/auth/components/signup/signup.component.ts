@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit{
             this.showOtpField = true;
          
            
-            // this._route.navigate([""]);
+            // this._route.navigate(["/login"]);
           },
           error =>{
             this._toastr.error('Failed','Error');

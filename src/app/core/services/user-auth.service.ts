@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Router } from '@angular/router';
-import { LoginModel, LoginResponse, User } from '../../store/auth/auth.model';
-import { Observable, tap } from 'rxjs';
+import { LoginModel, LoginResponse, UpdateModel, User } from '../../store/auth/auth.model';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { RootState } from '../../store/global/root.state';
 
 @Injectable({
@@ -59,10 +59,22 @@ export class UserAuthService {
     
   }
 
-  updateUserDetails(userId: string, updatedUserData: any): Observable<any> {
+  // updateUserDetails(userId: string, updatedUserData: any): Observable<any> {
+  //   const url = `auth/users/edit/${userId}`;
+  //   return this._http.put<User>(url, updatedUserData);
+  // }
+
+  updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
     const url = `auth/users/edit/${userId}`;
-    return this._http.put<User>(url, updatedUserData);
+    return this._http.put<User>(url, update).pipe(
+      catchError(error => {
+        // Handle error and pass it to the caller
+        return throwError(error);
+      })
+    );
   }
+
+  
 
 
 }
