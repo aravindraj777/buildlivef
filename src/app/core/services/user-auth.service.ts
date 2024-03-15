@@ -65,7 +65,10 @@ export class UserAuthService {
   // }
 
   updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
-    const url = `auth/users/edit/${userId}`;
+
+    // /api/v1/user/edit/
+    
+    const url = `user/edit/${userId}`;
     return this._http.put<User>(url, update).pipe(
       catchError(error => {
         // Handle error and pass it to the caller
