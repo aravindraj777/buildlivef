@@ -6,6 +6,9 @@ import { CompanyComponent } from './company.component';
 import { ShowCompanyComponent } from './show-company/show-company.component';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { CompanynavComponent } from './companynav/companynav.component';
+import { PartyComponent } from './party/party.component';
+import { CreatePartyComponent } from './create-party/create-party.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { CompanynavComponent } from './companynav/companynav.component';
     CompanyComponent,
     ShowCompanyComponent,
     CompanyDetailsComponent,
-    CompanynavComponent
+    CompanynavComponent,
+    PartyComponent,
+    CreatePartyComponent
   ],
   imports: [
     CommonModule,
-    CompanyRoutingModule
+    CompanyRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CompanyModule { }

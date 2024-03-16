@@ -1,0 +1,36 @@
+<div class="pl-16 pt-2 ml-52 fixed w-10/12">
+    <div class="p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-[79vh]">
+      <a [routerLink]="['/company/create-party',companyId]" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+        Create New Party
+      </a>
+      
+      <!-- Insert your table here -->
+      <table class="mt-4 w-full border-collapse border border-gray-200">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 bg-gray-100 border border-gray-200">User</th>
+            <th class="px-4 py-2 bg-gray-100 border border-gray-200">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td class="px-4 py-2 border border-gray-200">John Doe</td>
+            <td class="px-4 py-2 border border-gray-200">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm0 0V8m0 4H9m6 0h-2m2 0a6 6 0 00-12 0h0a6 6 0 0012 0z" />
+                </svg>
+              </button>
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+  
