@@ -28,6 +28,14 @@ export class CompanyDetailsComponent implements OnInit{
       this._router.navigate(['/company/party',this.companyId])
   }
 
+/**
+ *
+ *
+ * @memberof CompanyDetailsComponent
+ */
+navigateToEmployees():void {
+    this._router.navigate(['/company/company-employee',this.companyId])
+  }
   
   
 

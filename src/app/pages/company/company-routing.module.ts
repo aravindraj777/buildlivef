@@ -6,6 +6,7 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { CompanynavComponent } from './companynav/companynav.component';
 import { PartyComponent } from './party/party.component';
 import { CreatePartyComponent } from './create-party/create-party.component';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
 
 
 
@@ -21,7 +22,8 @@ loadChildren: () => import('../create-company/create-company.module')
 { path: 'company-details/:id' , component: CompanyDetailsComponent},
 { path: 'company-menu',component:CompanynavComponent},
 { path: 'party/:id',component:PartyComponent},
-{ path: 'create-party/:id',component:CreatePartyComponent}
+{ path: 'create-party/:id',component:CreatePartyComponent},
+{ path: 'company-employee/:id',component:EmployeesListComponent}
 
 ];
 

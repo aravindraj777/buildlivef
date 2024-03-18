@@ -9,6 +9,7 @@ import { CompanynavComponent } from './companynav/companynav.component';
 import { PartyComponent } from './party/party.component';
 import { CreatePartyComponent } from './create-party/create-party.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyDetailsComponent,
     CompanynavComponent,
     PartyComponent,
-    CreatePartyComponent
+    CreatePartyComponent,
+    EmployeesListComponent
   ],
   imports: [
     CommonModule,

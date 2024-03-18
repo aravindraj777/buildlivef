@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PartyDto } from '../../../models/party.model';
+import { PartyDto, PartyResponse } from '../../../models/party.model';
 import { PartyService } from '../../../core/services/party.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,6 +15,8 @@ export class CreatePartyComponent implements OnInit {
 
   partyForm!: FormGroup;
   companyId!:string;
+
+  userSuggestions: any[] = []
 
   constructor(private _route: ActivatedRoute,
               private _formBuilder: FormBuilder,
@@ -56,17 +58,49 @@ export class CreatePartyComponent implements OnInit {
       };
 
       this._partyService.createParty(this.companyId,partyData).subscribe(
-        (response) => {
+        (response:PartyResponse) => {
+
+          if(response.status === 200){
             this._toastr.success("Created",response.message);
             this._router.navigate(["/company/party/",this.companyId])
+          }
+           
+          else if(response.status === 400){
+            this._toastr.error(response.message);
+          }
         },
         error =>{
-          console.error("Failed");
-          
+          console.error("Failed",error);
+          this._toastr.error(error);
         }
       )
     }
 
+  }
+
+
+  searchUsers(event: any) {
+    const email = event?.target?.value ; // Using optional chaining to handle null or undefined event
+    if (!email || email.trim() === '') {
+        this.userSuggestions = [];
+        return;
+    }
+
+    this._partyService.getUsersByEmail(email).subscribe(users => {
+        this.userSuggestions = users;
+    });
+}
+
+
+
+
+
+
+  selectUser(user: any) {
+    this.partyForm.patchValue({
+      party_email: user.email
+    });
+    this.userSuggestions = []; // Clear suggestions
   }
 
 

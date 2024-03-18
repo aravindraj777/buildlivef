@@ -11,8 +11,18 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthEffects{
-
-    constructor(private _actions$ :Actions ,
+  
+/**
+ * Creates an instance of AuthEffects.
+ * @param {Actions} _actions$
+ * @param {HttpClient} _http
+ * @param {UserAuthService} _userAuthService
+ * @param {NgxUiLoaderService} _ngxLoader
+ * @param {ToastrService} _toastr
+ * @param {Router} _router
+ * @memberof AuthEffects
+ */
+constructor(private _actions$ :Actions ,
                 private _http:HttpClient,
                 private _userAuthService: UserAuthService,
                 private _ngxLoader:NgxUiLoaderService,
@@ -61,7 +71,11 @@ this._actions$.pipe(
 //   ))
 // ));
 
-
+/**
+ *
+ *
+ * @memberof AuthEffects
+ */
 updateUser$ = createEffect(() =>
     this._actions$.pipe(
       ofType(updateRequest),

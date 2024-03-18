@@ -20,7 +20,13 @@ export class UserAuthService {
   private readonly _ACCESS_TOKEN_KEY = 'token';
   private readonly _AUTH_HEADER = 'authorization';        
   
-  
+  /**
+   *
+   *
+   * @param {LoginModel} loginData
+   * @return {*}  {Observable<LoginResponse>}
+   * @memberof UserAuthService
+   */
   login(loginData:LoginModel):Observable<LoginResponse> {
     const body = loginData;
     return this._http.post<LoginResponse> ('auth/user-login',body).pipe(
@@ -64,7 +70,16 @@ export class UserAuthService {
   //   return this._http.put<User>(url, updatedUserData);
   // }
 
-  updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
+  
+/**
+ *
+ *
+ * @param {string} userId
+ * @param {UpdateModel} update
+ * @return {*}  {Observable<User>}
+ * @memberof UserAuthService
+ */
+updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
 
     // /api/v1/user/edit/
     

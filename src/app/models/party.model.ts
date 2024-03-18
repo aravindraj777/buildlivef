@@ -18,4 +18,5 @@ export interface PartyDto {
 
 export type PartyResponse ={
     message:string;
+    status: number;
 }
