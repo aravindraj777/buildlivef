@@ -20,3 +20,15 @@ export type PartyResponse ={
     message:string;
     status: number;
 }
+
+export interface PartyRetrieval{
+    partyMembers: partyMember[]
+}
+
+export interface partyMember {
+    id: string;
+    name: string;
+    party_email: string;
+    party_phone: string;
+    partyType: string;
+}

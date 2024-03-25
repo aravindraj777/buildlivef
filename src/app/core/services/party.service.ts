@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PartyDto, PartyResponse } from '../../models/party.model';
+import { Party, PartyDto, PartyResponse, PartyRetrieval } from '../../models/party.model';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/auth.model';
 
@@ -47,6 +47,11 @@ createParty(companyId:string,partyData:PartyDto ):Observable<PartyResponse>{
  */
 getUsersByEmail(email: string): Observable<any[]> {
     return this._http.get<any[]>(`user/search?email=${email}`);
+  }
+
+
+  getAllPartyMembers(companyId:string):Observable<PartyRetrieval[]>{
+    return this._http.get<PartyRetrieval[]>(`company/${companyId}/partyMembers`)
   }
 
 }

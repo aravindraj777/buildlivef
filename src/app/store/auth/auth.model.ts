@@ -14,6 +14,7 @@ export interface User{
     phone:string;
     password:string;
     roles:string;
+    
 }
 
 export interface LoginModel {

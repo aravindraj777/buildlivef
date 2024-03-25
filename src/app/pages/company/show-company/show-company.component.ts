@@ -21,7 +21,7 @@ export class ShowCompanyComponent implements OnInit {
       this.userId =  data;
       console.log(this.userId,"userIdddd")
    })
-   this.getAllCompanies()
+   this.getAllCompanies();
 
   }
 
