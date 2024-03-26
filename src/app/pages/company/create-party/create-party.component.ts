@@ -37,7 +37,8 @@ export class CreatePartyComponent implements OnInit {
     party_name:  ['', Validators.required],
     party_phone: ['', Validators.required],
     party_email: ['', Validators.required],
-    partyType :  ['VENDOR', Validators.required]
+    partyType :  ['VENDOR', Validators.required],
+    companyRole: ['', Validators.required]
    })
 
   }
@@ -54,7 +55,8 @@ export class CreatePartyComponent implements OnInit {
         party_name  : this.partyForm.value.party_name,
         party_phone : this.partyForm.value.party_phone,
         party_email : this.partyForm.value.party_email,
-        partyType   : this.partyForm.value.partyType
+        partyType   : this.partyForm.value.partyType,
+        companyRole : this.partyForm.value.companyRole
       };
 
       this._partyService.createParty(this.companyId,partyData).subscribe(

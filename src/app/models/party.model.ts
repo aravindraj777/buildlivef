@@ -4,7 +4,8 @@ export interface Party{
     name:string;
     party_email:string;
     party_phone:string;
-    partyType: 'VENDOR' | 'CLIENT'
+    partyType: 'VENDOR' | 'CLIENT',
+    companyRole: 'PROJECT_MANAGER' | 'SITE_ENGINEER'
 
 }
 
@@ -14,6 +15,7 @@ export interface PartyDto {
     party_phone: string,
     party_email : string,
     partyType: string,
+    companyRole:string,
 }
 
 export type PartyResponse ={
@@ -31,4 +33,5 @@ export interface partyMember {
     party_email: string;
     party_phone: string;
     partyType: string;
+    companyRole:string;
 }

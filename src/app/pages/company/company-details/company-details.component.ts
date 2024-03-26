@@ -36,6 +36,11 @@ export class CompanyDetailsComponent implements OnInit{
 navigateToEmployees():void {
     this._router.navigate(['/company/company-employee',this.companyId])
   }
+
+
+navigateToProjects(){
+  this._router.navigate([])
+}  
   
   
 

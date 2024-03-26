@@ -12,3 +12,7 @@ export const selectLoggedInUser = createSelector(
 export const getUserId = createSelector(selectAuthState,(state)=>{
     return state.user?.id;
 })
+
+export const getEmail = createSelector(selectAuthState,(state)=>{
+    return state.user?.email;
+})
