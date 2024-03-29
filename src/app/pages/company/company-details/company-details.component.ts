@@ -39,7 +39,7 @@ navigateToEmployees():void {
 
 
 navigateToProjects(){
-  this._router.navigate([])
+  this._router.navigate(['/projects/view-all',this.companyId])
 }  
   
   

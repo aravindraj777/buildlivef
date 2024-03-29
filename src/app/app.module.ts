@@ -23,7 +23,8 @@ import { AdminComponent } from './layout/admin/admin.component';
 
 import { UsernavComponent } from './layout/usernav/usernav.component';
 import { MaterialModule } from './material/material.module';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -41,7 +42,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SidebarComponent,
     UserComponent,
     AdminComponent,
-    UsernavComponent
+    UsernavComponent,
+   
   
 
   ],
@@ -56,7 +58,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     EffectsModule.forRoot([AuthEffects]),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     HomeModule,
-    MaterialModule
+    MaterialModule,
+    GoogleMapsModule
     
   ],
   exports:[

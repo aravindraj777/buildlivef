@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'company',component:UserComponent, loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule) },
   { path: 'edituser', loadChildren: () => import('./pages/edituser/edituser.module').then(m => m.EdituserModule) },
   { path: 'other-companies',component:UserComponent, loadChildren: () => import('./pages/other-companies/other-companies.module').then(m => m.OtherCompaniesModule) },
+  { path: 'projects',component:UserComponent, loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsModule) },
   
   
 ];
