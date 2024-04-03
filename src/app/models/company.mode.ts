@@ -13,6 +13,13 @@ export interface Company{
 
 export interface WorkforceData {
     companyId:string;
-    partyType:string;
+    workerType:string;
+    salaryPerShift:string;
+}
+
+export type workForce ={
+    id:string
+    companyId:string;
+    workerType:string;
     salaryPerShift:string;
 }

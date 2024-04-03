@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { WorkforceData } from '../../../models/company.mode';
@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateWorkforceComponent implements OnInit {
 
   workforceForm!:FormGroup
+  @Output() workforceCreated: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:{companyId:string},
 
@@ -36,19 +37,23 @@ export class CreateWorkforceComponent implements OnInit {
     if(this.workforceForm.valid){
       const formData:WorkforceData = {
         companyId:this.data.companyId,
-        partyType:this.workforceForm.value.partyType,
+        workerType:this.workforceForm.value.partyType,
         salaryPerShift:this.workforceForm.value.salaryPerShift,
      };
      this._companyService.createWorkForce(formData).subscribe(
       {next: (response)=>{
         this._dialogRef.close();
-        this._toastr.success("WorkForce added",response.status)
+        this._toastr.success("WorkForce added")
+        this.workforceCreated.emit();
       },
       error: (error)=>{
         this._toastr.error("error",error)
       }
     })}
   };
+
+
+ 
 
   
 
