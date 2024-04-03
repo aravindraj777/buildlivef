@@ -41,6 +41,11 @@ navigateToEmployees():void {
 navigateToProjects(){
   this._router.navigate(['/projects/view-all',this.companyId])
 }  
+
+
+navigateToWorkForce(){
+  this._router.navigate(["/company/workforce",this.companyId])
+}
   
   
 

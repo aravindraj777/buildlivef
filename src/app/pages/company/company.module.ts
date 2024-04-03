@@ -8,9 +8,10 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { CompanynavComponent } from './companynav/companynav.component';
 import { PartyComponent } from './party/party.component';
 import { CreatePartyComponent } from './create-party/create-party.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { CompanyUserProfileComponent } from './company-user-profile/company-user-profile.component';
+import { WorkforceComponent } from './workforce/workforce.component';
 
 
 @NgModule({
@@ -22,12 +23,14 @@ import { CompanyUserProfileComponent } from './company-user-profile/company-user
     PartyComponent,
     CreatePartyComponent,
     EmployeesListComponent,
-    CompanyUserProfileComponent
+    CompanyUserProfileComponent,
+    WorkforceComponent
   ],
   imports: [
     CommonModule,
     CompanyRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CompanyModule { }
