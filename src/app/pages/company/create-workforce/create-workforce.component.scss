@@ -1,0 +1,69 @@
+.add-worker-form {
+    text-align: center;
+    width: 100%; /* Ensure the form takes full width */
+  }
+  
+  .add-worker-form form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .add-worker-form h2 {
+    margin-bottom: 20px;
+    color: #007bff; /* Primary color for headings */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333; /* Dark color for labels */
+  }
+  
+  input {
+    width: calc(100% - 20px); /* Adjust width with padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="button"] {
+    background-color: #ccc;
+    color: #000;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #b3b3b3;
+  }
+  

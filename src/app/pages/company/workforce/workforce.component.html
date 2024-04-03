@@ -3,8 +3,8 @@
     <div
         class="p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-[79vh]">
 
-        <a [routerLink]="['/projects/create',companyId]"
-            class="inline-flex font-medium items-center text-blue-600 hover:underline">
+        <a (click)="openAddWorkForce() "
+            class="inline-flex font-medium items-center text-blue-600 hover:underline hover:cursor-pointer">
             Add a new WorkForce
             <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 18 18">

@@ -1,0 +1,18 @@
+<div class="add-worker-form">
+    <h2>Add WorkForce</h2>
+    <form [formGroup]="workforceForm" (ngSubmit)="createWorkForce()">
+      <div class="form-group">
+        <label for="workerType">Worker Type</label>
+        <input type="text" id="workerType" name="workerType" required formControlName="partyType">
+      </div>
+      <div class="form-group">
+        <label for="salaryPerShift">Salary Per Shift</label>
+        <input type="number" id="salaryPerShift" name="salaryPerShift" required formControlName="salaryPerShift">
+      </div>
+      <div class="button-group">
+        <button type="submit" [disabled]="!workforceForm.valid">Save</button>
+        <button type="button">Close</button>
+      </div>
+    </form>
+  </div>
+  

@@ -10,3 +10,9 @@ export interface Company{
     owner: string;
     companyIsNotPresent: boolean;
 }
+
+export interface WorkforceData {
+    companyId:string;
+    partyType:string;
+    salaryPerShift:string;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { CreateWorkforceComponent } from '../create-workforce/create-workforce.component';
 
 @Component({
   selector: 'app-workforce',
@@ -11,7 +13,8 @@ export class WorkforceComponent implements OnInit{
 
   companyId!:string;
 
-  constructor(private _route:ActivatedRoute){}
+  constructor(private _route:ActivatedRoute,
+              private _dialog:MatDialog){}
 
   ngOnInit(): void {
     this._route.params.subscribe(params=>{
@@ -20,6 +23,14 @@ export class WorkforceComponent implements OnInit{
 
     console.log(this.companyId,"in wf");
     
+  }
+
+  openAddWorkForce(){
+      this._dialog.open(CreateWorkforceComponent,{width:'40%',data:{companyId:this.companyId}})
+  }
+
+  getAllWorkforceOfACompany(){
+      
   }
 
   

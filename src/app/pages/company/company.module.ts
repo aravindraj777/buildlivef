@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { CompanyUserProfileComponent } from './company-user-profile/company-user-profile.component';
 import { WorkforceComponent } from './workforce/workforce.component';
+import { CreateWorkforceComponent } from './create-workforce/create-workforce.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { WorkforceComponent } from './workforce/workforce.component';
     CreatePartyComponent,
     EmployeesListComponent,
     CompanyUserProfileComponent,
-    WorkforceComponent
+    WorkforceComponent,
+    CreateWorkforceComponent
   ],
   imports: [
     CommonModule,

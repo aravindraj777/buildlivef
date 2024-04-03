@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { WorkforceData } from '../../models/company.mode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class CompanyService {
   getAllCompaniesOfUser(userId: string): Observable<any[]> {
     const requestBody = { userId: userId };
     return this._http.post<any[]>('company/findall', requestBody);
+  }
+
+  createWorkForce(data:WorkforceData):Observable<any>{
+   return this._http.post<any>('company/workforce/create',data);
   }
 }
