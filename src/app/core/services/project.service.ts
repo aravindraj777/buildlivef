@@ -16,6 +16,9 @@ export class ProjectService {
     return this._http.post<projectCreateResponse>('project/create',projectData)
   }
   
+  getAllProjectsOfCompany(comapanyId:string):Observable<project[]>{
+      return this._http.get<project[]>(`project/${comapanyId}/compan`)
+  }
 
 
 }
