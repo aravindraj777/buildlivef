@@ -24,6 +24,10 @@ import { AdminComponent } from './layout/admin/admin.component';
 import { UsernavComponent } from './layout/usernav/usernav.component';
 import { MaterialModule } from './material/material.module';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { AdminSidebarComponent } from './shared/components/admin-sidebar/admin-sidebar.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminSignupComponent } from './auth/components/admin-signup/admin-signup.component';
+import { AdminLoginComponent } from './auth/components/admin-login/admin-login.component';
 
 
 
@@ -43,6 +47,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     UserComponent,
     AdminComponent,
     UsernavComponent,
+    AdminSidebarComponent,
+    AdminDashboardComponent,
+    AdminSignupComponent,
+    AdminLoginComponent,
    
   
 

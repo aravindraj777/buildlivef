@@ -11,3 +11,9 @@ export interface RegisterResponse{
     message:string;
     
 }
+
+export interface AdminVerifiation{
+    userId:string;
+    otpValue:string;
+}
+

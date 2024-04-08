@@ -1,1 +1,13 @@
-<p>admin works!</p>
+<!-- admin-layout.component.html -->
+
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    
+    <app-admin-sidebar class="flex-none"></app-admin-sidebar>
+    
+    <!-- Main content area -->
+    <div class="flex-grow p-4 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

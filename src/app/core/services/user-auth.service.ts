@@ -27,19 +27,37 @@ export class UserAuthService {
    * @return {*}  {Observable<LoginResponse>}
    * @memberof UserAuthService
    */
-  login(loginData:LoginModel):Observable<LoginResponse> {
+  // login(loginData:LoginModel):Observable<LoginResponse> {
+  //   const body = loginData;
+  //   return this._http.post<LoginResponse> ('auth/user-login',body).pipe(
+  //     tap(response => {
+  //       const user = response?.user;
+  //       console.log(user,"response user");
+
+  //       if(user){
+  //         if(user.roles === "USER")
+  //         this._router.navigate(['profile']);
+  //       }
+  //       else{
+  //         this._router.navigate(['/admin/dashboard'])
+  //       }
+  //     })
+  //   )
+  // }
+
+  login(loginData: LoginModel): Observable<LoginResponse> {
     const body = loginData;
-    return this._http.post<LoginResponse> ('auth/user-login',body).pipe(
+    return this._http.post<LoginResponse>('auth/user-login', body).pipe(
       tap(response => {
         const user = response?.user;
-        console.log(user,"response user");
+        console.log(user, "response user");
 
-        if(user){
-          if(user.roles === "USER")
-          this._router.navigate(['profile']);
-        }
-        else{
-          this._router.navigate(['adminHome'])
+        if (user && user.roles === "ADMIN") {
+          this._router.navigate(['/admin/dashboard']);
+        } else {
+          // Redirect to another route for non-admin users or handle the logic accordingly
+          // For example, redirecting to a user profile page
+          this._router.navigate(['/profile']);
         }
       })
     )
