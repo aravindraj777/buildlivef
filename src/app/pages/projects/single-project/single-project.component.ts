@@ -176,6 +176,7 @@ confirmRemoval(member:ProjectTeam){
     ()=>{
       this._projectService.showSuccessMessage("Member removed successfully");
       this.projectTeamMembers = this.projectTeamMembers.filter(item=>item.id !== member.id);
+      this.filteredProjectTeamMembers = this.filteredProjectTeamMembers.filter(item => item.id !== member.id);
     },
     (error)=>{
       this._projectService.showErrorMessage("Failed to remove member");

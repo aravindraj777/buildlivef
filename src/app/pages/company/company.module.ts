@@ -13,6 +13,8 @@ import { EmployeesListComponent } from './employees-list/employees-list.componen
 import { CompanyUserProfileComponent } from './company-user-profile/company-user-profile.component';
 import { WorkforceComponent } from './workforce/workforce.component';
 import { CreateWorkforceComponent } from './create-workforce/create-workforce.component';
+import { CompanyMaterialsComponent } from './company-materials/company-materials.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CreateWorkforceComponent } from './create-workforce/create-workforce.co
     EmployeesListComponent,
     CompanyUserProfileComponent,
     WorkforceComponent,
-    CreateWorkforceComponent
+    CreateWorkforceComponent,
+    CompanyMaterialsComponent,
+    AddMaterialComponent
   ],
   imports: [
     CommonModule,

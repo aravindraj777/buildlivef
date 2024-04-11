@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { WorkforceData, workForce } from '../../models/company.mode';
+import { Material } from '../../models/material.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,18 @@ export class CompanyService {
 
   deleteWorkForce(workerId:string):Observable<void>{
     return this._http.delete<void>(`company/${workerId}/delete`);
+  }
+
+  addMaterialsToCompany(companyId: string, formData: FormData): Observable<any> {
+    return this._http.post<any>(`company/${companyId}/add-material`, formData)
+      .pipe(
+        catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
+  fetchMaterialsOfACompany(companyId:string):Observable<Material[]>{
+    return this._http.get<Material[]>(`company/${companyId}/get-company-materials`);
   }
 }

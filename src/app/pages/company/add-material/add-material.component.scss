@@ -1,0 +1,49 @@
+.dialog-container {
+    background: linear-gradient(to right bottom, #f0e8d5, #e6d6b5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .error-message {
+    color: #ff0000;
+    margin-top: 5px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

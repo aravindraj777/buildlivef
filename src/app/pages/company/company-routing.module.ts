@@ -9,6 +9,7 @@ import { CreatePartyComponent } from './create-party/create-party.component';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { CompanyUserProfileComponent } from './company-user-profile/company-user-profile.component';
 import { WorkforceComponent } from './workforce/workforce.component';
+import { CompanyMaterialsComponent } from './company-materials/company-materials.component';
 
 
 
@@ -27,7 +28,8 @@ loadChildren: () => import('../create-company/create-company.module')
 { path: 'create-party/:id',component:CreatePartyComponent},
 { path: 'company-employee/:id',component:EmployeesListComponent} ,  
 { path: 'company/user-profile/:id',component:CompanyUserProfileComponent},
-{ path: 'workforce/:id',component:WorkforceComponent}
+{ path: 'workforce/:id',component:WorkforceComponent},
+{path:  'comapany-materials/:id',component:CompanyMaterialsComponent}
 
 ];
 

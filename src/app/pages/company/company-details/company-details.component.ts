@@ -46,6 +46,10 @@ navigateToProjects(){
 navigateToWorkForce(){
   this._router.navigate(["/company/workforce",this.companyId])
 }
+
+navigateToMaterials(){
+  this._router.navigate(['/company/comapany-materials',this.companyId])
+}
   
   
 
