@@ -1,0 +1,21 @@
+<div class="modal-content bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Edit Project Role</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto">
+      <div class="mb-6">
+        <label for="projectRole" class="block text-sm font-medium text-gray-700 mb-2">Current Project Role: {{member.projectRole}}</label>
+        <input type="text" class="form-input w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:border-indigo-500" id="currentProjectRole" formControlName="projectRole">
+      </div>
+      <div class="mb-6">
+        <label for="newProjectRole" class="block text-sm font-medium text-gray-700 mb-2">New Project Role:</label>
+        <select formControlName="projectRole" id="newProjectRole" class="form-select w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:border-indigo-500">
+          <option value="ADMIN">Admin</option>
+          <option value="MANAGER">Manager</option>
+          <option value="SITE_ADMIN">Site Admin</option>
+        </select>
+      </div>
+      <div class="flex justify-end">
+        <button type="button" class="btn btn-secondary mr-2 px-6 py-3 rounded-lg text-white bg-gray-400 hover:bg-gray-500" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary px-6 py-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600">Save</button>
+      </div>
+    </form>
+</div>

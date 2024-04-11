@@ -56,6 +56,13 @@
                     </label>
                 </div>
                 
+                <div *ngIf="partyForm.get('partyType')?.value === 'VENDOR' || partyForm.get('partyType')?.value === 'CLIENT'" class="mb-5">
+                    <label class="block mb-2">Company Role</label>
+                    <select formControlName="companyRole" class="block w-full py-2.5 px-3 border border-gray-300 focus:outline-none focus:border-blue-500 rounded-md">
+                        <option [value]="partyForm.get('partyType')?.value">{{ partyForm.get('partyType')?.value }}</option>
+                    </select>
+                </div>
+            
                 <div *ngIf="partyForm.get('partyType')?.value === 'EMPLOYEE'" class="mb-5">
                     <label class="block mb-2">Employee Type</label>
                     <select formControlName="companyRole" class="block w-full py-2.5 px-3 border border-gray-300 focus:outline-none focus:border-blue-500 rounded-md">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Party, PartyDto, PartyResponse, PartyRetrieval } from '../../models/party.model';
+import { Observable, catchError } from 'rxjs';
+import { Party, PartyDto, PartyResponse, PartyRetrieval, partyMember } from '../../models/party.model';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/auth.model';
 
@@ -52,6 +52,16 @@ getUsersByEmail(email: string): Observable<any[]> {
 
   getAllPartyMembers(companyId:string):Observable<PartyRetrieval[]>{
     return this._http.get<PartyRetrieval[]>(`company/${companyId}/partyMembers`)
+  }
+
+  saveEmployeeToProject(projectId:string,employee:partyMember,projectRole:string):Observable<any>{
+    const data = {projectId,employee,projectRole};
+    return this._http.post<any>('project/addToProject',data)
+    .pipe(
+      catchError((error) => {
+        throw error;
+      })
+    );
   }
 
 }

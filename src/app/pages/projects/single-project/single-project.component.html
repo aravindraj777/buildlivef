@@ -1,0 +1,125 @@
+<div class="pl-16 pt-2 ml-52 fixed w-10/12">
+    <div class="p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full"
+    style="min-height: 40em;border-radius: 1.3em;"
+    >
+        
+        <mat-tab-group>
+            <mat-tab label="Party">
+                <!-- Light blue section for count and manage access -->
+                <div class="bg-blue-100 rounded-md p-4 mb-4">
+                    <!-- Header section -->
+                    <div class="flex items-center justify-between mb-4">
+                        <!-- Profile round -->
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-400 rounded-full mr-2"></div>
+                            <span class="mr-2">Party Count: </span>
+                        </div>
+
+                        <!-- Manage Access link -->
+                        <a  class="text-blue-500" (click)="openAccessModal()">Manage Access</a>
+                    </div>
+
+                    <!-- Search input -->
+                    <input type="text" [(ngModel)]="searchQuery" (input)="filterProjectTeamMembers()" placeholder="Search...">
+
+                </div>
+
+                <!-- White section for party list with scrollable content -->
+                <div class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);">
+                    <div class="flex flex-col space-y-4" style="
+                    max-height: 19em;
+                ">
+                        <div *ngFor="let member of filteredProjectTeamMembers" class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
+                            <!-- Avatar -->
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-400 rounded-full mr-4 flex items-center justify-center">
+                                    <span>{{ member.name.charAt(0) }}</span>
+                                </div>
+                                <!-- Member details -->
+                                <div class="flex flex-col">
+                                    <span class="font-semibold">{{ member.name }}</span>
+                                    <span class="text-sm text-gray-500">{{ member.party_email }}</span>
+                                    <span class="text-sm text-gray-500">{{ member.projectRole }}</span>
+                                </div>
+                            </div>
+                            <!-- Edit and delete icons -->
+                            <div>
+                                
+                                
+                                <button class="text-blue-500 mr-2" (click)="openEditModal(member)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                  </button>
+                                  
+                                  <button class="text-red-500" (click)="removeMember(member)">
+                                    <!-- Trash icon -->
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </mat-tab>
+
+            <!-- Other tabs -->
+            <mat-tab label="Material"> Content 2 </mat-tab>
+            <mat-tab label="Task"> Content 3 </mat-tab>
+            <mat-tab label="Transaction"> Content 3 </mat-tab>
+        </mat-tab-group>
+          
+    </div>
+</div>
+
+
+
+<div *ngIf="showAccessModal" class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto bg-gray-900 bg-opacity-50">
+    <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-3xl w-full p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Add Employees to Project</h2>
+            <button class="text-gray-500 hover:text-gray-700" (click)="closeAccessModal()">&times;</button>
+        </div>
+        
+        <!-- Display list of employees -->
+        <div *ngFor="let employee of employees" class="flex items-center justify-between py-2 border-b">
+            <!-- Avatar -->
+            <div class="flex items-center">
+                <div class="h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-2">
+                    <span>{{ employee.name.charAt(0) }}</span>
+                </div>
+                <!-- Name, Role, and Email -->
+                <div>
+                    <div class="font-semibold">{{ employee.name }}</div>
+                    <div class="text-sm text-gray-500">{{ employee.companyRole }}</div>
+                    <div class="text-sm text-gray-500">{{ employee.party_email }}</div>
+                </div>
+            </div>
+            <!-- Plus icon to add employee to project -->
+            <button class="text-blue-500 hover:text-blue-700" (click)="addEmployeeToProject(employee)">Add</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Role Selection Modal -->
+<div *ngIf="showRoleSelectionModal" class="modal">
+    <div class="modal-content">
+        <h2>Select Project Role</h2>
+        <select [(ngModel)]="selectedProjectRole">
+            <option value="ADMIN">Admin</option>
+            <option value="MANAGER">Manager</option>
+            <option value="SITE_ADMIN">Site Admin</option>
+        </select>
+        <button (click)="saveEmployeeToProject()">Save</button>
+        <button (click)="cancelAddEmployee()">Cancel</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+

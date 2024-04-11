@@ -10,7 +10,7 @@ export interface PlaceSearchResult {
 }
 
 export interface project {
-
+    
     projectName:string;
     address:string;
     city: string;
@@ -25,4 +25,26 @@ export interface project {
 export interface projectCreateResponse {
     status:number;
     message:string;
+}
+
+export interface ProjectByCompany{
+    id:string;
+    projectName:string;
+    address:string;
+    city: string;
+    start_date: Date;
+    end_date: Date;
+    status:string;
+    project_value: number;
+    creator:string | undefined;
+    company:string;
+}
+
+export interface ProjectTeam {
+    id:string;
+    name:string;
+    party_email:string;
+    party_phone:string;
+    companyRole:string;
+    projectRole:string;
 }

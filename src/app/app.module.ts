@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +28,9 @@ import { AdminSidebarComponent } from './shared/components/admin-sidebar/admin-s
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminSignupComponent } from './auth/components/admin-signup/admin-signup.component';
 import { AdminLoginComponent } from './auth/components/admin-login/admin-login.component';
+import { SingleProjectComponent } from './pages/projects/single-project/single-project.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -51,6 +54,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AdminDashboardComponent,
     AdminSignupComponent,
     AdminLoginComponent,
+    SingleProjectComponent,
    
   
 
@@ -67,11 +71,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     HomeModule,
     MaterialModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FormsModule,
+    SweetAlert2Module.forRoot()
+   
+  
     
   ],
   exports:[
-    SidebarComponent
+    SidebarComponent,
+   
+    
   ],
   providers: [
     provideAnimationsAsync(),
