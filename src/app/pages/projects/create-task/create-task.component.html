@@ -1,0 +1,33 @@
+<div class="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-md shadow-md p-8 max-w-3xl w-full">
+    <h2 class="text-3xl font-semibold mb-6 text-white text-center">Add New Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="taskName" class="block text-lg font-semibold text-white">Task Name</label>
+            <input formControlName="taskName" id="taskName" type="text" class="form-input h-12 rounded-lg shadow-sm w-full" placeholder="Enter task name">
+            <div *ngIf="taskForm.get('taskName')?.invalid && taskForm.get('taskName')?.touched" class="text-red-500 text-sm mt-1">Task name is required</div>
+        </div>
+        <div>
+            <label for="startDate" class="block text-lg font-semibold text-white">Start Date</label>
+            <input formControlName="startDate" id="startDate" type="date" class="form-input h-12 rounded-lg shadow-sm w-full">
+            <div *ngIf="taskForm.get('startDate')?.invalid && taskForm.get('startDate')?.touched" class="text-red-500 text-sm mt-1">Start date is required</div>
+        </div>
+        <div>
+            <label for="endDate" class="block text-lg font-semibold text-white">End Date</label>
+            <input formControlName="endDate" id="endDate" type="date" class="form-input h-12 rounded-lg shadow-sm w-full">
+            <div *ngIf="taskForm.get('endDate')?.invalid && taskForm.get('endDate')?.touched" class="text-red-500 text-sm mt-1">End date is required</div>
+        </div>
+        <div>
+            <label for="assignedTo" class="block text-lg font-semibold text-white">Assigned To</label>
+            <select formControlName="assignedTo" id="assignedTo" class="form-select h-12 rounded-lg shadow-sm w-full">
+                <option value="">Select team member</option>
+                <!-- Iterate over project team members and add options -->
+                <option *ngFor="let member of projectTeamMembers" [value]="member.id">{{ member.name }}</option>
+            </select>
+            <div *ngIf="taskForm.get('assignedTo')?.invalid && taskForm.get('assignedTo')?.touched" class="text-red-500 text-sm mt-1">Assigned to is required</div>
+        </div>
+        <div class="flex justify-end mt-8">
+            <button type="submit" [disabled]="taskForm.invalid" class="bg-green-500 text-white px-8 py-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-500 focus:ring-opacity-50">Add Task</button>
+            <button type="button" class="bg-red-500 text-white px-8 py-4 rounded-lg hover:bg-red-600 ml-4 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-50" (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+</div>

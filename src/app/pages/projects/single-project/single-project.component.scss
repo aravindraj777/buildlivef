@@ -69,4 +69,16 @@
       }
     }
   }
+
+
+  #modal.open {
+    opacity: 1;
+    height: auto;
+}
+
+#modal.closed {
+    opacity: 0;
+    height: 0;
+}
+
   

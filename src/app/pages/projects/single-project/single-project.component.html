@@ -64,9 +64,156 @@
             </mat-tab>
 
             <!-- Other tabs -->
-            <mat-tab label="Material"> Content 2 </mat-tab>
-            <mat-tab label="Task"> Content 3 </mat-tab>
-            <mat-tab label="Transaction"> Content 3 </mat-tab>
+           
+                
+            <mat-tab label="Material">
+                <!-- Top section -->
+                <div class="flex justify-between mb-4">
+                    <!-- Tag for All Party Entries -->
+                    <div class="text-blue-500 font-semibold">All Party Entries</div>
+                    <!-- Tag and count for Pending Requests -->
+                    <!-- <div class="flex items-center">
+                        <div class="text-gray-500 mr-2">Pending Requests:</div>
+                        <div class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center">5</div>
+                    </div> -->
+                    <!-- Buttons for actions -->
+                    <div class="flex space-x-4">
+                        <!-- Button to request stock -->
+                        <!-- <button class="bg-blue-500 text-white px-3 py-1 rounded-md">
+                            Request
+                        </button> -->
+                        <!-- Button to receive stock -->
+                        <button class="bg-green-500 text-white px-3 py-1 rounded-md" (click)="reciveMaterialDialog()">
+                            Receive
+                        </button>
+                        <!-- Button to purchase stock -->
+                        <!-- <button class="bg-yellow-500 text-white px-3 py-1 rounded-md">
+                            Purchased
+                        </button> -->
+                    </div>
+                </div>
+                
+                <!-- Search input -->
+                <div class="mb-4">
+                    <input type="text" placeholder="Search..." class="border border-gray-300 rounded-md px-4 py-2 w-full">
+                </div>
+                
+                <!-- Received materials list -->
+                <div  class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);">
+                    <!-- Loop through received materials -->
+                    <div *ngFor="let material of projectMaterials" class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4 max-h-20"
+                    (click)="showMaterialDetails(material)" >
+                        <!-- Material details -->
+                        <div class="flex items-center">
+                            <!-- Material icon placeholder -->
+                            <div class="w-10 h-10 bg-gray-400 rounded-full mr-4 flex items-center justify-center">
+                                <span>{{ material.materialName.charAt(0) }}</span>
+                            </div>
+                            <!-- Material information -->
+                            <div class="flex flex-col">
+                                <span class="font-semibold">{{ material.materialName }}</span>
+                                <!-- <span class="text-sm text-gray-500">{{ material.unit }}</span> -->
+                            </div>
+                        </div>
+                        <!-- Stock details -->
+                        <div class="flex items-center">
+                            <!-- Received stock -->
+                            <div class="mr-4">
+                                <div class="text-gray-500">Received Stock:</div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 font-semibold mr-1">{{ material.receivedStock }}</span>
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                            </div>
+                            <!-- Current stock -->
+                            <div>
+                                <div class="text-gray-500">Current Stock:</div>
+                                <div class="flex items-center">
+                                    <span class="text-blue-500 font-semibold mr-1">{{ material.currentStock }}</span>
+                                    <i class="fas fa-box-open text-blue-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entry person and time details -->
+                        <div>
+                            <div class="text-gray-500">Last Entry Person:</div>
+                            <div>{{ material.entryPerson }}</div>
+                            <div class="text-gray-500">Entry Time:</div>
+                            <div>{{ material.localDateTime | date: 'medium' }}</div>
+                        </div>
+                        <!-- Buttons for actions -->
+                        <div>
+                            <!-- Button to receive stock -->
+                            <!-- <button class="bg-green-500 text-white px-3 py-1 rounded-md mr-2">
+                                Receive
+                            </button> -->
+                            <!-- Button to use stock -->
+                            <button class="bg-red-500 text-white px-3 py-1 rounded-md" (click)="usedMaterialDialog()">
+                                Used
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            
+            
+            
+            
+            
+
+                <mat-tab label="Task">
+                    <!-- Top section -->
+                    <div class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4">
+                        <!-- Not Started tasks -->
+                        <div class="flex flex-col mr-8">
+                            <span class="font-semibold">Not Started</span>
+                            <span class="text-sm text-gray-500">10</span>
+                        </div>
+                        <!-- Ongoing tasks -->
+                        <div class="flex flex-col mr-8">
+                            <span class="font-semibold">Ongoing</span>
+                            <span class="text-sm text-gray-500">15</span>
+                        </div>
+                        <!-- Completed tasks -->
+                        <div class="flex flex-col">
+                            <span class="font-semibold">Completed</span>
+                            <span class="text-sm text-gray-500">8</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Button to add new task -->
+                    <a *ngIf="isAdminOrManager" class="text-blue-500 cursor-pointer mb-4" (click)="openAddTaskDialog()">Add New Task</a>
+  
+                    
+                    <!-- Task list -->
+                    <div>
+                        <!-- Loop through tasks -->
+                        <div class="bg-gradient-to-b from-blue-100 to-blue-200 rounded-md p-4 flex items-center justify-between mb-4">
+                            <!-- Task details -->
+                            <div class="flex items-center">
+                                <!-- Task icon placeholder -->
+                                <div class="w-10 h-10 bg-blue-400 rounded-full mr-4 flex items-center justify-center">
+                                    <span class="text-white">T</span>
+                                </div>
+                                <!-- Task information -->
+                                <div class="flex flex-col">
+                                    <span class="font-semibold">Task Name</span>
+                                    <div class="text-sm text-gray-500">Start Date - End Date</div>
+                                    <div class="text-gray-500">Assign To: Team Member Name</div>
+                                </div>
+                            </div>
+                            <!-- Task status -->
+                            <div>
+                                <span class="font-semibold">Task Status</span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                
+            
+
+            <mat-tab label="Attendenc"> Content 3 </mat-tab>
+            <!-- <mat-tab label="Transaction"> Content 3 </mat-tab> -->
         </mat-tab-group>
           
     </div>

@@ -45,6 +45,8 @@ export class CompanyMaterialsComponent implements OnInit{
   fetchMaterials(): void {
     this._companyService.fetchMaterialsOfACompany(this.companyId).subscribe(
       (materials: Material[]) => {
+        console.log(materials);
+        
         this.materials = materials;
       },
       (error) => {

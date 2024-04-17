@@ -1,7 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { PartyService } from '../../../core/services/party.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Party, PartyRetrieval, partyMember } from '../../../models/party.model';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectTeam } from '../../../models/project.model';
@@ -9,6 +9,9 @@ import { ProjectService } from '../../../core/services/project.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProjectroleComponent } from '../edit-projectrole/edit-projectrole.component';
 import Swal from 'sweetalert2';
+import { Material, ProjectMaterial } from '../../../models/material.model';
+import { RecieveMaterialComponent } from '../recieve-material/recieve-material.component';
+import { CreateTaskComponent } from '../create-task/create-task.component';
 
 @Component({
   selector: 'app-single-project',
@@ -27,17 +30,24 @@ export class SingleProjectComponent implements OnInit {
   employees:partyMember[]=[];
   projectId!:string;
   filteredProjectTeamMembers: ProjectTeam[] = []; 
+  projectMaterials: ProjectMaterial[] = [];
+  receivedMaterials:Material[]=[];
 
   selectedEmployee: partyMember | null = null;
   showRoleSelectionModal: boolean = false;
   selectedProjectRole: string = ''; 
   searchQuery: string = '';
+  currentUserInfo: any;
+  partyEmail!:string;
+  userRole!: string
+  isAdminOrManager: boolean = false;
 
   constructor(private _partyService:PartyService,
               private _route:ActivatedRoute,
               private _toastr:ToastrService,
               private _projectService:ProjectService,
-              private dialog:MatDialog
+              private dialog:MatDialog,
+              private _router:Router
   ){}
   ngOnInit(): void {
     this._route.params.subscribe(params=>{
@@ -46,6 +56,30 @@ export class SingleProjectComponent implements OnInit {
     })
     console.log(this.companyId,"idddd");
     this.fetchProjectTeamMembers();
+    this.getProjectMaterials();
+   
+    
+
+    const currentUserInfoString = sessionStorage.getItem('user');
+
+   
+
+    if (currentUserInfoString !== null) {
+      // Parse the JSON string to get the user information object
+      this.currentUserInfo = JSON.parse(currentUserInfoString);
+
+      // Get the email from the user information
+      this.partyEmail = this.currentUserInfo.email;
+      
+      console.log(this.partyEmail,"hghghghghg");
+    } else {
+      console.error('Current user information not found in session storage.');
+    }
+
+    this.getProjectUserRole();
+    this.checkUserRole();
+    
+    
     
   }
 
@@ -198,8 +232,78 @@ filterProjectTeamMembers(): void {
   }
 }
 
+reciveMaterialDialog():void{
+  const dialogRef = this.dialog.open(RecieveMaterialComponent,{
+    
+    data: {
+      companyId:this.companyId,
+      projectId:this.projectId
+    }
+  });
+
+  dialogRef.componentInstance.materialReceived.subscribe(() => {
+    // Update the project materials list
+    this.getProjectMaterials();
+    this._toastr.success('Material received successfully');
+  });
+
+  
+}
+
+getProjectMaterials(): void {
+  this._projectService.getProjectMaterials(this.projectId).subscribe(
+    (materials) => {
+      this.projectMaterials = materials;
+    },
+    (error) => {
+      console.error('Error fetching project materials:', error);
+    }
+  );
+}
+
+getProjectUserRole(): void {
+  this._projectService.getProjectUserRole(this.projectId, this.partyEmail).subscribe(
+    role => {
+      this.userRole = role;
+      if(this.userRole === 'ADMIN' || this.userRole === 'MANAGER'){
+        this.isAdminOrManager = true
+      }
+     
+      console.log(this.userRole);
+      
+    },
+    error => {
+      console.error('Error fetching user role:', error);
+      // Handle error if needed
+    }
+  );
+}
 
 
+checkUserRole():void{
+  
+}
+
+openAddTaskDialog(){
+  const dialogRef = this.dialog.open(CreateTaskComponent,{
+    data: {
+     
+      projectId:this.projectId,
+      userEmail:this.partyEmail
+    }
+  })
+}
+
+
+
+usedMaterialDialog(){
+
+}
+
+showMaterialDetails(material:ProjectMaterial){
+    this._router.navigate(['/projects/material-details'],{queryParams:{materialId:material.id
+    }});
+}
 
 
 

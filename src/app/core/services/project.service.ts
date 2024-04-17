@@ -3,6 +3,7 @@ import { ProjectByCompany, ProjectTeam, project, projectCreateResponse } from '.
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { MaterialEntries, ProjectMaterial } from '../../models/material.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class ProjectService {
     return this._http.post<projectCreateResponse>('project/create',projectData)
   }
   
-  getAllProjectsOfCompany(comapanyId:string):Observable<ProjectByCompany[]>{
-      return this._http.get<ProjectByCompany[]>(`project/${comapanyId}/company`)
+  getAllProjectsOfUser(comapanyId:string,userEmail:string,userId:string):Observable<ProjectByCompany[]>{
+      return this._http.get<ProjectByCompany[]>(`project/${comapanyId}/company/${userEmail}/${userId}`)
   }
 
   getMembersOfAProject(projectId:string):Observable<ProjectTeam[]>{
@@ -41,6 +42,28 @@ export class ProjectService {
   showErrorMessage(message: string): void {
     Swal.fire('Error', message, 'error');
 }
+
+
+receiveMaterial(requestData:any):Observable<any>{
+  return this._http.post<any>('project/materials/received-materials',requestData)
+}
+
+getProjectMaterials(projectId: string): Observable<ProjectMaterial[]> {
+  return this._http.get<ProjectMaterial[]>(`project/${projectId}/materials/project-materials`);
+}
+
+getProjectUserRole(projectId:string,partyEmail:string):Observable<any>{
+  return this._http.get<any>(`project/${projectId}/project-team/${partyEmail}`);
+}
+
+getMaterialEntries(materialId:string):Observable<MaterialEntries[]>{
+  return this._http.get<MaterialEntries[]>(`project/materials/projectMaterial-entries`,{
+    params: {
+      materialId: materialId
+    }
+  })
+}
+
 
 
 }

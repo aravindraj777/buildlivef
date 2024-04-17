@@ -1,0 +1,36 @@
+<div class="bg-gradient-to-r from-blue-200 to-blue-100 rounded-lg p-8 md:w-96">
+    <h2 class="text-lg font-bold mb-4 text-gray-800">Receive Material</h2>
+  
+    <form [formGroup]="receiveMaterialForm" (ngSubmit)="onSubmit()">
+      <div class="mb-8">
+        <label for="selectParty" class="block text-sm font-medium text-gray-700">Select Party:</label>
+        <select formControlName="selectParty" id="selectParty" class="form-select w-full py-2 px-4 rounded-lg" required>
+          <option *ngFor="let partyMember of partyMembers" [value]="partyMember.name">{{ partyMember.name }}</option>
+        </select>
+        <div *ngIf="receiveMaterialForm.get('selectParty')?.invalid && receiveMaterialForm.get('selectParty')?.touched"
+             class="text-red-500 text-sm mt-1">Please select a party</div>
+      </div>
+      
+      <div class="mb-8">
+        <label for="selectMaterial" class="block text-sm font-medium text-gray-700">Select Material:</label>
+        <select formControlName="selectMaterial" id="selectMaterial" class="form-select w-full py-2 px-4 rounded-lg" required>
+          <option *ngFor="let material of materials" [value]="material.materialName">{{ material.materialName }}</option>
+        </select>
+        <div *ngIf="receiveMaterialForm.get('selectMaterial')?.invalid && receiveMaterialForm.get('selectMaterial')?.touched"
+             class="text-red-500 text-sm mt-1">Please select a material</div>
+      </div>
+      
+      <div class="mb-8">
+        <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
+        <input formControlName="quantity" type="number" id="quantity" class="form-input w-full py-2 px-4 rounded-lg"
+               [placeholder]="getMaterialUnitPlaceholder()" required min="0">
+        <div *ngIf="receiveMaterialForm.get('quantity')?.invalid && receiveMaterialForm.get('quantity')?.touched"
+             class="text-red-500 text-sm mt-1">Please enter a valid quantity</div>
+      </div>
+      
+      <div class="flex justify-end space-x-4">
+        <button type="button" class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">Submit</button>
+      </div>
+    </form>
+</div>

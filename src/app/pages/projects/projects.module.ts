@@ -11,6 +11,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialModule } from '../../material/material.module';
 import { EditProjectroleComponent } from './edit-projectrole/edit-projectrole.component';
 import { SearchTeamComponent } from './search-team/search-team.component';
+import { RecieveMaterialComponent } from './recieve-material/recieve-material.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { UsedMaterialsComponent } from './used-materials/used-materials.component';
+import { MaterialEntryDetailsComponent } from './material-entry-details/material-entry-details.component';
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { SearchTeamComponent } from './search-team/search-team.component';
     AllProjectsComponent,
     CreateProjectComponent,
     EditProjectroleComponent,
-    SearchTeamComponent
+    SearchTeamComponent,
+    RecieveMaterialComponent,
+    CreateTaskComponent,
+    UsedMaterialsComponent,
+    MaterialEntryDetailsComponent
   ],
   imports: [
     CommonModule,
