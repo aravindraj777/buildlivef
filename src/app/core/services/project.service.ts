@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ProjectByCompany, ProjectTeam, project, projectCreateResponse } from '../../models/project.model';
+import { ProjectByCompany, ProjectTask, ProjectTeam, project, projectCreateResponse } from '../../models/project.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { MaterialEntries, ProjectMaterial } from '../../models/material.model';
 
@@ -62,6 +62,17 @@ getMaterialEntries(materialId:string):Observable<MaterialEntries[]>{
       materialId: materialId
     }
   })
+}
+
+getAllProjectTasks(projectId:string,partyEmail:string):Observable<any[]>{
+  console.log(partyEmail,"heeloooo");
+  
+  const params = new HttpParams()
+                  .set('projectId',projectId)
+                  .set('partyEmail',partyEmail)
+                  
+
+  return this._http.get<any[]>('project/tasks/getAll-projectTasks',{params})                
 }
 
 

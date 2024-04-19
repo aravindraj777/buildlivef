@@ -41,10 +41,27 @@ export interface ProjectByCompany{
 }
 
 export interface ProjectTeam {
-    id:string;
-    name:string;
+    id:string ;
+    name:string|undefined | null;
     party_email:string;
     party_phone:string;
     companyRole:string;
     projectRole:string;
+}
+
+export interface ProjectTask {
+    id:string;
+    taskName:string;
+    startDate:Date;
+    endDate:Date;
+    project:project;
+    taskAssigment:TaskAssignment;
+}
+
+export interface TaskAssignment {
+    id:string;
+    assignedTo:ProjectTeam;
+    assignedBy:ProjectTeam;
+    task:ProjectTask;
+    assignedDate:Date
 }

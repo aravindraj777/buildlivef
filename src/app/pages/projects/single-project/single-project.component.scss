@@ -81,4 +81,59 @@
     height: 0;
 }
 
-  
+.task-list-container {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  // max-height: calc(100% - 120px);
+}
+
+.task-item {
+  background: linear-gradient(to bottom, #BEE3F8, #63B3ED);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.task-details {
+  display: flex;
+  align-items: center;
+}
+
+.task-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #4299e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.task-icon span {
+  color: #fff;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-name {
+  font-weight: bold;
+}
+
+.task-date, .task-assignee {
+  color: #4a5568;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.loading-indicator {
+  margin-top: 1rem;
+  text-align: center;
+  color: #4a5568;
+}
+
+ 

@@ -1,10 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PartyService } from '../../../core/services/party.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Party, PartyRetrieval, partyMember } from '../../../models/party.model';
 import { ToastrService } from 'ngx-toastr';
-import { ProjectTeam } from '../../../models/project.model';
+import { ProjectTask, ProjectTeam } from '../../../models/project.model';
 import { ProjectService } from '../../../core/services/project.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProjectroleComponent } from '../edit-projectrole/edit-projectrole.component';
@@ -12,6 +12,9 @@ import Swal from 'sweetalert2';
 import { Material, ProjectMaterial } from '../../../models/material.model';
 import { RecieveMaterialComponent } from '../recieve-material/recieve-material.component';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../../../store/auth/auth.model';
+import { getEmail } from '../../../store/auth/auth.selector';
 
 @Component({
   selector: 'app-single-project',
@@ -41,23 +44,36 @@ export class SingleProjectComponent implements OnInit {
   partyEmail!:string;
   userRole!: string
   isAdminOrManager: boolean = false;
+  projectTasks:any[] = [];
+  page:number = 0;
+  pageSize:number = 10;
+  loading:boolean = false;
+  userEmail!:string;
+
+  @ViewChild('scrollContainer') scrollContainer!:ElementRef;
 
   constructor(private _partyService:PartyService,
               private _route:ActivatedRoute,
               private _toastr:ToastrService,
               private _projectService:ProjectService,
               private dialog:MatDialog,
-              private _router:Router
+              private _router:Router,
+              private _store:Store<AuthState>
   ){}
   ngOnInit(): void {
     this._route.params.subscribe(params=>{
       this.companyId = params['companyId'];
       this.projectId = params['projectId'];
     })
+
+    this._store.select(getEmail).subscribe(email=>{
+      this.userEmail = email ?? '';
+    })
     console.log(this.companyId,"idddd");
     this.fetchProjectTeamMembers();
     this.getProjectMaterials();
-   
+    this.loadTasks();
+    
     
 
     const currentUserInfoString = sessionStorage.getItem('user');
@@ -227,7 +243,7 @@ filterProjectTeamMembers(): void {
   } else {
     // Filter project team members based on search query
     this.filteredProjectTeamMembers = this.projectTeamMembers.filter((member) =>
-      member.name.toLowerCase().includes(this.searchQuery.trim().toLowerCase())
+      member.name?.toLowerCase().includes(this.searchQuery.trim().toLowerCase())
     );
   }
 }
@@ -292,6 +308,38 @@ openAddTaskDialog(){
       userEmail:this.partyEmail
     }
   })
+}
+
+loadTasks() {
+
+  this._projectService.getAllProjectTasks(this.projectId, this.userEmail)
+    .subscribe(tasks => {
+      // Check if tasks is an array
+      if (Array.isArray(tasks)) {
+        // Concatenate new tasks with existing ones
+        this.projectTasks = this.projectTasks.concat(tasks);
+      } else {
+        // If tasks is not an array, log an error
+        console.error('Received invalid tasks data:', tasks);
+      }
+      
+    }, error => {
+      console.error('Error fetching tasks:', error);
+     
+    });
+}
+
+
+onScroll() {
+  console.log("scroll");
+  
+  const scrollContainer = this.scrollContainer.nativeElement;
+  const atBottom = scrollContainer.scrollTop + scrollContainer.clientHeight === scrollContainer.scrollHeight;
+
+  if (atBottom && !this.loading) {
+      this.page++;
+      this.loadTasks();
+  }
 }
 
 

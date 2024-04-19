@@ -33,7 +33,7 @@
                             <!-- Avatar -->
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-gray-400 rounded-full mr-4 flex items-center justify-center">
-                                    <span>{{ member.name.charAt(0) }}</span>
+                                    <span>{{ member.name?.charAt(0) }}</span>
                                 </div>
                                 <!-- Member details -->
                                 <div class="flex flex-col">
@@ -154,6 +154,9 @@
                         </div>
                     </div>
                 </div>
+
+
+               
             </mat-tab>
             
             
@@ -186,28 +189,62 @@
   
                     
                     <!-- Task list -->
-                    <div>
-                        <!-- Loop through tasks -->
-                        <div class="bg-gradient-to-b from-blue-100 to-blue-200 rounded-md p-4 flex items-center justify-between mb-4">
-                            <!-- Task details -->
-                            <div class="flex items-center">
-                                <!-- Task icon placeholder -->
-                                <div class="w-10 h-10 bg-blue-400 rounded-full mr-4 flex items-center justify-center">
-                                    <span class="text-white">T</span>
+                    <div *ngIf="projectTasks && projectTasks.length > 0">
+                        <h2>Project Tasks</h2>
+                        <ul>
+                          <li *ngFor="let task of projectTasks">
+                            <h3>{{ task.taskName }}</h3>
+                            <p>Start Date: {{ task.startDate }}</p>
+                            <p>End Date: {{ task.endDate }}</p>
+                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
+                              Assigned By: {{ task.taskAssignments[0]?.assignedBy?.name }}
+                            </p>
+                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
+                              Assigned To: {{ task.taskAssignments[0]?.assignedTo?.name }}
+                            </p>
+                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
+                              Assigned Date: {{ task.taskAssignments[0]?.assignedDate }}
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div *ngIf="!projectTasks || projectTasks.length === 0">
+                        <p>No tasks available.</p>
+                      </div>
+                      
+                      
+                    
+                      
+                      
+
+
+                    <!-- <div #scrollContainer (scroll)="onScroll()" class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);" >
+                        <div class="flex flex-col space-y-4" style="
+                                            max-height: 19em;" >
+                            <div *ngFor="let task of projectTasks"
+                                class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
+                               
+                                <div class="flex items-center">
+                    
+                                    
+                                    <div class="flex flex-col">
+                                        <span class="font-semibold">{{ task.taskName }}</span>
+                                        <span class="text-sm text-gray-500">{{ task.startDate }} - {{ task.endDate }}</span>
+                                        <span class="text-sm text-gray-500">Assign To: {{ task.assignedTo }}</span>
+                                    </div>
                                 </div>
-                                <!-- Task information -->
-                                <div class="flex flex-col">
-                                    <span class="font-semibold">Task Name</span>
-                                    <div class="text-sm text-gray-500">Start Date - End Date</div>
-                                    <div class="text-gray-500">Assign To: Team Member Name</div>
+                               
+                                <div>
+                    
+                    
+                    
+                    
                                 </div>
-                            </div>
-                            <!-- Task status -->
-                            <div>
-                                <span class="font-semibold">Task Status</span>
                             </div>
                         </div>
-                    </div>
+                        <div *ngIf="loading">Loading...</div>
+                    </div> -->
+                    
                 </mat-tab>
                 
             

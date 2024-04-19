@@ -64,7 +64,7 @@ export class CreateTaskComponent implements OnInit{
       };
         this._taskService.createTask(taskData).subscribe(
           (response)=>{
-              this._toastr.success("created")
+              this._toastr.success("created",response)
           },
           (error)=>{
             console.error(error);
