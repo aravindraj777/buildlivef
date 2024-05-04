@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { ChartjsModule } from '@coreui/angular-chartjs';
+
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    ChartjsModule
+    
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
