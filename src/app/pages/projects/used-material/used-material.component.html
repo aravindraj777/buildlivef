@@ -1,0 +1,27 @@
+<form [formGroup]="usedMaterialForm" (ngSubmit)="onSubmit()" class="used-material-form">
+    <!-- Material input -->
+    <div class="form-group">
+        <label for="material">Material</label>
+        <input type="text" formControlName="material" placeholder="Material Name" readonly>
+    </div>
+    <!-- Quantity input -->
+    <div class="mb-8">
+        <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>
+        <input formControlName="quantity" type="number" id="quantity" class="form-input w-full py-2 px-4 rounded-lg"
+               required min="0">
+        <div *ngIf="usedMaterialForm.get('quantity')?.invalid && usedMaterialForm.get('quantity')?.touched"
+             class="text-red-500 text-sm mt-1">Please enter a valid quantity</div>
+      </div>
+    <!-- Description input -->
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea formControlName="description" placeholder="Enter Description(eg:used for footing,renovation...)" rows="3"></textarea>
+    </div>
+    <!-- Buttons -->
+    <div class="btn-group">
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-submit">Submit</button>
+        <!-- Cancel button -->
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+    </div>
+</form>

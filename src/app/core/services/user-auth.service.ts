@@ -20,30 +20,7 @@ export class UserAuthService {
   private readonly _ACCESS_TOKEN_KEY = 'token';
   private readonly _AUTH_HEADER = 'authorization';        
   
-  /**
-   *
-   *
-   * @param {LoginModel} loginData
-   * @return {*}  {Observable<LoginResponse>}
-   * @memberof UserAuthService
-   */
-  // login(loginData:LoginModel):Observable<LoginResponse> {
-  //   const body = loginData;
-  //   return this._http.post<LoginResponse> ('auth/user-login',body).pipe(
-  //     tap(response => {
-  //       const user = response?.user;
-  //       console.log(user,"response user");
-
-  //       if(user){
-  //         if(user.roles === "USER")
-  //         this._router.navigate(['profile']);
-  //       }
-  //       else{
-  //         this._router.navigate(['/admin/dashboard'])
-  //       }
-  //     })
-  //   )
-  // }
+  
 
   login(loginData: LoginModel): Observable<LoginResponse> {
     const body = loginData;
@@ -71,9 +48,10 @@ export class UserAuthService {
       localStorage.setItem(this._ACCESS_TOKEN_KEY,token);
   }
 
-  logOut():void{
-    localStorage.removeItem(this._ACCESS_TOKEN_KEY);
-    this._router.navigate([''])
+  logout() {
+    sessionStorage.removeItem('user');
+    localStorage.removeItem('token');
+   
   }
 
   getCurrentUser(){
@@ -83,20 +61,7 @@ export class UserAuthService {
     
   }
 
-  // updateUserDetails(userId: string, updatedUserData: any): Observable<any> {
-  //   const url = `auth/users/edit/${userId}`;
-  //   return this._http.put<User>(url, updatedUserData);
-  // }
-
   
-/**
- *
- *
- * @param {string} userId
- * @param {UpdateModel} update
- * @return {*}  {Observable<User>}
- * @memberof UserAuthService
- */
 updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
 
     // /api/v1/user/edit/
@@ -108,6 +73,17 @@ updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
         return throwError(error);
       })
     );
+  }
+
+  getUserEmail():string  | null {
+    const userData = sessionStorage.getItem('user');
+    if(userData){
+      const parsedData = JSON.parse(userData);
+      return parsedData.email;
+    }
+    else{
+      return null;
+    }
   }
 
   

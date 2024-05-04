@@ -31,6 +31,9 @@ import { AdminLoginComponent } from './auth/components/admin-login/admin-login.c
 import { SingleProjectComponent } from './pages/projects/single-project/single-project.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+
+
 
 
 
@@ -40,6 +43,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   // Delay in milliseconds before showing the loader
   delay: 2000 // 2 seconds delay
 };
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -55,6 +62,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AdminSignupComponent,
     AdminLoginComponent,
     SingleProjectComponent,
+   
    
   
 
@@ -73,7 +81,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MaterialModule,
     GoogleMapsModule,
     FormsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    
    
   
     
@@ -85,7 +94,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
     provideAnimationsAsync(),
-     {provide:  HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+     {provide:  HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+   
   ],
   bootstrap: [AppComponent]
 })

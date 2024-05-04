@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserAuthService } from "../../core/services/user-auth.service";
-import { loginFailure, loginRequest, loginSuccess, updateFailure, updateRequest, updateSuccess } from "./auth.action";
+import { loginFailure, loginRequest, loginSuccess, logout, updateFailure, updateRequest, updateSuccess } from "./auth.action";
 import { catchError, delay, map, mergeMap, of, switchMap, tap } from "rxjs";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
@@ -97,6 +97,20 @@ updateUser$ = createEffect(() =>
         }
       })
     )
+  );
+
+
+  logout$ = createEffect(
+    () => {
+      return this._actions$.pipe(
+        ofType(logout),
+        map((action) => {
+          this._userAuthService.logout();
+          this._router.navigateByUrl('/login');
+        })
+      );
+    },
+    { dispatch: false }
   );
 
 

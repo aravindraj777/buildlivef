@@ -81,59 +81,149 @@
     height: 0;
 }
 
-.task-list-container {
-  background-color: #fff;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  overflow-y: auto;
-  // max-height: calc(100% - 120px);
-}
+// .task-list-container {
+//   background-color: #fff;
+//   border-radius: 0.5rem;
+//   padding: 1rem;
+//   overflow-y: auto;
+//   // max-height: calc(100% - 120px);
+// }
 
-.task-item {
-  background: linear-gradient(to bottom, #BEE3F8, #63B3ED);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
+// .task-item {
+//   background: linear-gradient(to bottom, #BEE3F8, #63B3ED);
+//   border-radius: 0.5rem;
+//   padding: 1rem;
+//   margin-bottom: 1rem;
+// }
 
-.task-details {
-  display: flex;
-  align-items: center;
-}
+// .task-details {
+//   display: flex;
+//   align-items: center;
+// }
 
-.task-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: #4299e1;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-}
+// .task-icon {
+//   width: 2.5rem;
+//   height: 2.5rem;
+//   background-color: #4299e1;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-right: 1rem;
+// }
 
-.task-icon span {
-  color: #fff;
-}
+// .task-icon span {
+//   color: #fff;
+// }
 
-.task-info {
-  flex: 1;
-}
+// .task-info {
+//   flex: 1;
+// }
 
-.task-name {
-  font-weight: bold;
-}
+// .task-name {
+//   font-weight: bold;
+// }
 
-.task-date, .task-assignee {
-  color: #4a5568;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
+// .task-date, .task-assignee {
+//   color: #4a5568;
+//   font-size: 0.875rem;
+//   margin-top: 0.25rem;
+// }
+
 
 .loading-indicator {
   margin-top: 1rem;
   text-align: center;
   color: #4a5568;
 }
+
+
+
+/* attendance.component.scss */
+
+// Top navigation section
+.top-nav {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  padding: 1rem;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// Employee section
+/* attendance.component.scss */
+
+// Top navigation section
+.top-nav {
+  background: linear-gradient(to left, #eff7ff, white); // Gradient from light blue to white, left to right
+  padding: 1rem;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      color: #1e3a8a; // Dark blue color
+      font-size: 1.5rem;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// Employee section
+.employee-section {
+  padding: 1rem;
+  .add-employee-btn {
+    background-color: #1e3a8a; // Dark blue background
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #4d7bbf; // Lighter blue on hover
+    }
+  }
+  .employee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d1d5db;
+    padding: 0.75rem 0;
+    .employee-name {
+      font-size: 1.25rem;
+      color: #1e3a8a; // Dark blue color
+    }
+    .present-btn, .absent-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: rgba(30, 58, 138, 0.1); // Light blue on hover
+      }
+      &.active {
+        background-color: rgba(0, 128, 0, 0.1); // Light green for present
+        &.absent-btn {
+          background-color: rgba(255, 0, 0, 0.1); // Light red for absent
+        }
+      }
+    }
+  }
+}
+
+
+
 
  

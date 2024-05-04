@@ -15,6 +15,9 @@ import { RecieveMaterialComponent } from './recieve-material/recieve-material.co
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { UsedMaterialsComponent } from './used-materials/used-materials.component';
 import { MaterialEntryDetailsComponent } from './material-entry-details/material-entry-details.component';
+import { UsedMaterialComponent } from './used-material/used-material.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+import { AttendenceAddingComponent } from './attendence-adding/attendence-adding.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { MaterialEntryDetailsComponent } from './material-entry-details/material
     RecieveMaterialComponent,
     CreateTaskComponent,
     UsedMaterialsComponent,
-    MaterialEntryDetailsComponent
+    MaterialEntryDetailsComponent,
+    UsedMaterialComponent,
+    TaskDetailsComponent,
+    AttendenceAddingComponent
   ],
   imports: [
     CommonModule,

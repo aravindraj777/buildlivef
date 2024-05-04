@@ -22,6 +22,10 @@ export class ProjectService {
       return this._http.get<ProjectByCompany[]>(`project/${comapanyId}/company/${userEmail}/${userId}`)
   }
 
+  getAllProjectsOfUserCountMonthly(userId:string,userEmail:string):Observable<any>{
+    return this._http.get<any>(`project/countByMonth/${userId}/${userEmail}`)
+  }
+
   getMembersOfAProject(projectId:string):Observable<ProjectTeam[]>{
       return this._http.get<ProjectTeam[]>(`project/${projectId}/team-members`)
   }
@@ -46,6 +50,10 @@ export class ProjectService {
 
 receiveMaterial(requestData:any):Observable<any>{
   return this._http.post<any>('project/materials/received-materials',requestData)
+}
+
+usedMaterial(requestData:any):Observable<any>{
+  return this._http.post<any>('project/materials/used-materials',requestData)
 }
 
 getProjectMaterials(projectId: string): Observable<ProjectMaterial[]> {

@@ -1,0 +1,73 @@
+.used-material-form {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+        }
+
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+        }
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+
+        .btn-submit,
+        .btn-cancel {
+            flex: 1;
+            padding: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            margin-left: 10px;
+
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+    }
+}

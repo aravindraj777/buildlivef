@@ -50,6 +50,10 @@ navigateToWorkForce(){
 navigateToMaterials(){
   this._router.navigate(['/company/comapany-materials',this.companyId])
 }
+
+navigateToMessage(){
+  this._router.navigate(['/company/company-chats',this.companyId])
+}
   
   
 

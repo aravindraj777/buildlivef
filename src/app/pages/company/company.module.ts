@@ -15,6 +15,7 @@ import { WorkforceComponent } from './workforce/workforce.component';
 import { CreateWorkforceComponent } from './create-workforce/create-workforce.component';
 import { CompanyMaterialsComponent } from './company-materials/company-materials.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
+import { CompanyChatsComponent } from './company-chats/company-chats.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AddMaterialComponent } from './add-material/add-material.component';
     WorkforceComponent,
     CreateWorkforceComponent,
     CompanyMaterialsComponent,
-    AddMaterialComponent
+    AddMaterialComponent,
+    CompanyChatsComponent
   ],
   imports: [
     CommonModule,

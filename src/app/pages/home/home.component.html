@@ -13,7 +13,7 @@
 </div>
 -->
 
-<div class="h-full flex bg-blue-600 bg-fixed bg-no-repeat bg-cover bg-center relative ">
+<!-- <div class="h-full flex bg-blue-600 bg-fixed bg-no-repeat bg-cover bg-center relative ">
   <app-navbar class=" bg-transparent p-2 w-full absolute " ></app-navbar >
   <img [src]="homeImage" class="w-full h-[30rem] object-fill" alt="">
 
@@ -22,7 +22,7 @@
     <p class="text-lg leading-relaxed mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem distinctio odit <br> modi magnam eum incidunt enim quibusdam inventore <br> commodi architecto, iure ipsam, omnis at delectus, mollitia quis dolore nam! Corrupti.</p>
     <button class="btn bg-white text-blue-600 px-4 py-2 rounded-full">Getting Started</button>
   </div>
-</div> 
+</div>  -->
 
 <!-- <div class="relative">
   <div class="h-full flex bg-blue-600 bg-fixed bg-no-repeat bg-cover bg-center">
@@ -38,7 +38,7 @@
 
 
 <!-- Second Section -->
-<div class="bg-blue-300 h-screen flex justify-center items-center relative">
+<!-- <div class="bg-blue-300 h-screen flex justify-center items-center relative">
   
   <div class="absolute top-0 left-0 right-1/2 bottom-1/2 lg:w-1/2 bg-gradient-to-br from-black to-gray-900 flex justify-center items-center text-gray-600 text-4xl">
     Inventory Management
@@ -74,4 +74,123 @@
   
   <div class="bg-sea2 min-h-screen bg-center bg-no-repeat bg-cover bg-fixed"></div>
   
-  <div class="bg-sea3 min-h-screen bg-fixed bg-no-repeat bg-cover"></div>
+  <div class="bg-sea3 min-h-screen bg-fixed bg-no-repeat bg-cover"></div> -->
+
+
+
+  <header class="bg-gradient-to-r from-blue-200 to-sky-500  p-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">BUILDLIVE</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="text-white">Home</a></li>
+          <li><a (click)="scrollToServices()" class="text-white">Services</a></li>
+          <li><a href="#features" class="text-white">Features</a></li>
+          <li><a (click)="navigateToLogin()" class="text-white">SignUp</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="container mx-auto mt-5 p-4 bg-gradient-to-l from-violet-50 to-teal-100" id="services">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <h2 class="text-2xl font-semibold mb-4">Take A Glimpse Into Your Construction Voyage</h2>
+        <p class="mb-4">
+          Explore our product and the rigorous process of creation. Our principles are creativity,
+          design, experience and knowledge.
+        </p>
+        <div class="flex space-x-2 mb-4">
+          <span class="bg-black text-white p-2 rounded">600+</span>
+          <span class="bg-black text-white p-2 rounded">800+</span>
+          <span class="bg-black text-white p-2 rounded">99%</span>
+        </div>
+        <button (click)="navigateToLogin()" class="bg-green-600 text-fuchsia-50 p-2 rounded">Explore..</button>
+      </div>
+      <div >
+        <img [src]="homeImage" class="image" alt="">
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-gradient-to-b from-slate-200 to-blue-300 dark:from-zinc-900 dark:to-zinc-800 py-10">
+    <div class="container mx-auto">
+      <h3 class="text-xl font-semibold mb-6 text-center text-white">Discover Our Services</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 bg-gradient-to-b from-orange-50 to-blue-400 shadow rounded">
+          <h4 class="font-bold mb-2">Project Tracking</h4>
+          <p class="text-gray-700 dark:text-gray-200">
+            Experience streamlined project management with our website's intuitive tracking features. From inception to completion, monitor project progress, allocate resources, and meet deadlines effectively. With real-time updates and detailed analytics, stay ahead of milestones and ensure project success. Simplify collaboration and communication among team members for seamless coordination and enhanced productivity.
+          </p>
+        </div>
+        <div class="p-4 bg-blue-300 dark:bg-blue-600 shadow rounded">
+          <h4 class="font-bold mb-2 text-white">Cost Management</h4>
+          <p class="text-gray-200">
+            At BuildLive, we specialize in effective cost management tailored specifically for residential buildings.
+             Our platform offers comprehensive tools and insights to optimize budget allocation, monitor expenses, and streamline financial processes. 
+             With real-time tracking and customizable reporting features, we empower homeowners and construction teams to stay within budget and achieve project goals efficiently.
+             Trust BuildLive for precise cost management solutions that ensure the success of your residential building projects."
+          </p>
+        </div>
+        <div class="p-4 bg-gradient-to-b from-orange-50 to-blue-400shadow rounded">
+          <h4 class="font-bold mb-2">Collaborative Works</h4>
+          <p class="text-gray-700 dark:text-gray-200">
+            BuildLive offers a dynamic interface designed for seamless collaboration among project stakeholders.
+             Our platform provides intuitive communication tools, file sharing capabilities, and task assignment features, fostering effective teamwork. With a user-friendly interface accessible from any device, teams can collaborate effortlessly, driving productivity and project success.
+             Trust BuildLive to facilitate smooth collaboration and enhance project outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <section class="container mx-auto py-10 bg-gradient-to-b from-slate-200 to-blue-300" id="features">
+    <h3 class="text-xl font-semibold mb-6 text-center">New Features</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-4 bg-white dark:bg-zinc-900 shadow rounded">
+        <img [src]="chatImage" class="image" alt="">
+        <h5 class="font-semibold text-xl mt-2 text-gray-800 dark:text-gray-200">Chat with Employees</h5>
+        <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            BuildLive offers a seamless communication experience through
+             private chat facilities, connecting employees within a company securely. 
+             With robust data security measures in place, your conversations remain confidential and protected,
+              ensuring peace of mind for your team.
+        </p>
+    </div>
+    
+      <div class="p-4 bg-white dark:bg-zinc-900 shadow rounded">
+        <img [src]="taskimage" class="image" alt="">
+        <h5 class="font-semibold text-xl mt-2 text-gray-800 dark:text-gray-200">Progress Tracking</h5>
+        <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+          BuildLive simplifies task delegation by providing a user-friendly platform for sharing 
+          tasks among team members. Our intuitive interface allows for easy tracking of task progress,
+           ensuring transparency and accountability within your team with real-time updates and notifications,
+        </p>
+      </div>
+      <div class="p-4 bg-white dark:bg-zinc-900 shadow rounded">
+        <img [src]="collaborationImg" class="image" alt="">
+        <h5 class="font-semibold text-xl mt-2 text-gray-800 dark:text-gray-200">Team Collaboration</h5>
+        <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+          BuildLive facilitates seamless collaboration with other construction companies, 
+          fostering synergy and efficiency in project execution. Our platform provides a secure environment for sharing resources, 
+          documents, and updates in real-time .
+        </p>
+      </div>
+      <div class="p-4 bg-white dark:bg-zinc-900 shadow rounded">
+        <img [src]="financeImg" class="image" alt="">
+        <h5 class="font-semibold text-xl mt-2 text-gray-800 dark:text-gray-200">Finance tracking</h5>
+        <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+          BuildLive offers robust finance tracking capabilities, empowering users to manage finances efficiently. 
+          Our platform provides intuitive tools for budgeting, expense tracking, and financial reporting.
+           With real-time updates and customizable dashboards.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="bg-yellow-300 dark:bg-zinc-700 text-center p-4 mt-10">
+    <p>© 2024 BuildLive360. All rights reserved.</p>
+  </footer>
+  

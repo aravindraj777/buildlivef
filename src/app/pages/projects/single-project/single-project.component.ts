@@ -15,6 +15,7 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../../../store/auth/auth.model';
 import { getEmail } from '../../../store/auth/auth.selector';
+import { UsedMaterialComponent } from '../used-material/used-material.component';
 
 @Component({
   selector: 'app-single-project',
@@ -266,6 +267,27 @@ reciveMaterialDialog():void{
   
 }
 
+usedMaterialDialog(materialName:string,materialId:string,event:Event):void{
+  event.stopPropagation();
+  console.log(materialId,"ghsjgdj");
+  
+    const dialogRef = this.dialog.open(UsedMaterialComponent,{
+      width:'40%',
+      data:{
+        materialName:materialName,
+        materialId:materialId,
+        companyId:this.companyId,
+        projectId:this.projectId
+      }
+    })
+
+    dialogRef.componentInstance.materialUsed.subscribe(() => {
+      // Update the project materials list
+      this.getProjectMaterials();
+      this._toastr.success('Material updated successfully');
+    });
+}
+
 getProjectMaterials(): void {
   this._projectService.getProjectMaterials(this.projectId).subscribe(
     (materials) => {
@@ -344,9 +366,7 @@ onScroll() {
 
 
 
-usedMaterialDialog(){
 
-}
 
 showMaterialDetails(material:ProjectMaterial){
     this._router.navigate(['/projects/material-details'],{queryParams:{materialId:material.id
@@ -354,7 +374,68 @@ showMaterialDetails(material:ProjectMaterial){
 }
 
 
+showTaskDetails(task:any){
+  this._router.navigate(['/projects/task-details'],{queryParams:{
+    tastId:task.id
+  }})
+}
 
+
+
+currentDate: Date = new Date();
+
+  decreaseDate() {
+    const yesterday = new Date(this.currentDate);
+    yesterday.setDate(yesterday.getDate() - 1);
+    this.currentDate = yesterday;
+    // Call a function to update the employee list based on the new date
+    this.updateEmployeeList();
+  }
+
+  increaseDate() {
+    const tomorrow = new Date(this.currentDate);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Check if tomorrow's date is not greater than today's date
+    if (tomorrow <= new Date()) {
+      this.currentDate = tomorrow;
+      // Call a function to update the employee list based on the new date
+      this.updateEmployeeList();
+    }
+  }
+
+  isToday(): boolean {
+    // Check if the current date is today's date
+    return this.currentDate.toDateString() === new Date().toDateString();
+  }
+
+  updateEmployeeList() {
+    // Implement logic to update the employee list based on the selected date
+    // For demonstration purpose, let's assume a static list of employees
+    // You would fetch the employee list from your backend service here
+  }
+
+
+  markPresent() {
+    // Add your logic here to handle marking an employee as present
+    console.log('Employee marked present');
+  }
+
+  // Method to mark an employee as absent
+  markAbsent() {
+    // Add your logic here to handle marking an employee as absent
+    console.log('Employee marked absent');
+  }
+
+  addEmployee(){
+    
+  }
+
+
+  addWorker(){
+    this._router.navigate(['/projects/attandence'],{queryParams:{
+      projectId:this.projectId
+    }})
+  }
 
 }
 

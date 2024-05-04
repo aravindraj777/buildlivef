@@ -14,6 +14,8 @@ export interface ProjectMaterial {
     quantity: number;
     currentStock: number;
     receivedStock: number;
+    usedStock: number;
+    usedDescription:string
     localDateTime: string; 
     project: string; 
 }

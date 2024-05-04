@@ -12,37 +12,45 @@ import { AdminComponent } from './layout/admin/admin.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminSignupComponent } from './auth/components/admin-signup/admin-signup.component';
 import { AdminLoginComponent } from './auth/components/admin-login/admin-login.component';
+import { AuthGuard } from './core/guards/guard';
+
 
 
 const routes: Routes = [
-  {path:"",
-  loadChildren : ()=> import('./pages/home/home/home.module')
-  .then(module => module.HomeModule)
+  {
+    path: "",
+    loadChildren: () => import('./pages/home/home/home.module')
+      .then(module => module.HomeModule)
   },
 
-  {path:"login",component:LoginComponent},
-  {path:"register",component:SignupComponent},
-  {path:"admin/login",component:AdminLoginComponent},
-  {path:"admin/register",component:AdminSignupComponent},
-  {path:"sidebar",component:SidebarComponent},
-  {path:"navbar",component:NavbarComponent},
-  {path:"admin-side",component:AdminSidebarComponent},
+  { path: "login", component: LoginComponent },
+  { path: "register", component: SignupComponent },
+  { path: "admin/login", component: AdminLoginComponent },
+  { path: "admin/register", component: AdminSignupComponent },
+  { path: "sidebar", component: SidebarComponent,canActivate: [AuthGuard] },
+  { path: "navbar", component: NavbarComponent,canActivate: [AuthGuard] },
+  { path: "admin-side", component: AdminSidebarComponent ,canActivate: [AuthGuard]},
   // {path:"user",component:UserComponent},
-  {path:"usernav",component:UsernavComponent},
-  {path: 'profile',component:UserComponent, 
-  loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
-  { path: 'company',component:UserComponent, loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule) },
-  { path: 'edituser', loadChildren: () => import('./pages/edituser/edituser.module').then(m => m.EdituserModule) },
-  { path: 'other-companies',component:UserComponent, loadChildren: () => import('./pages/other-companies/other-companies.module').then(m => m.OtherCompaniesModule) },
-  { path: 'projects',component:UserComponent, loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsModule) },
+  { path: "usernav", component: UsernavComponent },
+  {
+    path: 'profile', component: UserComponent, canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
+  },
+  { path: 'company', component: UserComponent,canActivate: [AuthGuard], loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule) },
+  { path: 'edituser',canActivate: [AuthGuard], loadChildren: () => import('./pages/edituser/edituser.module').then(m => m.EdituserModule) },
+  { path: 'other-companies',canActivate: [AuthGuard], component: UserComponent, loadChildren: () => import('./pages/other-companies/other-companies.module').then(m => m.OtherCompaniesModule) },
+  { path: 'projects', canActivate: [AuthGuard],component: UserComponent, loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsModule) },
 
-  {path:'admin',component:AdminComponent,
+  {
+    path: 'admin', component: AdminComponent,canActivate: [AuthGuard],
     children: [
-      {path:'dashboard',component:AdminDashboardComponent}
+      { path: 'dashboard', component: AdminDashboardComponent }
     ]
-  }
-  
-  
+  },
+  { path: 'messages', canActivate: [AuthGuard],component: UserComponent, loadChildren: () => import('./pages/messages/messages.module').then(m => m.MessagesModule) },
+ 
+
+
 ];
 
 @NgModule({

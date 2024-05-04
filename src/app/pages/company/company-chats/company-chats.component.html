@@ -1,0 +1,36 @@
+<div class="pl-16 pt-2 ml-52 fixed w-10/12">
+  <div class="chat-container p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full flex" style="min-height: 40em;border-radius: 1.3em;">
+
+    <!-- Left section for selecting person to chat with -->
+    <div class="chat-list w-1/4 pr-4">
+      <h2>Chat List</h2>
+      <div class="user-card" *ngFor="let member of partyMembers" (click)="selectPerson(member)">
+        <div class="user" [class.active]="selectedPerson === member.name">
+          <span class="user-status online"></span> {{ member.name }} ({{ member.companyRole }})
+        </div>
+      </div>
+    </div>
+
+    <!-- Right section for displaying chat window -->
+    <div class="chat-window w-3/4">
+      <h2 class="window-title">Chat Window with {{ selectedPerson }}</h2>
+      <div class="chat-history">
+        <!-- <div *ngFor="let message of messages">
+          <div class="message" [ngClass]="{'sent': message.senderId === selectedPersonId, 'received': message.senderId !== selectedPersonId}">
+            <p>{{ message.content }}</p>
+          </div>
+        </div> -->
+        <ul>
+          <li *ngFor="let message of messages" class="m-6">
+              <span  class="message" [ngClass]="{'sent': message.senderId!== selectedPersonId, 'received': message.senderId === selectedPersonId}">{{message.content}}</span>
+          </li>
+        </ul>
+      </div>
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
+        <input type="text" formControlName="message" placeholder="Type your message..." class="chat-message-input">
+        <button type="submit" class="chat-send-button">Send</button>
+      </form>
+    </div>
+
+  </div>
+</div>

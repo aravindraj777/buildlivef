@@ -22,6 +22,14 @@
       {
         "image-alt": "off"
       }
-    ]
+    ],
+    "axe/aria": "off",
+    "axe/structure": [
+      "default",
+      {
+        "listitem": "off"
+      }
+    ],
+    "no-inline-styles": "off"
   }
 }

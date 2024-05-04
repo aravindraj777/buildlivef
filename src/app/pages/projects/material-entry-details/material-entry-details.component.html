@@ -8,31 +8,41 @@
         </div>
         
         <!-- PDF Icon -->
-        <div class="absolute top-0 right-0 p-4">
+        <!-- <div class="absolute top-0 right-0 p-4">
+            <i class="fas fa-file-pdf text-blue-500 text-2xl"></i>
+        </div> -->
+        <div class="absolute top-0 right-0 p-4" (click)="generateInvoicePdf()">
             <i class="fas fa-file-pdf text-blue-500 text-2xl"></i>
         </div>
         
         <!-- Project Material Name -->
-        <div class="text-center text-xl font-bold mb-4">{{ materialEntries[0].projectMaterial.materialName }}</div>
+        <div class="text-center text-xl font-bold mb-4">{{ materialEntries.length > 0 ? materialEntries[0].projectMaterial.materialName : 'No material available' }}</div>
+
+
         
         <!-- Current Stock -->
-        <div class="text-center mb-4">Current Stock: {{ materialEntries[0].projectMaterial.currentStock }}</div>
+        <div *ngIf="materialEntries && materialEntries.length > 0" class="text-center mb-4">Current Stock: {{ materialEntries[0].projectMaterial.currentStock }}</div>
+
         
         <!-- Section Card -->
         <div class="bg-white shadow p-4 rounded-lg mb-4">
             <div class="flex justify-between">
                 <div class="text-blue-500">
                     <div>Received Stock</div>
-                    <div class="text-lg font-semibold">{{ materialEntries[0].projectMaterial.receivedStock }}</div>
+                    <div *ngIf="materialEntries && materialEntries.length > 0" class="text-lg font-semibold">{{
+                        materialEntries[0].projectMaterial.receivedStock }}</div>
                 </div>
-                <div class="flex justify-center">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">All Entries</button>
-                    <button class="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Received</button>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-md">Used</button>
-                </div>
+                <button class="filter-btn" [class.active]="selectedMaterialType === 'All'" (click)="filterEntries('All')">All
+                    Entries</button>
+                <button class="filter-btn" [class.active]="selectedMaterialType === 'Received'"
+                    (click)="filterEntries('RECEIVED')">Received</button>
+                <button class="filter-btn" [class.active]="selectedMaterialType === 'Used'"
+                    (click)="filterEntries('USED')">Used</button>
                 <div class="text-red-500">
                     <div>Total Used</div>
-                    <div class="text-lg font-semibold">20</div> <!-- You need to replace this with the total used value -->
+                    <div *ngIf="materialEntries && materialEntries.length > 0" class="text-lg font-semibold">{{
+                        materialEntries[0].projectMaterial.usedStock }}</div>
+                    <!-- You need to replace this with the total used value -->
                 </div>
             </div>
         </div>
@@ -48,6 +58,8 @@
                 <div class="mb-1">Party: {{ entry.projectMaterial.partyMember }}</div>
                 <!-- Entry person -->
                 <div class="mb-1">EntryPerson: {{ entry.entryPerson }}</div>
+                <div class="mb-1">Details: {{ entry.projectMaterial.usedDescription }}</div>
+                
                 <!-- Quantity and sign -->
                 <div class="flex justify-end items-center">
                     <!-- Plus or minus sign based on material type -->

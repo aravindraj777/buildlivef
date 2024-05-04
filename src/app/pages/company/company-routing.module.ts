@@ -10,6 +10,7 @@ import { EmployeesListComponent } from './employees-list/employees-list.componen
 import { CompanyUserProfileComponent } from './company-user-profile/company-user-profile.component';
 import { WorkforceComponent } from './workforce/workforce.component';
 import { CompanyMaterialsComponent } from './company-materials/company-materials.component';
+import { CompanyChatsComponent } from './company-chats/company-chats.component';
 
 
 
@@ -29,7 +30,8 @@ loadChildren: () => import('../create-company/create-company.module')
 { path: 'company-employee/:id',component:EmployeesListComponent} ,  
 { path: 'company/user-profile/:id',component:CompanyUserProfileComponent},
 { path: 'workforce/:id',component:WorkforceComponent},
-{path:  'comapany-materials/:id',component:CompanyMaterialsComponent}
+{ path: 'comapany-materials/:id',component:CompanyMaterialsComponent},
+{ path: 'company-chats/:id',component:CompanyChatsComponent}
 
 ];
 

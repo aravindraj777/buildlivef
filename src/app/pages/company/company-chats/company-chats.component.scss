@@ -1,0 +1,159 @@
+$chat-container-bg-gradient: linear-gradient(to right, #f0f9ff, #e0f2f1);
+$chat-container-border-color: #cccccc;
+$chat-container-shadow-color: rgba(0, 0, 0, 0.1);
+$chat-list-bg-color: #e8f0f8;
+$chat-window-bg-color: #fff;
+$chat-user-active-bg-color: #e0e0e0;
+$chat-history-border-color: #ddd;
+$chat-message-sent-bg-color: #c27575;
+$chat-message-received-bg-color: #7182c6;
+$chat-input-bg-color: #f5f5f5;
+$chat-input-border-color: #ccc;
+$chat-input-button-bg-color: #3498db;
+$chat-input-button-text-color: #fff;
+
+.chat-container {
+  display: flex; /* Use flexbox for layout */
+  background-color: $chat-container-bg-gradient;
+  border: 1px solid $chat-container-border-color;
+  box-shadow: 0 2px 5px $chat-container-shadow-color;
+  padding: 1em;
+  border-radius: 1.3em;
+  min-height: 40em;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column; /* Stack elements on small screens */
+  }
+  .chat-list,
+  .chat-window {
+    width: 100%; /* Take full width on small screens */
+  }
+}
+
+.chat-list {
+  width: 30%;
+  padding: 1em;
+  border-right: 1px solid $chat-container-border-color;
+  background-color: $chat-list-bg-color;
+}
+
+.chat-window {
+  width: 70%;
+  padding: 1em;
+  background-color: $chat-window-bg-color;
+  display: flex; /* Allow flexbox for chat history and input */
+  flex-direction: column; /* Stack elements vertically */
+}
+
+.chat-history {
+  flex: 1; /* Take up remaining space within chat window */
+  overflow-y: scroll; /* Enable scrolling for chat messages */
+  border-bottom: 1px solid $chat-history-border-color;
+  padding-bottom: 1em; /* Add space for chat input */
+}
+
+.chat-input {
+  background-color: $chat-input-bg-color;
+  border: 1px solid $chat-input-border-color;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  width: 100%; /* Take full width within chat window */
+}
+
+.chat-input input[type="text"] {
+  flex: 1;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+.chat-input button {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: $chat-input-button-bg-color;
+  color: $chat-input-button-text-color;
+  cursor: pointer;
+}
+
+.message {
+  padding: 0.5em 1em;
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+}
+
+.message.sent {
+  background-color: $chat-message-sent-bg-color;
+  text-align: right;
+  margin: 1rem;
+}
+
+.message.received {
+  background-color: $chat-message-received-bg-color;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.user-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-card:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .user {
+    /* Your existing user styles here */
+  }
+
+  /* styles.css (or your CSS/SCSS file) */
+.user.active {
+    background-color: lightblue; /* Example background color for active user */
+    font-weight: bold; /* Example font weight for active user */
+  }
+  
+
+  .chat-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .window-title {
+    margin-bottom: 10px;
+  }
+  
+  .chat-history {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .message {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  .sent {
+    align-self: flex-end;
+    background-color: #DCF8C6; /* Example background color for sent messages */
+  }
+  
+  .received {
+    align-self: flex-start;
+    background-color: #E5E5EA; /* Example background color for received messages */
+  }
+  
+  .message-form {
+    margin-top: 10px;
+  }
+  
+
+
+  

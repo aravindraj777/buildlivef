@@ -1,5 +1,6 @@
-<div class="pl-16 pt-2 ml-52 fixed w-10/12">
-    <div class="p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full"
+<div class="pl-16 pt-2 ml-52  w-10/12">
+    <div class="p-8 bg-gradient-to-r bg-sky-50 border-b-4  border-r-4 border-l-4
+     border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full"
     style="min-height: 40em;border-radius: 1.3em;"
     >
         
@@ -28,7 +29,7 @@
                 <div class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);">
                     <div class="flex flex-col space-y-4" style="
                     max-height: 19em;
-                ">
+                 ">
                         <div *ngFor="let member of filteredProjectTeamMembers" class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
                             <!-- Avatar -->
                             <div class="flex items-center">
@@ -99,10 +100,14 @@
                 </div>
                 
                 <!-- Received materials list -->
-                <div  class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);">
+                <div class="bg-white rounded-s-2xl p-4 overflow-y-auto" style="max-height: calc(100% - 120px);">
                     <!-- Loop through received materials -->
-                    <div *ngFor="let material of projectMaterials" class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4 max-h-20"
-                    (click)="showMaterialDetails(material)" >
+                    <div *ngFor="let material of projectMaterials" class="bg-gray-100 rounded-2xl p-4 
+                    border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300  
+                    shadow border-t-2 
+
+                    flex items-center justify-between mb-4 max-h-20"
+                        (click)="showMaterialDetails(material)" >
                         <!-- Material details -->
                         <div class="flex items-center">
                             <!-- Material icon placeholder -->
@@ -143,17 +148,14 @@
                         </div>
                         <!-- Buttons for actions -->
                         <div>
-                            <!-- Button to receive stock -->
-                            <!-- <button class="bg-green-500 text-white px-3 py-1 rounded-md mr-2">
-                                Receive
-                            </button> -->
                             <!-- Button to use stock -->
-                            <button class="bg-red-500 text-white px-3 py-1 rounded-md" (click)="usedMaterialDialog()">
+                            <button class="bg-red-500 text-white px-3 py-1 rounded-md" (click)="usedMaterialDialog(material.materialName,material.id,$event)">
                                 Used
                             </button>
                         </div>
                     </div>
                 </div>
+                
 
 
                
@@ -164,56 +166,59 @@
             
             
 
-                <mat-tab label="Task">
-                    <!-- Top section -->
-                    <div class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4">
-                        <!-- Not Started tasks -->
-                        <div class="flex flex-col mr-8">
-                            <span class="font-semibold">Not Started</span>
-                            <span class="text-sm text-gray-500">10</span>
-                        </div>
-                        <!-- Ongoing tasks -->
-                        <div class="flex flex-col mr-8">
-                            <span class="font-semibold">Ongoing</span>
-                            <span class="text-sm text-gray-500">15</span>
-                        </div>
-                        <!-- Completed tasks -->
-                        <div class="flex flex-col">
-                            <span class="font-semibold">Completed</span>
-                            <span class="text-sm text-gray-500">8</span>
-                        </div>
+                <mat-tab label="Task" >
+                    
+                    <!-- <div class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4" *ngIf="isAdminOrManager">
+                      
+                       
                     </div>
                     
-                    <!-- Button to add new task -->
+                   
                     <a *ngIf="isAdminOrManager" class="text-blue-500 cursor-pointer mb-4" (click)="openAddTaskDialog()">Add New Task</a>
   
                     
-                    <!-- Task list -->
-                    <div *ngIf="projectTasks && projectTasks.length > 0">
-                        <h2>Project Tasks</h2>
-                        <ul>
-                          <li *ngFor="let task of projectTasks">
-                            <h3>{{ task.taskName }}</h3>
-                            <p>Start Date: {{ task.startDate }}</p>
-                            <p>End Date: {{ task.endDate }}</p>
-                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
-                              Assigned By: {{ task.taskAssignments[0]?.assignedBy?.name }}
-                            </p>
-                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
-                              Assigned To: {{ task.taskAssignments[0]?.assignedTo?.name }}
-                            </p>
-                            <p *ngIf="task.taskAssignments && task.taskAssignments.length > 0">
-                              Assigned Date: {{ task.taskAssignments[0]?.assignedDate }}
-                            </p>
-                          </li>
-                        </ul>
-                      </div>
-                      <div *ngIf="!projectTasks || projectTasks.length === 0">
-                        <p>No tasks available.</p>
-                      </div>
-                      
-                      
                     
+                      
+                      
+                      <div class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);" *ngIf="projectTasks && projectTasks.length > 0">
+                        <h2>Project Tasks</h2>
+                        <div class="flex flex-col space-y-4" style="
+                        max-height: 19em;
+                     ">
+                            <div *ngFor="let task of projectTasks" class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
+                               
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gray-400 rounded-full mr-4 flex items-center justify-center">
+                                        <span>{{ task.taskName?.charAt(0) }}</span>
+                                    </div>
+                                   
+                                    <div class="flex flex-col">
+                                        <span class="font-semibold">{{ task.taskName }}</span>
+                                        <span class="text-sm text-gray-500">{{ task.startDate }}</span>
+                                        <span class="text-sm text-gray-500">{{ task.endDate }}</span>
+                                        <span class="text-sm text-gray-500">{{ task.taskStatus }}</span>
+                                    </div>
+                                </div>
+                              
+                                <div>
+                                    
+                                    
+                                    <button class="text-blue-500 mr-2" >
+                                        <i class="fas fa-pencil-alt"></i>
+                                      </button>
+                                      
+                                      <button class="text-red-500" >
+                                        
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!projectTasks || projectTasks.length === 0">
+                        <p>No tasks available.</p>
+                      </div> -->
                       
                       
 
@@ -245,11 +250,167 @@
                         <div *ngIf="loading">Loading...</div>
                     </div> -->
                     
+
+
+                    <div class="max-w-screen-lg mx-auto p-4 h-auto" >
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                          <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
+                            <div class="text-zinc-600">Not Started</div>
+                            <div class="text-xl font-semibold">1</div>
+                          </div>
+                          <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
+                            <div class="text-zinc-600">Ongoing</div>
+                            <div class="text-xl font-semibold">3</div>
+                          </div>
+                          <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
+                            <div class="text-zinc-600">Completed</div>
+                            <div class="text-xl font-semibold">0</div>
+                          </div>
+                        </div>
+                      
+                        <div class="flex flex-wrap gap-4 mb-6">
+                          <select *ngIf="isAdminOrManager"
+                            class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                          >
+                            <option>All Status</option>
+                          </select>
+                          <select *ngIf="isAdminOrManager"
+                            class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                          >
+                            <option>All Member</option>
+                          </select>
+                          <input
+                            type="text"
+                            placeholder="Search"
+                            class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                          />
+                          <a *ngIf="isAdminOrManager" class="text-blue-500 cursor-pointer mb-4" (click)="openAddTaskDialog()">Add New Task</a>
+                        </div>
+                      
+                        <div class="max-h-44 overflow-y-auto " >
+                            <!-- Adjust max-height value as needed -->
+                            <div *ngFor="let task of projectTasks" 
+                            class="bg-blue-100 rounded-2xl p-4 border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300 shadow border-t-2 flex items-center
+                             justify-between mb-4 max-h-20" (click)="showTaskDetails(task)">
+                                <h3 class="text-lg font-semibold">{{task.taskName}}</h3>
+                                
+                                <div class="text-right text-sm text-zinc-500">{{task.startDate}} to {{task.endDate}}</div>
+                                <div class="text-red-500 text-sm">{{task.taskStatus}}</div>
+                            </div>
+                             <!-- <div class="bg-slate-600 rounded-2xl p-4 border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300 shadow border-t-2 flex items-center justify-between mb-4 max-h-20">
+                                <h3 class="text-lg font-semibold">Hhh</h3>
+                                <p class="text-zinc-600">No Dates Added</p>
+                                <div class="text-right text-sm text-zinc-500">Last Updated: 30 Apr</div>
+                                <div class="text-red-500 text-sm">0/100 % Ongoing</div>
+                            </div> -->
+                            
+                            
+                            
+                            <!-- Add more task items here if needed -->
+                        </div>
+
+                        
+                      
+                        <button
+                          class="w-full py-3 mt-6 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+                        >
+                          + Add New Task
+                        </button>
+                      </div>
+                      
+
+
                 </mat-tab>
                 
             
 
-            <mat-tab label="Attendenc"> Content 3 </mat-tab>
+            <!-- <mat-tab label="Attendence"> 
+
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+                    <nav class="flex justify-between items-center mb-4">
+                      <button type="button" class="text-white text-lg" (click)="decreaseDate()">&lt;</button>
+                      <span class="text-white text-lg font-bold">{{ currentDate | date:'dd/MM/yyyy' }}</span>
+                      <button type="button" class="text-white text-lg" (click)="increaseDate()" [disabled]="isToday()">&gt;</button>
+                    </nav>
+                  </div>
+                  
+                  <div class="p-4">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" (click)="addEmployee()">Add Employee +</button>
+                  
+                    <div class="mt-4">
+                      <div class="flex justify-between items-center border-b border-gray-300 py-2">
+                        <span class="text-lg">Employee 1</span>
+                        <div>
+                          <button class="present-btn" (click)="markPresent()">Present</button>
+                          <button class="absent-btn" (click)="markAbsent()">Absent</button>
+                        </div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  
+                  
+                  
+             </mat-tab> -->
+             <mat-tab label="Attendance"> 
+
+                <div class="container mx-auto p-4 overflow-y-auto">
+                    <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+                        <nav class="flex justify-between items-center mb-4">
+                          <button type="button" class="text-white text-lg" (click)="decreaseDate()">&lt;</button>
+                          <span class="text-white text-lg font-bold">{{ currentDate | date:'dd/MM/yyyy' }}</span>
+                          <button type="button" class="text-white text-lg" (click)="increaseDate()" [disabled]="isToday()">&gt;</button>
+                        </nav>
+                      </div>
+                
+                    <div class="flex justify-between items-center bg-white p-4 mt-4 rounded-lg shadow">
+                      <div class="text-center">
+                        <div class="text-green-500">Present</div>
+                        <div>0</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="text-red-500">Absent</div>
+                        <div>0</div>
+                      </div>
+                      <div class="text-center">
+                        <div>Day's Salary</div>
+                        <div>₹ 0</div>
+                      </div>
+                    </div>
+                
+                    <div class="flex items-center bg-white p-4 mt-4 rounded-lg shadow space-x-4">
+                        <button>
+                      <a class="border p-2 rounded " (click)="addWorker()">
+                        +add worker
+                      </a>
+                    </button>
+                      <input type="text" placeholder="Search" class="border p-2 rounded flex-grow" />
+                      <button class="text-blue-500">🔍</button>
+                      <button class="text-blue-500">🔗</button>
+                    </div>
+                
+                    <div class="mt-4">
+                      <div class="bg-white p-4 rounded-lg shadow mb-4">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <div class="font-bold">Alok</div>
+                            <div class="text-sm text-zinc-600">Gg400</div>
+                            <div class="text-sm">₹ 588 per day</div>
+                          </div>
+                          <div>
+                            <button class="bg-green-500 text-white px-4 py-2 rounded">Present</button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded ml-2">Absent</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                
+                    
+                  </div>
+            
+            </mat-tab>
+            
             <!-- <mat-tab label="Transaction"> Content 3 </mat-tab> -->
         </mat-tab-group>
           
