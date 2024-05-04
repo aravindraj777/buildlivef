@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChartjsComponent } from '@coreui/angular-chartjs';
+
 import { ProjectService } from '../../../core/services/project.service';
-import { ProjectByCompany } from '../../../models/project.model';
+
 
 @Component({
   selector: 'app-user-dashboard',
