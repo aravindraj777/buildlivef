@@ -23,7 +23,7 @@ export class ChatService {
   }
 
   initConnenctionSocket(chatRoomName:string) {
-    const url = 'http://localhost:3000/ws';
+    const url = 'https://chat.buildlive360.online/ws';
     const socket = new SockJS(url);
     this.stompClient = Stomp.over(socket);
     const chatRoomTopic = `topic/${chatRoomName}`
