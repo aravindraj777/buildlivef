@@ -5,7 +5,8 @@
          
        
          <div style="width: 50%; height: 50%;"> <!-- Adjust width and height as needed -->
-            <c-chart *ngIf="data" [data]="data" type="bar"></c-chart>
+            <!-- <c-chart *ngIf="data" [data]="data" type="bar"></c-chart> -->
+            <p-chart type="bar" [data]="data" [options]="basicOptions" />
         </div>
 
         

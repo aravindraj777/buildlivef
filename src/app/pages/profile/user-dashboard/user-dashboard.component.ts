@@ -12,6 +12,7 @@ import { ProjectService } from '../../../core/services/project.service';
 export class UserDashboardComponent {
 
   data:any={}
+  basicOptions: any;
 
   currentUserEmail!:string;
   currentUserId!:string;
@@ -57,6 +58,17 @@ ngOnInit(): void {
                 data: Object.values(projectCountByMonth)
               }
             ]
+          };
+          this.basicOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
           };
         },
         (error: any) => {
