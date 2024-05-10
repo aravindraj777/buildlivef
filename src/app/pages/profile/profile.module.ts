@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 
 
@@ -15,6 +16,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    CanvasJSAngularChartsModule
     
     
   ],

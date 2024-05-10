@@ -11,12 +11,47 @@ import { ProjectService } from '../../../core/services/project.service';
 })
 export class UserDashboardComponent {
 
+
+  chartOptions: any = {
+    title: {
+      text: 'Monthly',
+    },
+    theme: 'light2',
+    animationEnabled: true,
+    axisX: {
+      title: 'Month',
+      interval: 1,
+      labelAngle: -50, 
+      valueFormatString: 'MMM', 
+    },
+    axisY: {
+      title: 'Count',
+      includeZero: true,
+      valueFormatString: '#',
+    },
+    data: [
+      {
+        type: 'column', 
+        color: '#01b8aa',
+        dataPoints: [],
+      },
+    ],
+  };
+  
+  
+  
+
+
+
+
   data:any={}
   basicOptions: any;
 
   currentUserEmail!:string;
   currentUserId!:string;
   currentUserInfo: any;
+  projectCounts: { [month: string]: number } = {}
+  projectCountMonthly: number = 0;
 
   constructor(
     private _projectService:ProjectService,
@@ -44,38 +79,51 @@ ngOnInit(): void {
   }
 
 
-  this._projectService.getAllProjectsOfUserCountMonthly(this.currentUserId, this.currentUserEmail)
+  // this._projectService.getAllProjectsOfUserCountMonthly(this.currentUserId, this.currentUserEmail)
+  //    .subscribe(()=>{
+      
+  //    })
+
+  this.getProjectCountsByMonth()
+  }
+
+
+
+  getProjectCountsByMonth() {
+    this._projectService.getAllProjectsOfUserCountMonthly(this.currentUserId, this.currentUserEmail)
       .subscribe(
-        (responseData: any) => {
-          // Process data and populate in the chart
-          const projectCountByMonth = responseData; // Assuming responseData is in the correct format
-          this.data = {
-            labels: Object.keys(projectCountByMonth),
-            datasets: [
-              {
-                label: 'Projects',
-                backgroundColor: '#f87979',
-                data: Object.values(projectCountByMonth)
-              }
-            ]
-          };
-          this.basicOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          };
+        (response: { [month: string]: number }) => {
+          // Assign the response directly to projectCounts
+          this.projectCounts = response;
+          console.log('Project counts by month:', this.projectCounts);
+  
+          const currentMonth = new Date().toISOString().slice(0, 7); 
+          const currentMonthCount = this.projectCounts[currentMonth];
+          if (currentMonthCount !== undefined) {
+            this.projectCountMonthly = currentMonthCount;
+          } else {
+            this.projectCountMonthly = 0; 
+            console.log("not found");
+          }
+  
+          // Map project counts data to format required by CanvasJS
+          const dataPoints = Object.entries(this.projectCounts).map(([month, count]) => ({
+            label: month, // Use month as label
+            y: count,     // Use count as y-value
+          }));
+  
+          // Update chartOptions with the new dataPoints
+          this.chartOptions.data[0].dataPoints = dataPoints;
         },
-        (error: any) => {
-          console.error('Error fetching project count by month:', error);
+        (error) => {
+          console.error('Error fetching project counts:', error);
         }
       );
   }
+  
+
+
+
   
  
 }
