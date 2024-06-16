@@ -15,7 +15,7 @@ export class CompanyService {
 
   createCompany(companyData: any):Observable<any>{
     console.log(companyData,"compDataa");
-    
+  
     return this._http.post<any>('company/create',companyData);
   }
 

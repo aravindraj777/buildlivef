@@ -32,6 +32,9 @@ import { SingleProjectComponent } from './pages/projects/single-project/single-p
 import {MatTabsModule} from '@angular/material/tabs';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+import { AdminProfileComponent } from './pages/admin-profile/admin-profile.component';
+import { PlansComponent } from './pages/plans/plans.component';
+import { CreatePlanComponent } from './pages/create-plan/create-plan.component';
 
 
 
@@ -62,6 +65,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AdminSignupComponent,
     AdminLoginComponent,
     SingleProjectComponent,
+    AdminProfileComponent,
+    PlansComponent,
+    CreatePlanComponent,
    
    
   

@@ -7,6 +7,12 @@ import { AdminVerifiation } from '../../models/auth.model';
   providedIn: 'root'
 })
 export class AdminService {
+  changeProfilePicture(selectedImage: File, userId: any):Observable<any> {
+    throw new Error('Method not implemented.');
+  }
+  getUserById(userId: any):Observable<any> {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private _http:HttpClient) { }
 
@@ -18,6 +24,7 @@ export class AdminService {
   verifyOtp(otpVerificationData:AdminVerifiation):Observable<any>{
     return this._http.post<any>('auth/admin-verifyotp',otpVerificationData)
   }
+
 
   
 

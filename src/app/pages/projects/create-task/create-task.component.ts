@@ -19,10 +19,10 @@ export class CreateTaskComponent implements OnInit{
   taskForm!: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:{projectId:string,userEmail:string},
-                       private dialogRef: MatDialogRef<CreateTaskComponent>,
+                          private dialogRef: MatDialogRef<CreateTaskComponent>,
                           private _projectService:ProjectService,
                           private fb: FormBuilder,
-                        private _taskService:TaskService,
+                          private _taskService:TaskService,
                           private _toastr:ToastrService){
 
 

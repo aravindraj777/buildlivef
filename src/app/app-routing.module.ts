@@ -13,6 +13,8 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AdminSignupComponent } from './auth/components/admin-signup/admin-signup.component';
 import { AdminLoginComponent } from './auth/components/admin-login/admin-login.component';
 import { AuthGuard } from './core/guards/guard';
+import { AdminProfileComponent } from './pages/admin-profile/admin-profile.component';
+import { PlansComponent } from './pages/plans/plans.component';
 
 
 
@@ -44,7 +46,9 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent,canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: AdminDashboardComponent }
+      { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'profile' , component: AdminProfileComponent},
+      { path: 'plans', component : PlansComponent}
     ]
   },
   { path: 'messages', canActivate: [AuthGuard],component: UserComponent, loadChildren: () => import('./pages/messages/messages.module').then(m => m.MessagesModule) },

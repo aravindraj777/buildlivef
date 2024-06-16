@@ -2,9 +2,15 @@
 
 <div class="flex flex-col bg-gradient-to-b from-blue-200 to-blue-400 md:w-56 h-screen"> <!-- Apply gradient from light blue to darker blue -->
     <div class="flex items-center justify-center h-20">
-      <h1 class="text-3xl uppercase text-white">Logo</h1> <!-- Change text color to white for better visibility -->
+      <h1 class="text-3xl uppercase text-white">BUILDLIVE360</h1> <!-- Change text color to white for better visibility -->
     </div>
     <ul class="flex flex-col py-4">
+      <li>
+        <a routerLink="/admin/profile" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
+          <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-800"><i class="bx bx-home"></i></span> <!-- Update icon color for better visibility -->
+          <span class="text-sm font-medium text-gray-800">Profile</span> <!-- Update text color for better visibility -->
+        </a>
+      </li>
       <li>
         <a routerLink="/admin/dashboard" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
           <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-800"><i class="bx bx-home"></i></span> <!-- Update icon color for better visibility -->
@@ -14,19 +20,19 @@
       <li>
         <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
           <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-800"><i class="bx bx-music"></i></span> <!-- Update icon color for better visibility -->
-          <span class="text-sm font-medium text-gray-800">Music</span> <!-- Update text color for better visibility -->
+          <span class="text-sm font-medium text-gray-800">USERS</span> <!-- Update text color for better visibility -->
         </a>
       </li>
       <li>
-        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
+        <a routerLink="/admin/plans" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
           <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-800"><i class="bx bx-drink"></i></span> <!-- Update icon color for better visibility -->
-          <span class="text-sm font-medium text-gray-800">Drink</span> <!-- Update text color for better visibility -->
+          <span class="text-sm font-medium text-gray-800">OFFERS</span> <!-- Update text color for better visibility -->
         </a>
       </li>
       <li>
-        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
+        <a (click)="onLogout($event)" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-800 hover:text-gray-900"> <!-- Update text colors for better visibility -->
           <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-800"><i class="bx bx-shopping-bag"></i></span> <!-- Update icon color for better visibility -->
-          <span class="text-sm font-medium text-gray-800">Shopping</span> <!-- Update text color for better visibility -->
+          <span class="text-sm font-medium text-gray-800">LOGOUT</span> <!-- Update text color for better visibility -->
         </a>
       </li>
     </ul>
