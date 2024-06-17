@@ -13,4 +13,8 @@ export class TaskService {
   createTask(data:any):Observable<any>{
     return this._http.post<any>('project/tasks/create-task',data)
   }
+
+  getTaskDetails(taskId:string):Observable<any>{
+    return this._http.get(`project/tasks/get-details/${taskId}`)
+  }
 }

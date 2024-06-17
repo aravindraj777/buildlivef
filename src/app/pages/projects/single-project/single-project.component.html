@@ -167,112 +167,29 @@
             
 
                 <mat-tab label="Task" >
-                    
-                    <!-- <div class="bg-gray-100 rounded-md p-4 flex items-center justify-between mb-4" *ngIf="isAdminOrManager">
-                      
-                       
-                    </div>
-                    
-                   
-                    <a *ngIf="isAdminOrManager" class="text-blue-500 cursor-pointer mb-4" (click)="openAddTaskDialog()">Add New Task</a>
-  
-                    
-                    
-                      
-                      
-                      <div class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);" *ngIf="projectTasks && projectTasks.length > 0">
-                        <h2>Project Tasks</h2>
-                        <div class="flex flex-col space-y-4" style="
-                        max-height: 19em;
-                     ">
-                            <div *ngFor="let task of projectTasks" class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
-                               
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-gray-400 rounded-full mr-4 flex items-center justify-center">
-                                        <span>{{ task.taskName?.charAt(0) }}</span>
-                                    </div>
-                                   
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold">{{ task.taskName }}</span>
-                                        <span class="text-sm text-gray-500">{{ task.startDate }}</span>
-                                        <span class="text-sm text-gray-500">{{ task.endDate }}</span>
-                                        <span class="text-sm text-gray-500">{{ task.taskStatus }}</span>
-                                    </div>
-                                </div>
-                              
-                                <div>
-                                    
-                                    
-                                    <button class="text-blue-500 mr-2" >
-                                        <i class="fas fa-pencil-alt"></i>
-                                      </button>
-                                      
-                                      <button class="text-red-500" >
-                                        
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="!projectTasks || projectTasks.length === 0">
-                        <p>No tasks available.</p>
-                      </div> -->
-                      
-                      
-
-
-                    <!-- <div #scrollContainer (scroll)="onScroll()" class="bg-white rounded-md p-4 overflow-y-auto" style="max-height: calc(100% - 120px);" >
-                        <div class="flex flex-col space-y-4" style="
-                                            max-height: 19em;" >
-                            <div *ngFor="let task of projectTasks"
-                                class="bg-gray-100 rounded-md p-4 flex items-center justify-between max-h-20">
-                               
-                                <div class="flex items-center">
-                    
-                                    
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold">{{ task.taskName }}</span>
-                                        <span class="text-sm text-gray-500">{{ task.startDate }} - {{ task.endDate }}</span>
-                                        <span class="text-sm text-gray-500">Assign To: {{ task.assignedTo }}</span>
-                                    </div>
-                                </div>
-                               
-                                <div>
-                    
-                    
-                    
-                    
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="loading">Loading...</div>
-                    </div> -->
-                    
-
-
                     <div class="max-w-screen-lg mx-auto p-4 h-auto" >
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                           <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
                             <div class="text-zinc-600">Not Started</div>
-                            <div class="text-xl font-semibold">1</div>
+                            <div class="text-xl font-semibold">{{notStartedCount}}</div>
                           </div>
                           <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
                             <div class="text-zinc-600">Ongoing</div>
-                            <div class="text-xl font-semibold">3</div>
+                            <div class="text-xl font-semibold">{{onGoingCount}}</div>
                           </div>
                           <div class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
                             <div class="text-zinc-600">Completed</div>
-                            <div class="text-xl font-semibold">0</div>
+                            <div class="text-xl font-semibold">{{completedCount}}</div>
                           </div>
                         </div>
                       
                         <div class="flex flex-wrap gap-4 mb-6">
-                          <select *ngIf="isAdminOrManager"
-                            class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                          >
+                          <select *ngIf="isAdminOrManager" [(ngModel)]="selectedStatus" (ngModelChange)="filterTasks()"
+                            class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
                             <option>All Status</option>
+                            <option>COMPLETED</option>
+                            <option>ONGOING</option>
+                            <option>NOT_STARTED</option>
                           </select>
                           <select *ngIf="isAdminOrManager"
                             class="bg-white border border-zinc-300 text-zinc-600 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
@@ -287,26 +204,16 @@
                           <a *ngIf="isAdminOrManager" class="text-blue-500 cursor-pointer mb-4" (click)="openAddTaskDialog()">Add New Task</a>
                         </div>
                       
-                        <div class="max-h-44 overflow-y-auto " >
-                            <!-- Adjust max-height value as needed -->
-                            <div *ngFor="let task of projectTasks" 
-                            class="bg-blue-100 rounded-2xl p-4 border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300 shadow border-t-2 flex items-center
-                             justify-between mb-4 max-h-20" (click)="showTaskDetails(task)">
-                                <h3 class="text-lg font-semibold">{{task.taskName}}</h3>
-                                
-                                <div class="text-right text-sm text-zinc-500">{{task.startDate}} to {{task.endDate}}</div>
-                                <div class="text-red-500 text-sm">{{task.taskStatus}}</div>
-                            </div>
-                             <!-- <div class="bg-slate-600 rounded-2xl p-4 border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300 shadow border-t-2 flex items-center justify-between mb-4 max-h-20">
-                                <h3 class="text-lg font-semibold">Hhh</h3>
-                                <p class="text-zinc-600">No Dates Added</p>
-                                <div class="text-right text-sm text-zinc-500">Last Updated: 30 Apr</div>
-                                <div class="text-red-500 text-sm">0/100 % Ongoing</div>
-                            </div> -->
+                        <div class="max-h-44 overflow-y-auto">
+                          <div *ngFor="let task of filteredTasks" 
+                               class="bg-blue-100 rounded-2xl p-4 border-b-3 border-r-4 border-l-4 border-l-slate-300 border-r-slate-300 border-b-slate-300 shadow border-t-2 flex items-center justify-between mb-4 max-h-20" 
+                               (click)="showTaskDetails(task)">
+                            <h3 class="text-lg font-semibold">{{task.taskName}}</h3>
+                            <h4 class="text-lg font-semibold">assignedTo {{task.projectTeam.name}}</h4>
+                            <div class="text-right text-sm text-zinc-500">{{task.startDate}} to {{task.endDate}}</div>
+                            <div class="text-red-500 text-sm">{{task.taskStatus}}</div>
+                          </div>
                             
-                            
-                            
-                            <!-- Add more task items here if needed -->
                         </div>
 
                         

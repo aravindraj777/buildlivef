@@ -33,6 +33,7 @@ loadChildren: () => import('../create-company/create-company.module')
 { path: 'comapany-materials/:id',component:CompanyMaterialsComponent},
 { path: 'company-chats/:id',component:CompanyChatsComponent}
 
+
 ];
 
 @NgModule({

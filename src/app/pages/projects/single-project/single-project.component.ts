@@ -51,6 +51,15 @@ export class SingleProjectComponent implements OnInit {
   loading:boolean = false;
   userEmail!:string;
 
+
+  // task section
+  selectedStatus: string = 'All Status'
+  filteredTasks:any[] = [];
+  taskCounts: { status: string, count: number }[] = [];
+  notStartedCount!:number;
+  onGoingCount!:number;
+  completedCount!:number;
+
   @ViewChild('scrollContainer') scrollContainer!:ElementRef;
 
   constructor(private _partyService:PartyService,
@@ -74,6 +83,8 @@ export class SingleProjectComponent implements OnInit {
     this.fetchProjectTeamMembers();
     this.getProjectMaterials();
     this.loadTasks();
+    this.calculateTaskCounts();
+    this.filteredTasks = this.projectTasks;
     
     
 
@@ -336,12 +347,13 @@ loadTasks() {
 
   this._projectService.getAllProjectTasks(this.projectId, this.userEmail)
     .subscribe(tasks => {
-      // Check if tasks is an array
+    
       if (Array.isArray(tasks)) {
-        // Concatenate new tasks with existing ones
+        
         this.projectTasks = this.projectTasks.concat(tasks);
+        this.filteredTasks = tasks;
       } else {
-        // If tasks is not an array, log an error
+       
         console.error('Received invalid tasks data:', tasks);
       }
       
@@ -349,6 +361,18 @@ loadTasks() {
       console.error('Error fetching tasks:', error);
      
     });
+
+    
+}
+
+
+filterTasks(): void {
+  if (this.selectedStatus === 'All Status') {
+    this.filteredTasks = this.projectTasks; // Show all tasks if 'All Status' is selected
+  } else {
+    this.filteredTasks = this.projectTasks.filter(task => task.taskStatus === this.selectedStatus);
+  }
+  this.calculateTaskCounts(); 
 }
 
 
@@ -365,6 +389,18 @@ onScroll() {
 }
 
 
+calculateTaskCounts(): void {
+  this.notStartedCount = this.filteredTasks.filter(task => task.taskStatus === 'NOT_STARTED').length;
+  this.onGoingCount = this.filteredTasks.filter(task => task.taskStatus === 'ONGOING').length;
+  this.completedCount = this.filteredTasks.filter(task => task.taskStatus === 'COMPLETED').length;
+  console.log(this.completedCount,"uhgj");
+  
+
+  
+}
+
+
+
 
 
 
@@ -376,7 +412,7 @@ showMaterialDetails(material:ProjectMaterial){
 
 showTaskDetails(task:any){
   this._router.navigate(['/projects/task-details'],{queryParams:{
-    tastId:task.id
+    taskId:task.id
   }})
 }
 
