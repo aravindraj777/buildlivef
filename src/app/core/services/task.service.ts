@@ -17,4 +17,8 @@ export class TaskService {
   getTaskDetails(taskId:string):Observable<any>{
     return this._http.get(`project/tasks/get-details/${taskId}`)
   }
+
+  updateTaskStatus(taskId:string, selectedStatus:string):Observable<any>{
+    return this._http.put<any>(`project/tasks/update-status/${taskId}`,{taskStatus:selectedStatus});
+  }
 }

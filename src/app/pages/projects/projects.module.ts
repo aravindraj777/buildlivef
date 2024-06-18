@@ -18,6 +18,7 @@ import { MaterialEntryDetailsComponent } from './material-entry-details/material
 import { UsedMaterialComponent } from './used-material/used-material.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { AttendenceAddingComponent } from './attendence-adding/attendence-adding.component';
+import { ChangeStatusComponent } from './change-status/change-status.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AttendenceAddingComponent } from './attendence-adding/attendence-adding
     MaterialEntryDetailsComponent,
     UsedMaterialComponent,
     TaskDetailsComponent,
-    AttendenceAddingComponent
+    AttendenceAddingComponent,
+    ChangeStatusComponent
   ],
   imports: [
     CommonModule,

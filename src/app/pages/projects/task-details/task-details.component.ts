@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { AuthState, User} from '../../../store/auth/auth.model';
 import { Observable } from 'rxjs';
 import { selectLoggedInUser } from '../../../store/auth/auth.selector';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeStatusComponent } from '../change-status/change-status.component';
 
 @Component({
   selector: 'app-task-details',
@@ -19,7 +21,8 @@ export class TaskDetailsComponent implements OnInit{
 
   constructor(private route:ActivatedRoute,
               private taskService:TaskService,
-              private store:Store<AuthState>
+              private store:Store<AuthState>,
+              private dialog:MatDialog
   ){}
 
 
@@ -49,6 +52,23 @@ export class TaskDetailsComponent implements OnInit{
       )
   }
 
+
+  openChangeStatusModal(){
+
+    const dialogRef = this.dialog.open(ChangeStatusComponent,{
+
+      data: {
+        taskId:this.taskId,
+        currentStatus:this.taskDetails?.taskStatus
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.taskDetails.taskStatus = result;
+      }
+    })
+  }
   
 
   

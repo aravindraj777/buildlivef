@@ -1,14 +1,18 @@
 <div class="pl-16 pt-2 ml-52 fixed w-10/12">
   <div
     class="p-8 bg-gradient-to-r bg-white border-b-4 border-r-4 border-l-4 border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow-outline-blue mt-24 h-full"
-    style="min-height: 40em;border-radius: 1.3em; position: relative;">
+    style="min-height: 40em;border-radius: 1.3em; position: relative;" >
 
 
     <div class="bg-blue-500 text-white p-4 rounded-md mb-4">
       <button
-        class="bg-rose-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition ease-in-out duration-300">
+        class="bg-rose-500 text-white font-bold py-2
+         px-4 rounded-full hover:bg-cyan-600 focus:outline-none focus:ring-2
+          focus:ring-blue-500 focus:ring-opacity-50 transition ease-in-out duration-300" 
+          
+          (click)="openChangeStatusModal()">
         Change Status
-      </button>
+      </button >
       <p class="text-center">You are checking the details of the task {{taskDetails?.taskName}}</p>
     </div>
     <div class="bg-white dark:bg-zinc-800 p-6 rounded-md shadow-md overflow-y-auto max-h-[400px] border-cyan-700">

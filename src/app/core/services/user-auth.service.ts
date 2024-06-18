@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -86,7 +86,19 @@ updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
     }
   }
 
-  
+
+  updateProfileImage(userId:string | undefined,imageFile:File):Observable<any>{
+    const formData:FormData = new FormData();
+    formData.append('image',imageFile);
+    formData.append('userId',userId || '');
+    return this._http.post<any>('user/update-photo',formData);
+
+  }
+
+  getUserPhoto(userId: string | undefined): Observable<any> {
+    const params = new HttpParams().set('userId', userId || '');
+    return this._http.get(`user/getUserPhoto`, { params, responseType: 'text' as 'json' });
+  }
 
 
 }

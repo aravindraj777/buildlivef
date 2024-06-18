@@ -14,7 +14,6 @@
                         <th scope="col" class="px-6 py-3">Material Name</th>
                         <th scope="col" class="px-6 py-3">Unit</th>
                         <th scope="col" class="px-6 py-3">GST (%)</th>
-                        <th scope="col" class="px-6 py-3">Actions</th> <!-- Added Actions column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -22,9 +21,7 @@
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ material.materialName }}</td>
                         <td class="px-6 py-4">{{ material.unit }}</td>
                         <td class="px-6 py-4">{{ material.gst}}</td>
-                        <td class="px-6 py-4 text-right">
-                            <button class="font-medium text-red-600 dark:text-red-500 hover:underline ml-2" >Delete</button> 
-                        </td>
+                       
                     </tr>
                     <!-- You can add more rows for other materials as needed -->
                 </tbody>
