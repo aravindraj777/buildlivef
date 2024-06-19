@@ -6,13 +6,18 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { UserAuthService } from '../core/services/user-auth.service';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../store/auth/auth.model';
+import { setErrorMessage } from '../store/auth/auth.action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private _authService: UserAuthService) { }
+  constructor(private _authService: UserAuthService,
+              private _store:Store<AuthState>
+  ) { }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -46,11 +51,14 @@ export class AuthInterceptorService implements HttpInterceptor {
             }
             console.log("Response from body:", responseBody);
           }
+          
         },
         catchError((error) => {
           if (error.status === 403) {
             console.log("Unauthorized error. Redirect to login page or refresh token.");
-            // return this.handleUnauthorizedError()
+            this._store.dispatch(
+              setErrorMessage({message:"Invalid credentials"})
+            )
           }
           return throwError(error);
         })

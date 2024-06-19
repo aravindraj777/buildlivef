@@ -16,3 +16,7 @@ export const getUserId = createSelector(selectAuthState,(state)=>{
 export const getEmail = createSelector(selectAuthState,(state)=>{
     return state.user?.email;
 })
+
+export const getErrorMessage = createSelector(selectAuthState,(state)=>{
+    return state?.error;
+})

@@ -72,25 +72,13 @@
                 <div class="flex justify-between mb-4">
                     <!-- Tag for All Party Entries -->
                     <div class="text-blue-500 font-semibold">All Party Entries</div>
-                    <!-- Tag and count for Pending Requests -->
-                    <!-- <div class="flex items-center">
-                        <div class="text-gray-500 mr-2">Pending Requests:</div>
-                        <div class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center">5</div>
-                    </div> -->
-                    <!-- Buttons for actions -->
+                   
                     <div class="flex space-x-4">
-                        <!-- Button to request stock -->
-                        <!-- <button class="bg-blue-500 text-white px-3 py-1 rounded-md">
-                            Request
-                        </button> -->
-                        <!-- Button to receive stock -->
+                       
                         <button class="bg-green-500 text-white px-3 py-1 rounded-md" (click)="reciveMaterialDialog()">
                             Receive
                         </button>
-                        <!-- Button to purchase stock -->
-                        <!-- <button class="bg-yellow-500 text-white px-3 py-1 rounded-md">
-                            Purchased
-                        </button> -->
+                       
                     </div>
                 </div>
                 
@@ -220,105 +208,60 @@
                       
                         <button
                           class="w-full py-3 mt-6 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
-                        >
+                          (click)="openAddTaskDialog()">
                           + Add New Task
                         </button>
                       </div>
-                      
-
-
                 </mat-tab>
                 
             
 
-            <!-- <mat-tab label="Attendence"> 
-
-                <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4">
-                    <nav class="flex justify-between items-center mb-4">
-                      <button type="button" class="text-white text-lg" (click)="decreaseDate()">&lt;</button>
-                      <span class="text-white text-lg font-bold">{{ currentDate | date:'dd/MM/yyyy' }}</span>
-                      <button type="button" class="text-white text-lg" (click)="increaseDate()" [disabled]="isToday()">&gt;</button>
-                    </nav>
-                  </div>
-                  
-                  <div class="p-4">
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" (click)="addEmployee()">Add Employee +</button>
-                  
-                    <div class="mt-4">
-                      <div class="flex justify-between items-center border-b border-gray-300 py-2">
-                        <span class="text-lg">Employee 1</span>
-                        <div>
-                          <button class="present-btn" (click)="markPresent()">Present</button>
-                          <button class="absent-btn" (click)="markAbsent()">Absent</button>
-                        </div>
-                      </div>
-                     
-                    </div>
-                  </div>
-                  
-                  
-                  
-             </mat-tab> -->
+           
              <mat-tab label="Attendance"> 
 
-                <div class="container mx-auto p-4 overflow-y-auto">
-                    <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4">
-                        <nav class="flex justify-between items-center mb-4">
-                          <button type="button" class="text-white text-lg" (click)="decreaseDate()">&lt;</button>
-                          <span class="text-white text-lg font-bold">{{ currentDate | date:'dd/MM/yyyy' }}</span>
-                          <button type="button" class="text-white text-lg" (click)="increaseDate()" [disabled]="isToday()">&gt;</button>
-                        </nav>
-                      </div>
+              <div class="container mx-auto p-4 overflow-y-auto">
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+                  <nav class="flex justify-between items-center mb-4">
+                    <button type="button" class="text-white text-lg" (click)="decreaseDate()">&lt;</button>
+                    <span class="text-white text-lg font-bold">{{ currentDate | date:'dd/MM/yyyy' }}</span>
+                    <button type="button" class="text-white text-lg" (click)="increaseDate()" [disabled]="isToday()">&gt;</button>
+                  </nav>
+
+                  
+                </div>
+                <div class="flex items-center bg-white p-4 mt-4 rounded-lg shadow space-x-4">
+                  <button>
+                <a class="border p-2 rounded " (click)="addWorker()">
+                  +add worker
+                </a>
+              </button>
+                <input type="text" placeholder="Search" class="border p-2 rounded flex-grow" />
+                <button class="text-blue-500">🔍</button>
+                <button class="text-blue-500">🔗</button>
+              </div>
                 
-                    <div class="flex justify-between items-center bg-white p-4 mt-4 rounded-lg shadow">
-                      <div class="text-center">
-                        <div class="text-green-500">Present</div>
-                        <div>0</div>
+                <div class="mt-4">
+                  <div *ngFor="let attendance of attendanceList" class="bg-white p-4 rounded-lg shadow mb-4">
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <div class="text-sm">₹ {{ attendance.teamMemberRole }}</div>
+                        
+                        <div class="text-sm text-zinc-600">{{ attendance.teamMemberName }}</div>
+                        <div class="font-bold">  Total : {{ attendance.totalSalary }} </div>
+                        
                       </div>
-                      <div class="text-center">
-                        <div class="text-red-500">Absent</div>
-                        <div>0</div>
-                      </div>
-                      <div class="text-center">
-                        <div>Day's Salary</div>
-                        <div>₹ 0</div>
+                      <div>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded" (click)="markPresent(attendance.id)">Present</button>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded ml-2" (click)="markAbsent(attendance.id)">Absent</button>
                       </div>
                     </div>
-                
-                    <div class="flex items-center bg-white p-4 mt-4 rounded-lg shadow space-x-4">
-                        <button>
-                      <a class="border p-2 rounded " (click)="addWorker()">
-                        +add worker
-                      </a>
-                    </button>
-                      <input type="text" placeholder="Search" class="border p-2 rounded flex-grow" />
-                      <button class="text-blue-500">🔍</button>
-                      <button class="text-blue-500">🔗</button>
-                    </div>
-                
-                    <div class="mt-4">
-                      <div class="bg-white p-4 rounded-lg shadow mb-4">
-                        <div class="flex justify-between items-center">
-                          <div>
-                            <div class="font-bold">Alok</div>
-                            <div class="text-sm text-zinc-600">Gg400</div>
-                            <div class="text-sm">₹ 588 per day</div>
-                          </div>
-                          <div>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded">Present</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded ml-2">Absent</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                
-                    
                   </div>
+                </div>
             
+              </div>
             </mat-tab>
             
-            <!-- <mat-tab label="Transaction"> Content 3 </mat-tab> -->
+            
         </mat-tab-group>
           
     </div>

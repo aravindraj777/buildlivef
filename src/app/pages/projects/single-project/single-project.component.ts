@@ -16,6 +16,7 @@ import { Store } from '@ngrx/store';
 import { AuthState } from '../../../store/auth/auth.model';
 import { getEmail } from '../../../store/auth/auth.selector';
 import { UsedMaterialComponent } from '../used-material/used-material.component';
+import { AttendanceService } from '../../../core/services/attendance.service';
 
 @Component({
   selector: 'app-single-project',
@@ -60,6 +61,10 @@ export class SingleProjectComponent implements OnInit {
   onGoingCount!:number;
   completedCount!:number;
 
+
+  // attendence
+  attendanceList: any[] = [];
+
   @ViewChild('scrollContainer') scrollContainer!:ElementRef;
 
   constructor(private _partyService:PartyService,
@@ -68,7 +73,8 @@ export class SingleProjectComponent implements OnInit {
               private _projectService:ProjectService,
               private dialog:MatDialog,
               private _router:Router,
-              private _store:Store<AuthState>
+              private _store:Store<AuthState>,
+              private _attendanceService:AttendanceService
   ){}
   ngOnInit(): void {
     this._route.params.subscribe(params=>{
@@ -85,6 +91,7 @@ export class SingleProjectComponent implements OnInit {
     this.loadTasks();
     this.calculateTaskCounts();
     this.filteredTasks = this.projectTasks;
+    this.loadAttendanceData(this.currentDate);
     
     
 
@@ -440,8 +447,8 @@ currentDate: Date = new Date();
   }
 
   isToday(): boolean {
-    // Check if the current date is today's date
-    return this.currentDate.toDateString() === new Date().toDateString();
+    const today = new Date();
+    return this.currentDate.toDateString() === today.toDateString();
   }
 
   updateEmployeeList() {
@@ -451,25 +458,35 @@ currentDate: Date = new Date();
   }
 
 
-  markPresent() {
-    // Add your logic here to handle marking an employee as present
-    console.log('Employee marked present');
+  markPresent(attendanceId: string): void {
+   
   }
 
-  // Method to mark an employee as absent
-  markAbsent() {
-    // Add your logic here to handle marking an employee as absent
-    console.log('Employee marked absent');
+  markAbsent(attendanceId: string): void {
+   
   }
 
-  addEmployee(){
-    
+  
+
+  loadAttendanceData(date: Date): void {
+    this._attendanceService.getAttendanceData(this.companyId, this.projectId, date).subscribe({
+      next: (attendanceData) => {
+        this.attendanceList = attendanceData; 
+        console.log(this.attendanceList,"attnend");
+        
+      },
+      error: (error) => {
+        console.error('Error fetching attendance data:', error);
+        
+      }
+    });
   }
 
 
   addWorker(){
-    this._router.navigate(['/projects/attandence'],{queryParams:{
-      projectId:this.projectId
+    this._router.navigate(['/projects/attendence/addworker'],{queryParams:{
+      projectId:this.projectId,
+      companyId:this.companyId
     }})
   }
 

@@ -5,6 +5,8 @@ import {MatButtonModule} from "@angular/material/button"
 import {MatDialogContent} from "@angular/material/dialog"
 import {MatCardModule} from "@angular/material/card"
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 
@@ -16,7 +18,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatButtonModule,
     MatDialogContent,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule
   ],
   exports:[
     MatTabsModule

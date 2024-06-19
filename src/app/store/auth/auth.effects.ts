@@ -44,7 +44,7 @@ this._actions$.pipe(
         if (response && response.user) {
           return loginSuccess({ user: response.user });
         } else {
-          return loginFailure({ error: new Error('Invalid response') });
+          return loginFailure({ error: 'Invalid Credentials' });
         }
       }),
       catchError((error) => of(loginFailure({ error })))

@@ -15,7 +15,7 @@ const routes: Routes = [{ path: '', component: ProjectsComponent },
 {path: 'single-project/:companyId/:projectId',component:SingleProjectComponent},
 {path: 'material-details',component:MaterialEntryDetailsComponent},
 {path: 'task-details',component:TaskDetailsComponent},
-{path: 'attandence',component:AttendenceAddingComponent}
+{path: 'attendence/addworker',component:AttendenceAddingComponent}
 
 
 ];

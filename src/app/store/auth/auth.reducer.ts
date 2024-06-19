@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./auth.state";
-import { loginFailure, loginSuccess, logout, updateFailure, updateSuccess } from "./auth.action";
+import { loginFailure, loginSuccess, logout, setErrorMessage, updateFailure, updateSuccess } from "./auth.action";
 
 export const authReducer = createReducer(initialState,
     on(loginSuccess,(state,{user})=>{
@@ -17,7 +17,7 @@ export const authReducer = createReducer(initialState,
             ...state,
             isLoggedIn:false,
             user:null,
-            error:error
+            error:"Login Failed Invalid credentials"
         }
     }),
     on(updateSuccess,(state,{user})=>{
@@ -33,7 +33,7 @@ export const authReducer = createReducer(initialState,
     on(updateFailure,(state,{error})=>{
         return{
             ...state,
-            error:error
+            error:error.message
         }
     }),
     on(logout, (state) => {
@@ -42,4 +42,5 @@ export const authReducer = createReducer(initialState,
           user: null,
         };
       }),
+      
     )

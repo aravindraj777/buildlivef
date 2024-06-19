@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LoginModel } from '../../../store/auth/auth.model';
 import { loginRequest } from '../../../store/auth/auth.action';
+import { getErrorMessage } from '../../../store/auth/auth.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,15 @@ export class LoginComponent implements OnInit{
  
   
   loginForm!:FormGroup
+  showErrorMessage!:Observable<string | null>;
+
 
   constructor(private _formBuilder:FormBuilder,private _store:Store){
 
   }
   ngOnInit(): void {
+
+    this.showErrorMessage = this._store.select(getErrorMessage);
     this.loginForm = this._formBuilder.group({
 
       name: this._formBuilder.control('',Validators.required),
