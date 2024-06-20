@@ -21,8 +21,8 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // const _BASE_URL = 'https://api.buildlive360.online/api/v1/';
-    const _BASE_URL = 'http://localhost:7070/api/v1/';
+    const _BASE_URL = 'https://api.buildlive360.online/api/v1/';
+    // const _BASE_URL = 'http://localhost:7070/api/v1/';
     
 
     let apiRequest = req.clone({
