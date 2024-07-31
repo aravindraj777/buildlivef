@@ -17,7 +17,7 @@ export class AttendanceService {
   getAttendanceData(companyId: string, projectId: string, date: Date): Observable<any> {
     const formattedDate = this.formatDate(date); // Format date as needed by backend
 
-    // Build query parameters
+   
     let params = new HttpParams()
       .set('companyId', companyId)
       .set('projectId', projectId)

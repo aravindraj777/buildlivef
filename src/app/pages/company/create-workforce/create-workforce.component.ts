@@ -24,7 +24,7 @@ export class CreateWorkforceComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data.companyId,"ijhgbsdfjkgkjsf");
+    
 
     this.workforceForm = this._formBuilder.group({
       partyType:this._formBuilder.control('',Validators.required),

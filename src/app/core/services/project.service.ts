@@ -73,8 +73,6 @@ getMaterialEntries(materialId:string):Observable<MaterialEntries[]>{
 }
 
 getAllProjectTasks(projectId:string,partyEmail:string):Observable<any[]>{
-  console.log(partyEmail,"heeloooo");
-  
   const params = new HttpParams()
                   .set('projectId',projectId)
                   .set('partyEmail',partyEmail)

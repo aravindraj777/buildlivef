@@ -9,30 +9,30 @@ import { loginRequest } from '../../../store/auth/auth.action';
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.scss'
 })
-export class AdminLoginComponent implements OnInit{
+export class AdminLoginComponent implements OnInit {
 
-  adminLoginForm!:FormGroup;
-  constructor(private _formBuilder:FormBuilder,private _store:Store<AuthState>){}
+  adminLoginForm!: FormGroup;
+  constructor(private _formBuilder: FormBuilder, private _store: Store<AuthState>) { }
 
 
   ngOnInit(): void {
-   this.adminLoginForm = this._formBuilder.group({
+    this.adminLoginForm = this._formBuilder.group({
 
-      name: this._formBuilder.control('',Validators.required),
-      password: this._formBuilder.control('',Validators.compose([Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
+      name: this._formBuilder.control('', Validators.required),
+      password: this._formBuilder.control('', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
 
     })
   }
 
-  proceedToLogin(){
+  proceedToLogin() {
 
-    if(this.adminLoginForm.valid){
-      const {name , password } = this.adminLoginForm.value;
-      const loginData : LoginModel = {name , password};
-      this._store.dispatch(loginRequest({login: loginData}));
+    if (this.adminLoginForm.valid) {
+      const { name, password } = this.adminLoginForm.value;
+      const loginData: LoginModel = { name, password };
+      this._store.dispatch(loginRequest({ login: loginData }));
     }
   }
-  
+
 
 
 }

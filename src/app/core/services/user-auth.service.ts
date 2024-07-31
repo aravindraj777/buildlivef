@@ -12,86 +12,77 @@ import { RootState } from '../../store/global/root.state';
 })
 export class UserAuthService {
 
-  constructor(private _http:HttpClient,
-              private _store:Store<RootState>,
-              private _router:Router) { }
+  constructor(private _http: HttpClient,
+    private _store: Store<RootState>,
+    private _router: Router) { }
 
-  
+
   private readonly _ACCESS_TOKEN_KEY = 'token';
-  private readonly _AUTH_HEADER = 'authorization';        
-  
-  
+  private readonly _AUTH_HEADER = 'authorization';
+
+
 
   login(loginData: LoginModel): Observable<LoginResponse> {
     const body = loginData;
     return this._http.post<LoginResponse>('auth/user-login', body).pipe(
       tap(response => {
         const user = response?.user;
-        console.log(user, "response user");
-
         if (user && user.roles === "ADMIN") {
           this._router.navigate(['/admin/dashboard']);
         } else {
-          // Redirect to another route for non-admin users or handle the logic accordingly
-          // For example, redirecting to a user profile page
           this._router.navigate(['/profile']);
         }
       })
     )
   }
 
-  getAccessToken():string | null {
-    return localStorage.getItem (this._ACCESS_TOKEN_KEY);
+  getAccessToken(): string | null {
+    return localStorage.getItem(this._ACCESS_TOKEN_KEY);
   }
 
-  setAccessToken(token: string ):void{
-      localStorage.setItem(this._ACCESS_TOKEN_KEY,token);
+  setAccessToken(token: string): void {
+    localStorage.setItem(this._ACCESS_TOKEN_KEY, token);
   }
 
   logout() {
     sessionStorage.removeItem('user');
     localStorage.removeItem('token');
-   
+
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     const user = this._store.select(state => state.auth.user);
-    console.log(user);
     return user;
-    
+
   }
 
-  
-updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
 
-    // /api/v1/user/edit/
-    
+  updateUserDetails(userId: string, update: UpdateModel): Observable<User> {
     const url = `user/edit/${userId}`;
     return this._http.put<User>(url, update).pipe(
       catchError(error => {
-        // Handle error and pass it to the caller
         return throwError(error);
       })
     );
   }
 
-  getUserEmail():string  | null {
+  getUserEmail(): string | null {
     const userData = sessionStorage.getItem('user');
-    if(userData){
+    if (userData) {
       const parsedData = JSON.parse(userData);
       return parsedData.email;
     }
-    else{
+    else {
       return null;
     }
   }
 
 
-  updateProfileImage(userId:string | undefined,imageFile:File):Observable<any>{
-    const formData:FormData = new FormData();
-    formData.append('image',imageFile);
-    formData.append('userId',userId || '');
-    return this._http.post<any>('user/update-photo',formData);
+  updateProfileImage(userId: string | undefined, imageFile: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('userId', userId || '');
+    return this._http.post<any>('user/update-photo', formData);
 
   }
 

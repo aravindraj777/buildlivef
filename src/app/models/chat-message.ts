@@ -7,7 +7,7 @@ export interface ChatMessage {
 
 export interface ChatRoomResponse {
     roomName: string;
-    messages: any[]; // Adjust the type according to your message structure
+    messages: any[];
   }
 
   export interface Messages{

@@ -1,55 +1,70 @@
 <div class="bg-gray-200 min-h-screen flex items-center justify-center px-4">
     <div class="w-10/12 lg:w-9/12 xl:w-7/12 flex">
-        <div class="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-lg lg:rounded-r-none" style="background-image: url('https://images.pexels.com/photos/33999/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
+        <div class="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-lg lg:rounded-r-none"
+            style="background-image: url('https://images.pexels.com/photos/33999/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')">
+        </div>
         <div class="w-full lg:w-1/2 bg-white rounded-lg lg:rounded-l-none py-8 px-12 lg:px-16">
-            <h3 class="font-bold text-3xl text-red-600 text-center tracking-widest uppercase mb-6 lg:mb-8">Administrator</h3>
+            <h3 class="font-bold text-3xl text-red-600 text-center tracking-widest uppercase mb-6 lg:mb-8">Administrator
+            </h3>
             <form class="w-full" [formGroup]="adminSignupForm" (ngSubmit)="submitAdminSignup()">
                 <!-- OTP field -->
                 <div class="flex -mx-3" *ngIf="showOtpField">
                     <div class="w-full px-3 mb-5">
                         <label for="" class="text-xs font-semibold px-1">OTP</label>
                         <div class="flex">
-                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <div
+                                class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                 <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                             </div>
-                            <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Enter OTP" formControlName="otp">
+                            <input type="text"
+                                class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                placeholder="Enter OTP" formControlName="otp">
                         </div>
                     </div>
                 </div>
-                
-                <!-- Existing form fields -->
-                <div class="mb-4" *ngIf="!showOtpField" 
-                    [ngClass]="{'error': adminSignupForm.controls['name'].invalid && (adminSignupForm.controls['name'].dirty || adminSignupForm.controls['name'].touched)}"
-                >
-                    <label class="block mb-2 text-sm font-bold" for="username">Username</label>
-                    <input type="text" id="username" class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline" placeholder="Username" 
-                    formControlName="name"
-                    />
 
-                    <div *ngIf="adminSignupForm.controls['name'].invalid && (adminSignupForm.controls['name'].dirty || adminSignupForm.controls['name'].touched)" class="validation-message">
+                <!-- Existing form fields -->
+                <div class="mb-4" *ngIf="!showOtpField"
+                    [ngClass]="{'error': adminSignupForm.controls['name'].invalid && (adminSignupForm.controls['name'].dirty || adminSignupForm.controls['name'].touched)}">
+                    <label class="block mb-2 text-sm font-bold" for="username">Username</label>
+                    <input type="text" id="username"
+                        class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline"
+                        placeholder="Username" formControlName="name" />
+
+                    <div *ngIf="adminSignupForm.controls['name'].invalid && (adminSignupForm.controls['name'].dirty || adminSignupForm.controls['name'].touched)"
+                        class="validation-message">
                         Username is required.
                     </div>
                 </div>
-                <div class="mb-4"  *ngIf="!showOtpField">
+                <div class="mb-4" *ngIf="!showOtpField">
                     <label class="block mb-2 text-sm font-bold" for="phone">Phone</label>
-                    <input type="text" id="phone" class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline" placeholder="Phone" formControlName="phone" />
+                    <input type="text" id="phone"
+                        class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline"
+                        placeholder="Phone" formControlName="phone" />
                 </div>
                 <div class="mb-4" *ngIf="!showOtpField">
                     <label class="block mb-2 text-sm font-bold" for="email">Email</label>
-                    <input type="email" id="email" class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline" placeholder="Email" formControlName="email"/>
+                    <input type="email" id="email"
+                        class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline"
+                        placeholder="Email" formControlName="email" />
                 </div>
-                <div class="mb-4"  *ngIf="!showOtpField">
+                <div class="mb-4" *ngIf="!showOtpField">
                     <label class="block mb-2 text-sm font-bold" for="password">Password</label>
-                    <input type="password" id="password" class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline" placeholder="***********"  formControlName="password"/>
+                    <input type="password" id="password"
+                        class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline"
+                        placeholder="***********" formControlName="password" />
                 </div>
-                <div class="mb-4"  *ngIf="!showOtpField">
+                <div class="mb-4" *ngIf="!showOtpField">
                     <label class="block mb-2 text-sm font-bold" for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline" placeholder="***********" formControlName="confirmPassword"/>
+                    <input type="password" id="confirmPassword"
+                        class="w-full p-3 text-md border rounded shadow focus:outline-none focus:shadow-outline"
+                        placeholder="***********" formControlName="confirmPassword" />
                 </div>
 
                 <!-- Submit button -->
                 <div class="mb-4">
-                    <button class="w-full p-3 font-bold text-white bg-red-500 rounded-full focus:outline-none" type="submit" [disabled]="adminSignupForm.invalid">
+                    <button class="w-full p-3 font-bold text-white bg-red-500 rounded-full focus:outline-none"
+                        type="submit" [disabled]="adminSignupForm.invalid">
                         <ng-container *ngIf="!showOtpField; else otpLabel">
                             Sign In
                         </ng-container>

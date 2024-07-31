@@ -36,12 +36,12 @@ export class CreatePlanComponent implements OnInit{
 
   ngOnInit(): void {
     this.userId = this.data;
-    console.log(this.userId);
+    console.log(this.userId+"da");
     
     this.planForm = this.fb.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
+      price: ['', [Validators.required, Validators.min(0),Validators.pattern("^[0-9]*$")]],
     });
   }
 
@@ -69,6 +69,9 @@ export class CreatePlanComponent implements OnInit{
     }
   
 
+    onCancel(): void {
+      this.dialogRef.close();
+    }
 
 
 

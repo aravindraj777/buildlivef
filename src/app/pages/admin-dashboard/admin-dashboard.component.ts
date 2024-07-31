@@ -22,9 +22,6 @@ export class AdminDashboardComponent implements OnInit{
 
   ngOnInit(): void {
    this.loggedInUser$ = this._store.select(selectLoggedInUser);
-   console.log(this.loggedInUser$);
-   
-   
   }
 
 

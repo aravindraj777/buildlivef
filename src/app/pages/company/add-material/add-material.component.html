@@ -1,38 +1,37 @@
 <div class="dialog-container">
-    <h2>Add a New Material</h2>
-    <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Material Name</label>
-        <input type="text" id="name" formControlName="name">
-        <div *ngIf="materialForm.get('name')?.invalid && materialForm.get('name')?.touched" class="error-message">
-          Material name is required.
-        </div>
+  <h2>Add a New Material</h2>
+  <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Material Name</label>
+      <input type="text" id="name" formControlName="name">
+      <div *ngIf="materialForm.get('name')?.invalid && materialForm.get('name')?.touched" class="error-message">
+        Material name is required.
       </div>
-      <div class="form-group">
-        <label for="unit">Unit</label>
-        <select id="unit" formControlName="unit">
-          <option value="" disabled selected>Select unit</option>
-          <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
-        </select>
-        <div *ngIf="materialForm.get('unit')?.invalid && materialForm.get('unit')?.touched" class="error-message">
-          Unit is required.
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="unit">Unit</label>
+      <select id="unit" formControlName="unit">
+        <option value="" disabled selected>Select unit</option>
+        <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
+      </select>
+      <div *ngIf="materialForm.get('unit')?.invalid && materialForm.get('unit')?.touched" class="error-message">
+        Unit is required.
       </div>
-      <div class="form-group">
-        <label for="gst">GST (%)</label>
-        <select id="gst" formControlName="gst">
-          <option value="" disabled selected>Select GST</option>
-          <option *ngFor="let gst of gstOptions" [value]="gst">{{ gst }}%</option>
-        </select>
-        <div *ngIf="materialForm.get('gst')?.invalid && materialForm.get('gst')?.touched" class="error-message">
-          GST is required.
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="gst">GST (%)</label>
+      <select id="gst" formControlName="gst">
+        <option value="" disabled selected>Select GST</option>
+        <option *ngFor="let gst of gstOptions" [value]="gst">{{ gst }}%</option>
+      </select>
+      <div *ngIf="materialForm.get('gst')?.invalid && materialForm.get('gst')?.touched" class="error-message">
+        GST is required.
       </div>
-      
-      <div class="buttons">
-        <button type="submit" [disabled]="materialForm.invalid">Submit</button>
-        <button type="button" (click)="onCancel()">Cancel</button>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="buttons">
+      <button type="submit" [disabled]="materialForm.invalid">Submit</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

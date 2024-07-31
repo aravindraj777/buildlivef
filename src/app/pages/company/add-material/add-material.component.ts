@@ -32,7 +32,6 @@ export class AddMaterialComponent implements OnInit {
     private _toastr:ToastrService
   ){
     this.companyId = data.companyId;
-    console.log("here",this.companyId);
     
   }
 
@@ -51,11 +50,10 @@ export class AddMaterialComponent implements OnInit {
           () => {
             this._toastr.success('Material added successfully');
             this.dialogRef.close();
-            this.materialAdded.emit(); // Emit event indicating material addition
+            this.materialAdded.emit(); 
           },
           (error) => {
             this._toastr.error('Failed to add material', 'Error');
-            console.error('Error adding material:', error);
           }
         );
     }

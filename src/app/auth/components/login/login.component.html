@@ -1,40 +1,36 @@
-
-
 <div class="">
     <div class="container">
-        
-       
-    <div class="form-container">
-        
-        <div class="box">
-              
-            <form action="" [formGroup]="loginForm" (ngSubmit)="proceedToLogin()">
-                <h2>SIGN IN</h2>
-                <div class="inputBox">
-                    <input type="text" required formControlName="name">
-                    <span>Username</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="password" required formControlName="password">
-                    <span>Enter password</span>
-                    <i></i>
-                </div>
-                <h4 class="text-red-400"  *ngIf="showErrorMessage | async as error" >
-                    <b>{{error}}</b>
-                </h4> 
-                <input type="submit" value="LOGIN">
-                <div class="links flex justify-start">
-                    <a href="#" routerLink="/register" class="sign-up-link">Sign Up</a>
-                </div>
-            </form>
+
+
+        <div class="form-container">
+
+            <div class="box">
+
+                <form action="" [formGroup]="loginForm" (ngSubmit)="proceedToLogin()">
+                    <h2>SIGN IN</h2>
+                    <div class="inputBox">
+                        <input type="text" required formControlName="name">
+                        <span>Username</span>
+                        <i></i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" required formControlName="password">
+                        <span>Enter password</span>
+                        <i></i>
+                    </div>
+                    <h4 class="text-red-400" *ngIf="showErrorMessage | async as error">
+                        <b>{{error}}</b>
+                    </h4>
+                    <input type="submit" value="LOGIN">
+                    <div class="links flex justify-start">
+                        <a href="#" routerLink="/register" class="sign-up-link">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://img.freepik.com/premium-photo/construction-workers-working-construction-site_891336-3501.jpg"
+                alt="Your Image">
         </div>
     </div>
-    <div class="image-container">
-        <img src="https://img.freepik.com/premium-photo/construction-workers-working-construction-site_891336-3501.jpg" alt="Your Image">
-    </div>
 </div>
-</div>
-
-
-

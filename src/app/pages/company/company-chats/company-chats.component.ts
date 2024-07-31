@@ -41,7 +41,6 @@ export class CompanyChatsComponent {
       this.companyId = params['id']
     })
 
-    console.log(this.companyId,"company id in ");
     this.getAllPartyMembers();
 
     this.messageForm = this.fb.group({
@@ -49,10 +48,7 @@ export class CompanyChatsComponent {
     });
 
     this._chatService.initConnenctionSocket(this.selectedRoomName);
-   
-    // this.messageSubscription = this._chatService.getMessageSubject().subscribe(messages => {
-    //   this.messages = messages;
-    // });
+  
     this.listnerMessage();
 
    
@@ -62,11 +58,11 @@ export class CompanyChatsComponent {
   listnerMessage(){
 
     this._chatService.message$.subscribe((message)=>{
-      console.log("Recieved",message);
+    
 
       const receivedMessage = JSON.parse(message);
       if(this.selectedRoomName && receivedMessage.chatRoomName === this.selectedRoomName){
-        console.log("jjjjj");
+      
         this.messages.push({
           content:receivedMessage.content,
           recipientId:receivedMessage.recipientId,
@@ -92,21 +88,19 @@ export class CompanyChatsComponent {
     this._chatService.createChatRoom(companyId, senderEmail, receiverId)
       .subscribe(({ roomName, messages }) => {
         console.log('Received room name:', roomName);
-        console.log('Received messages:', messages); // Log the messages object
-  
-        // Check the structure of the messages object in the console
+       
   
         this.selectedRoomName = roomName;
   
-        // Convert the messages object to an array
-        this.messages = Array.isArray(messages) ? messages : []; // Ensure messages is an array
+       
+        this.messages = Array.isArray(messages) ? messages : []; 
         this._chatService.joinRoom(this.selectedRoomName);
         this.messages.forEach(element => {
-          console.log(element.content);
+          
          
           
         });
-        // Use the received messages or initialize as an empty array if undefined
+        
         
       });
     }
@@ -118,7 +112,6 @@ export class CompanyChatsComponent {
       (response: PartyRetrieval[]) => {
         response.forEach((responseData: PartyRetrieval) => {
           if (responseData && responseData.partyMembers) {
-            // Filter out the logged-in user
             const loggedInUserEmail = this._userAuthService.getUserEmail(); 
             this.partyMembers = responseData.partyMembers.filter(member => member.party_email !== loggedInUserEmail);
           } else {
@@ -135,17 +128,7 @@ export class CompanyChatsComponent {
   }
 
 
-  // sendMessage(person:string): void {
-  //   const receiverId = person;
-  //   const senderEmail = this._userAuthService.getUserEmail();
-  //   if (this.messageForm.valid) {
-  //     const message = this.messageForm.get('message')?.value;
-  //     if (this.selectedRoomName && message.trim() !== '') {
-  //       this._chatService.sendMessage(this.selectedRoomName, message,receiverId,senderEmail);
-  //       this.messageForm.reset(); // Reset the form after sending the message
-  //     }
-  //   }
-  // }
+  
 
   sendMessage(): void {
     const receiverId = this.selectedPersonId;
@@ -154,14 +137,11 @@ export class CompanyChatsComponent {
     if (this.messageForm.valid) {
       const message = this.messageForm.get('message')?.value;
       if (this.selectedRoomName && message.trim() !== '') {
-        // Send message to the server
+       
         this._chatService.sendMessage(this.selectedRoomName, message, receiverId, senderEmail)
           .subscribe(
-            () => { // Success callback (optional)
-              console.log('Message sent successfully');
-              this.messageForm.reset(); // Reset the form after sending the message
-
-              // Add the sent message to the local messages array
+            () => { 
+              this.messageForm.reset(); 
              
               
             },

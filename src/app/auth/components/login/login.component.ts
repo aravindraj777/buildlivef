@@ -11,14 +11,14 @@ import { Observable } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
- 
-  
-  loginForm!:FormGroup
-  showErrorMessage!:Observable<string | null>;
+export class LoginComponent implements OnInit {
 
 
-  constructor(private _formBuilder:FormBuilder,private _store:Store){
+  loginForm!: FormGroup
+  showErrorMessage!: Observable<string | null>;
+
+
+  constructor(private _formBuilder: FormBuilder, private _store: Store) {
 
   }
   ngOnInit(): void {
@@ -26,17 +26,17 @@ export class LoginComponent implements OnInit{
     this.showErrorMessage = this._store.select(getErrorMessage);
     this.loginForm = this._formBuilder.group({
 
-      name: this._formBuilder.control('',Validators.required),
-      password: this._formBuilder.control('',Validators.compose([Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
+      name: this._formBuilder.control('', Validators.required),
+      password: this._formBuilder.control('', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]))
 
     })
   }
 
-  proceedToLogin(){
-    if(this.loginForm.valid){
-      const {name , password } = this.loginForm.value;
-      const loginData : LoginModel = {name , password};
-      this._store.dispatch(loginRequest({login: loginData}));
+  proceedToLogin() {
+    if (this.loginForm.valid) {
+      const { name, password } = this.loginForm.value;
+      const loginData: LoginModel = { name, password };
+      this._store.dispatch(loginRequest({ login: loginData }));
     }
   }
 

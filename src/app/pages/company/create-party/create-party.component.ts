@@ -30,7 +30,6 @@ export class CreatePartyComponent implements OnInit {
    this._route.params.subscribe(params => {
     this.companyId = params['id']
    })
-   console.log(this.companyId,"in create party");
    
 
    this.partyForm = this._formBuilder.group({
@@ -72,7 +71,7 @@ export class CreatePartyComponent implements OnInit {
           }
         },
         error =>{
-          console.error("Failed",error);
+         
           this._toastr.error(error);
         }
       )
@@ -82,7 +81,7 @@ export class CreatePartyComponent implements OnInit {
 
 
   searchUsers(event: any) {
-    const email = event?.target?.value ; // Using optional chaining to handle null or undefined event
+    const email = event?.target?.value ; 
     if (!email || email.trim() === '') {
         this.userSuggestions = [];
         return;

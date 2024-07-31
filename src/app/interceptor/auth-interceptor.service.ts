@@ -16,14 +16,14 @@ import { setErrorMessage } from '../store/auth/auth.action';
 export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private _authService: UserAuthService,
-              private _store:Store<AuthState>
+    private _store: Store<AuthState>
   ) { }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const _BASE_URL = 'https://api.buildlive360.online/api/v1/';
-    // const _BASE_URL = 'http://localhost:7070/api/v1/';
-    
+    // const _BASE_URL = 'https://api.buildlive360.online/api/v1/';
+    const _BASE_URL = 'http://localhost:7070/api/v1/';
+
 
     let apiRequest = req.clone({
       url: _BASE_URL + req.url
@@ -45,19 +45,19 @@ export class AuthInterceptorService implements HttpInterceptor {
             const responseBody = event.body;
             if (responseBody && responseBody.token) {
               const { token, user } = responseBody;
-              // Update the access token in the service
+
               this._authService.setAccessToken(token);
-              console.log("Updated access token:", token);
+
             }
-            console.log("Response from body:", responseBody);
+
           }
-          
+
         },
         catchError((error) => {
           if (error.status === 403) {
-            console.log("Unauthorized error. Redirect to login page or refresh token.");
+
             this._store.dispatch(
-              setErrorMessage({message:"Invalid credentials"})
+              setErrorMessage({ message: "Invalid credentials" })
             )
           }
           return throwError(error);

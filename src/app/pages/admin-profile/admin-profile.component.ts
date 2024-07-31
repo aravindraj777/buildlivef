@@ -38,7 +38,7 @@ export class AdminProfileComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.showErrorMessage = this.store.select();
+    
     this.store.select(getEmail).subscribe((data) => {
       this.email = data;
     });
@@ -74,8 +74,6 @@ export class AdminProfileComponent {
 
   submitProPic() {
     if (this.userId) {
-      console.log(this.userId, ' ', this.selectedImage);
-
       this.masterService
         .changeProfilePicture(this.selectedImage, this.userId)
         .subscribe((response) => {

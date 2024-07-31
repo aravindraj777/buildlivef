@@ -1,56 +1,70 @@
 <!-- plan-creation.component.html -->
-<form [formGroup]="planForm" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
-    <div class="mb-5">
-      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-      <input
-        type="text"
-        id="name"
-        formControlName="name"
-        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        placeholder="Enter plan name"
-        required
-      />
-      <div *ngIf="planForm.get('name')?.touched && planForm.get('name')?.invalid" class="text-red-500 text-sm">
-        Name is required.
-      </div>
-    </div>
-    <div class="mb-5">
-      <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-      <select
-        id="type"
-        formControlName="type"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required
-      >
-        <option value="">Select type</option>
-        <option value="BUSINESS">BUSINESS</option>
-        <option value="BASIC">BASIC</option>
-        <option value="INTERMEDIATE">INTERMEDIATE</option>
-      </select>
-      <div *ngIf="planForm.get('type')?.touched && planForm.get('type')?.invalid" class="text-red-500 text-sm">
-        Type is required.
-      </div>
-    </div>
-    <div class="mb-5">
-      <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-      <input
-        type="number"
-        id="price"
-        formControlName="price"
-        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        placeholder="Enter plan price"
-        required
-      />
-      <div *ngIf="planForm.get('price')?.touched && planForm.get('price')?.invalid" class="text-red-500 text-sm">
-        Price is required and must be a positive number.
-      </div>
-    </div>
-    <button
-      type="submit"
-      [disabled]="planForm.invalid"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Register new account
-    </button>
-  </form>
+ <div class="full-constainer">
+<form [formGroup]="planForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Create New Plan</h2>
   
+  <div class="mb-5">
+    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Plan Name</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      placeholder="Enter plan name"
+      required
+    />
+    <div *ngIf="planForm.get('name')?.touched && planForm.get('name')?.invalid" class="text-red-500 text-sm mt-1">
+      Name is required.
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Plan Type</label>
+    <select
+      id="type"
+      formControlName="type"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+    >
+      <option value="">Select type</option>
+      <option value="BUSINESS">BUSINESS</option>
+      <option value="BASIC">BASIC</option>
+      <option value="INTERMEDIATE">INTERMEDIATE</option>
+    </select>
+    <div *ngIf="planForm.get('type')?.touched && planForm.get('type')?.invalid" class="text-red-500 text-sm mt-1">
+      Type is required.
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Plan Price</label>
+    <input
+      type="number"
+      id="price"
+      formControlName="price"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      placeholder="Enter plan price"
+      required
+    />
+    <div *ngIf="planForm.get('price')?.touched && planForm.get('price')?.invalid" class="text-red-500 text-sm mt-1">
+      Price is required and must be a positive number.
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="planForm.invalid"
+    class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+  >
+    Create Plan
+  </button>
+
+  <button
+      type="button"
+      (click)="onCancel()"
+      class=" w-full text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+    >
+      Cancel
+    </button>
+</form>
+</div>

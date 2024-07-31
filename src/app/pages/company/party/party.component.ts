@@ -22,7 +22,7 @@ export class PartyComponent implements OnInit{
       this.companyId = params['id'];
     })
 
-    console.log(this.companyId,"in party");
+   
     
     this.getAllPartyMembers();
   }
@@ -46,7 +46,7 @@ export class PartyComponent implements OnInit{
           }
         });
 
-        console.log(this.partyMembers);
+       
       },
       (error) => {
         console.log(error);
