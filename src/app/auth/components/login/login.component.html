@@ -1,10 +1,14 @@
 <div class="">
-    <div class="container">
+    <div class="container ">
 
-
-        <div class="form-container">
-
+        <div class="form-container backimg">
+           
             <div class="box">
+                <!-- Demo Credentials Section -->
+                <div class="demo-credentials">
+                    <p><b>Demo Username:</b> demoUser</p>
+                    <p><b>Demo Password:</b> demoPass123</p>
+                </div>
 
                 <form action="" [formGroup]="loginForm" (ngSubmit)="proceedToLogin()">
                     <h2>SIGN IN</h2>
@@ -25,12 +29,10 @@
                     <div class="links flex justify-start">
                         <a href="#" routerLink="/register" class="sign-up-link">Sign Up</a>
                     </div>
+                    
                 </form>
             </div>
         </div>
-        <div class="image-container">
-            <img src="https://img.freepik.com/premium-photo/construction-workers-working-construction-site_891336-3501.jpg"
-                alt="Your Image">
-        </div>
+        
     </div>
 </div>

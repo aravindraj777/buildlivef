@@ -34,45 +34,118 @@ export class CreatePlanComponent implements OnInit{
 
   
 
+  // ngOnInit(): void {
+  //   this.userId = this.data;
+  //   console.log(this.userId+"da");
+    
+  //   this.planForm = this.fb.group({
+  //     name: ['', Validators.required],
+  //     type: ['', Validators.required],
+  //     price: ['', [Validators.required, Validators.min(0),Validators.pattern("^[0-9]*$")]],
+  //   });
+  // }
+
+  //   onSubmit():void{
+  //     if (this.planForm.valid) {
+  //       console.log('Form submitted!', this.planForm.value);
+  //       const planData:Plans = {
+  //         name:this.planForm.value.name,
+  //         planType:this.planForm.value.type,
+  //         price:this.planForm.value.price,
+  //         creatorId:this.userId,
+  //         isActive:true
+  //       }
+
+  //       this.planService.createPlan(planData).subscribe(
+  //         {next : (response) => {
+  //           this.dialogRef.close();
+  //           this.toastr.success("New plan created")
+  //           this.planCreated.emit();
+  //         }}
+  //       )
+  //     } else {
+  //       this.toastr.error("Error while creating plan")
+  //     }
+  //   }
+  
+
+  //   onCancel(): void {
+  //     this.dialogRef.close();
+  //   }
+
+
   ngOnInit(): void {
     this.userId = this.data;
-    console.log(this.userId+"da");
+    console.log(this.userId+"uu");
     
     this.planForm = this.fb.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0),Validators.pattern("^[0-9]*$")]],
+      price: ['', [Validators.required, Validators.min(0)]],
+    });
+
+    this.planForm.get('type')?.valueChanges.subscribe(type => {
+      const priceControl = this.planForm.get('price');
+      if (type === 'BASIC') {
+        priceControl?.setValidators([Validators.required, Validators.min(0), Validators.max(0)]);
+        priceControl?.setValue(0);
+        priceControl?.disable();
+      } else if (type === 'INTERMEDIATE') {
+        priceControl?.setValidators([Validators.required, Validators.min(2000), Validators.max(4000)]);
+        priceControl?.enable();
+        priceControl?.reset();
+      } else if (type === 'BUSINESS') {
+        priceControl?.setValidators([Validators.required, Validators.min(4000), Validators.max(8000)]);
+        priceControl?.enable();
+        priceControl?.reset();
+      }
+      priceControl?.updateValueAndValidity();
     });
   }
 
-    onSubmit():void{
-      if (this.planForm.valid) {
-        console.log('Form submitted!', this.planForm.value);
-        const planData:Plans = {
-          name:this.planForm.value.name,
-          planType:this.planForm.value.type,
-          price:this.planForm.value.price,
-          creatorId:this.userId,
-          isActive:true
+  onSubmit(): void {
+    if (this.planForm.valid) {
+      const planData: Plans = {
+        name: this.planForm.value.name,
+        planType: this.planForm.value.type,
+        price: this.planForm.value.price,
+        planCreatorId: this.userId,
+        isActive: true
+      };
+
+      console.log("Plan Data:", planData);
+      this.planService.createPlan(planData).subscribe({
+        next: (response) => {
+          this.dialogRef.close();
+          this.toastr.success("New plan created");
+          this.planCreated.emit();
+        },
+        error: () => {
+          this.toastr.error("Error while creating plan");
         }
-
-        this.planService.createPlan(planData).subscribe(
-          {next : (response) => {
-            this.dialogRef.close();
-            this.toastr.success("New plan created")
-            this.planCreated.emit();
-          }}
-        )
-      } else {
-        this.toastr.error("Error while creating plan")
-      }
+      });
+    } else {
+      this.toastr.error("Error while creating plan");
     }
-  
+  }
 
-    onCancel(): void {
-      this.dialogRef.close();
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
+  get priceErrorMessage() {
+    const priceControl = this.planForm.get('price');
+    if (priceControl?.hasError('min')) {
+      return `Price must be at least ${priceControl.errors?.['min'].min}`;
+    } else if (priceControl?.hasError('max')) {
+      return `Price must be at most ${priceControl.errors?.['max'].max}`;
+    } else if (priceControl?.hasError('pattern')) {
+      return 'Price must be a valid number';
+    } else if (priceControl?.hasError('required')) {
+      return 'Price is required';
     }
-
+    return '';
+  }
 
 
 }

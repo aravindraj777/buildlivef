@@ -18,6 +18,7 @@ import { PlansComponent } from './pages/plans/plans.component';
 
 
 
+
 const routes: Routes = [
   {
     path: "",
@@ -51,8 +52,12 @@ const routes: Routes = [
       { path: 'plans', component : PlansComponent}
     ]
   },
-  { path: 'messages', canActivate: [AuthGuard],component: UserComponent, loadChildren: () => import('./pages/messages/messages.module').then(m => m.MessagesModule) },
- 
+  { path: 'messages', canActivate: [AuthGuard],component: UserComponent,
+     loadChildren: () => import('./pages/messages/messages.module').then(m => m.MessagesModule) 
+  },
+
+  
+  
 
 
 ];

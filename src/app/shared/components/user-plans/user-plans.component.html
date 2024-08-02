@@ -1,0 +1,45 @@
+<div class="pl-16 pt-2 ml-52 w-10/12">
+    <div class="p-8 bg-gradient-to-r bg-sky-50 border-b-4 border-r-4 border-l-4
+        border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full text-center"
+      style="min-height: 40em; border-radius: 1.3em;">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-cyan-200 text-center mb-4">CHOOSE YOUR PLAN</h1>
+        <p class="text-grey mb-8 max-w-2xl mx-auto">Choose your required plan to post your and show your works to other BUILDLIVE users. Connect them and get works.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div *ngFor="let plan of plans" [ngClass]="getPlanClass(plan.planType)" class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <h2 class="text-xl font-semibold mb-4">{{ plan.planName }}</h2>
+            <div class="mb-4" [ngClass]="getIconClass(plan.planType)">
+              <svg *ngIf="plan.planType === 'BASIC'" xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6zm2-2V6a2 2 0 012-2h6a2 2 0 012 2v4" />
+              </svg>
+              <svg *ngIf="plan.planType === 'INTERMEDIATE'" xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <svg *ngIf="plan.planType === 'BUSINESS'" xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <p class="text-2xl font-bold mb-6 text-center">{{ plan.planPrice | currency:'INR'}}</p>
+            <ul class="mb-8 flex-grow">
+              <li class="flex items-center mb-2">
+                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <!-- Add custom features for each plan based on plan.planType -->
+                <span *ngIf="plan.planType === 'BASIC'">2 post/week, Email Support, Limited Access</span>
+                <span *ngIf="plan.planType === 'INTERMEDIATE'">No post control, Email Support, Call Support, 1 Month Access</span>
+                <span *ngIf="plan.planType === 'BUSINESS'">Unlimited Access, No post control, 1 Year Access</span>
+              </li>
+            </ul>
+            <div *ngIf="purchasedPlans.has(plan.id); else notPurchased">
+              <button class="bg-gray-600 text-white py-2 px-4 rounded cursor-not-allowed" disabled>Purchased</button>
+            </div>
+            <ng-template #notPurchased>
+              <button class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition duration-200" 
+              (click)="buySubscription(plan.id)"
+              >CHOOSE</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

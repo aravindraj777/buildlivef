@@ -231,4 +231,29 @@ input[type="submit"]{
     max-height: 100%; /* Make sure the image doesn't exceed its container's height */
 }
 
+.backimg{
+    background-image: url("/assets/homeimg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
+
+.demo-credentials {
+    padding: 10px;
+    background: #f0f4f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px; /* Space between demo credentials and the form */
+}
+
+.demo-credentials p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.demo-credentials b {
+    color: #45f3ff; /* Blue shade to match the design */
+}

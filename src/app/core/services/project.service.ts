@@ -76,7 +76,7 @@ getAllProjectTasks(projectId:string,partyEmail:string):Observable<any[]>{
   const params = new HttpParams()
                   .set('projectId',projectId)
                   .set('partyEmail',partyEmail)
-                  
+                    
 
   return this._http.get<any[]>('project/tasks/getAll-projectTasks',{params})                
 }

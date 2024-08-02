@@ -35,6 +35,8 @@ import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 import { AdminProfileComponent } from './pages/admin-profile/admin-profile.component';
 import { PlansComponent } from './pages/plans/plans.component';
 import { CreatePlanComponent } from './pages/create-plan/create-plan.component';
+import { UserPlansComponent } from './shared/components/user-plans/user-plans.component';
+import { UserPostComponent } from './pages/profile/user-post/user-post.component';
 
 
 
@@ -68,6 +70,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AdminProfileComponent,
     PlansComponent,
     CreatePlanComponent,
+ 
+    
    
    
   

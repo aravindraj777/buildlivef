@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlanResponse, Plans } from '../../models/plan.model';
+import { PlanPaymentSuccess, PlanResponse, Plans } from '../../models/plan.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,25 @@ export class PlanService {
   activatePlan(id: string): Observable<void> {
     return this.http.put<void>(`admin/plans/${id}/activate`, {});
   }
+
+  purchasePlan(planId: string, userId?: string) {
+    let params = new HttpParams().set('planId', planId);
+  
+    if (userId) {
+      params = params.set('userId', userId);
+    }
+  
+    return this.http.post('user/purchase-plan', {}, { params });
+
+  }
+
+  subscriptionSuccess(paymentData:PlanPaymentSuccess):Observable<any>{
+    return this.http.post<any>('user/subscription-success',paymentData)
+  }
+
+  checkPlanPurchased(userId: string | undefined, planId: string): Observable<boolean> {
+    return this.http.get<boolean>(`user/${userId}/plans/${planId}/purchased`);
+  }
+
+  
 }

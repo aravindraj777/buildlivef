@@ -2,7 +2,7 @@ export interface Plans {
     name:string;
     planType: 'BUSINESS' | 'INTERMEDIATE' | 'BASIC'
     price:number;
-    creatorId: string | undefined
+    planCreatorId: string | undefined
     isActive:boolean
 }
 
@@ -15,3 +15,9 @@ export interface PlanResponse{
     isActive:boolean;
 }
 
+
+export interface PlanPaymentSuccess {
+      planId: string,
+      userId: string | undefined,
+      transactionId:string
+}

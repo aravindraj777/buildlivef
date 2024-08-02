@@ -1,3 +1,17 @@
 .validation-message{
     color: red;
 }
+
+.backimg{
+    background-image: url("/assets/homeimg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fullbackimg{
+    background-image: url("/assets/home-back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

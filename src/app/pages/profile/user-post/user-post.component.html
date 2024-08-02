@@ -1,0 +1,117 @@
+<!-- <div class="pl-16 pt-2 ml-52 w-10/12">
+    <div class="p-8 bg-gradient-to-r bg-sky-50 border-b-4 border-r-4 border-l-4
+        border-l-sky-300 border-r-sky-300 border-b-sky-300 shadow mt-24 h-full text-center flex  
+         justify-between" style="min-height: 40em; border-radius: 1.3em; ">
+
+        <div class="bg-yellow-200 h-full w-1/3 flex flex-col">
+
+
+            <div class="w-full max-w-2xl mx-auto p-6 bg-slate-500 rounded-lg shadow-lg">
+                <h1 class="text-3xl md:text-4xl font-serif text-yellow-400 text-center mb-6">Post Your Feed</h1>
+
+                <div class="w-full h-px bg-gray-700 mb-6"></div>
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <form enctype="multipart/form-data" [formGroup]="feedForm" (ngSubmit)="addFeed()">
+                        <textarea 
+                            class="w-full sm:flex-grow bg-gray-800 text-gray-300
+                             placeholder-gray-500 border border-gray-600
+                              rounded-lg p-4 focus:outline-none focus:ring-2
+                               focus:ring-yellow-400 transition duration-300 "
+                            rows="4" placeholder="Type something..." formControlName="content" > 
+                        
+                        </textarea>
+
+                        
+                        <div>
+                            <label for="file-upload" class="custom-file-upload">
+                              <ng-container *ngIf="imageSrc">
+                                <img [src]="imageSrc" alt="selected image" width="50" height="50">
+                              </ng-container>
+                              <ng-container *ngIf="!imageSrc">
+                                <mat-icon>add_a_photo</mat-icon>
+                              </ng-container>
+                            </label>
+                            <input id="file-upload" type="file" (change)="postImage($event)" />
+                            <br>
+                            <button type="submit"
+                              class="items-end py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Post</button>
+                          </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="bg-yellow-200 h-full w-1/2 post">
+
+            <h1>UserFeeds</h1>
+            <div class="rounded-lg shadow-md  py-1 px-2">
+              <ng-container *ngFor="let feed of posts">
+                <div class="feed-item border-b-2 border-gray-200 pb-4 mb-4">
+                  <div class="flex items-center space-x-3 p-4 outline rounded-md">
+                    <img class="w-10 h-10 rounded-full object-cover" [src]="'/assets/icons/Profile-PNG-File.png'" alt="Profile picture">
+                    <div>
+                      <p class="font-semibold text-white">{{ feed.user.name }}</p>
+                      <p class="text-sm text-white">{{ feed.createdDate| date:'MMMM d, y'}}</p>
+                    </div>
+                  </div>
+                  <img class="w-full rounded-md" [src]="feed.imageUrl" alt="Dance performance">
+                  <div class="px-4 py-3 outline">
+                    <p class="text-white">{{ feed.content }}</p>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="pl-16 pt-2 ml-52 w-10/12 ">
+    <div class="p-8 bg-gradient-to-r from-sky-50 to-sky-100 border-4 border-sky-300 shadow-lg mt-24 h-full text-center flex justify-between rounded-xl " style="min-height: 40em;">
+        <div class="bg-yellow-100 h-full w-1/3 flex flex-col p-4 rounded-l-xl ">
+            <div class="w-full max-w-2xl mx-auto p-6 bg-slate-600 rounded-lg shadow-lg">
+                <h1 class="text-3xl md:text-4xl font-serif text-yellow-400 text-center mb-6">Post Your Feed</h1>
+                <div class="w-full h-px bg-gray-700 mb-6"></div>
+                <div class="flex flex-col space-y-4" *ngIf="premiumUser == true">
+                    <form enctype="multipart/form-data" [formGroup]="feedForm" (ngSubmit)="addFeed()">
+                        <textarea class="w-full bg-gray-800 text-gray-300 placeholder-gray-500 border border-gray-600 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-300" rows="4" placeholder="Type something..." formControlName="content"></textarea>
+                        <div class="flex items-center space-x-4">
+                            <label for="file-upload" class="custom-file-upload">
+                                <ng-container *ngIf="imageSrc">
+                                    <img [src]="imageSrc" alt="selected image" width="50" height="50" class="rounded-full">
+                                </ng-container>
+                                <ng-container *ngIf="!imageSrc">
+                                    <mat-icon>add_a_photo</mat-icon>
+                                </ng-container>
+                            </label>
+                            <input id="file-upload" type="file" class="hidden" (change)="postImage($event)" />
+                            <button type="submit" class="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bg-yellow-100 h-full w-1/2 p-4 rounded-r-xl post">
+            <h1 class="text-2xl font-semibold text-gray-800 mb-6">User Feeds</h1>
+            <div class="rounded-lg shadow-md py-4 px-6 bg-gray-100">
+                <ng-container *ngFor="let feed of posts">
+                    <div class="feed-item border-b-2 border-gray-200 pb-4 mb-4">
+                        <div class="flex items-center space-x-3 p-4 bg-white rounded-md shadow-sm">
+                            <img class="w-10 h-10 rounded-full object-cover" [src]="' /assets/profileimagedefault.jpg'" alt="Profile picture">
+                            <div>
+                                <p class="font-semibold text-gray-800">{{ feed.user.name }}</p>
+                                <p class="text-sm text-gray-600">{{ feed.createdDate | date: 'MMMM d, y' }}</p>
+                            </div>
+                        </div>
+                        <img class="w-full rounded-md mt-4" [src]="feed.imageUrl" alt="User uploaded image">
+                        <div class="px-4 py-3 bg-white mt-4 rounded-md shadow-sm">
+                            <p class="text-gray-800">{{ feed.content }}</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
