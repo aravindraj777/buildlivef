@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
 
   registerForm!: FormGroup
   showOtpField: boolean = false;
+  isLoading = false;
 
   constructor(private _formBuilder: FormBuilder,
     private _http: HttpClient,
@@ -46,14 +47,17 @@ export class SignupComponent implements OnInit {
       if (this.registerForm.valid) {
         console.log("valid")
 
+        this.isLoading = true;
         this._http.post<any>('auth/register', registerValues).subscribe(
           response => {
             this._toastr.success('Registration successful!', 'Success');
             this.userId = response.id;
             this.showOtpField = true;
+            this.isLoading = false;
           },
           error => {
             this._toastr.error('Failed', 'Error');
+            this.isLoading = false;
           }
         )
       }
