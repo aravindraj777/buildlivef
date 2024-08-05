@@ -162,7 +162,7 @@
                                 </div>
                                 <div *ngIf="registerForm.controls['password']?.invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
                                     class="validation-message">
-                                    <span *ngIf="registerForm.controls['password']?.errors?.['required']">Password is required.</span>
+                                    <span *ngIf="registerForm.controls['password']?.errors?.['required']">Password is required and must contain a special character and a digit..</span>
                                 </div>
                             </div>
                             <div class="w-full px-3 mb-12" *ngIf="!showOtpField">
