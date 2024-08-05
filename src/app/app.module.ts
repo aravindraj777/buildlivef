@@ -37,6 +37,7 @@ import { PlansComponent } from './pages/plans/plans.component';
 import { CreatePlanComponent } from './pages/create-plan/create-plan.component';
 import { UserPlansComponent } from './shared/components/user-plans/user-plans.component';
 import { UserPostComponent } from './pages/profile/user-post/user-post.component';
+import { LoaderComponent } from './auth/components/loader/loader.component';
 
 
 
@@ -70,6 +71,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AdminProfileComponent,
     PlansComponent,
     CreatePlanComponent,
+    LoaderComponent,
  
     
    
