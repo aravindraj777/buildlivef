@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
       confirmPassword: this._formBuilder.control('', Validators.compose([Validators.required])),
       otp: ['']
 
-    })
+    },{ validator: this.passwordMatchValidator})
   }
 
 
@@ -100,7 +100,10 @@ export class SignupComponent implements OnInit {
 
 
 
-
+  passwordMatchValidator(form: FormGroup) {
+    return form.controls['password'].value === form.controls['confirmPassword'].value
+      ? null : { mismatch: true };
+  }
 
 
 }
